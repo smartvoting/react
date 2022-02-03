@@ -1,38 +1,190 @@
-.App {
-  text-align: center;
+/* Main Pages / Global Stuff */
+body {
+    background-image: url('./images/background.png');
+    background-size: cover;
+    background-repeat:no-repeat;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar {
+    background-color: #513A77 !important;
+    padding: 0 !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar-brand {
+    padding: 0 !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.navbar-brand > img {
+    padding: 7px 14px;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar a {
+    color: #F5F5F5 !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navbar a:hover {
+    color: #FF9F1C !important;
+    transition: 0.5s;
 }
+
+.nav-item:hover .dropdown-menu {
+    display: block !important
+}
+
+.btn-purple {
+    color: #FFF !important;
+    background-color: #513A77 !important;
+    border-color: #513A77 !important;
+}
+
+    .btn-purple:hover {
+        color: #FF9F1C !important;
+        background-color: #312347 !important;
+        border-color: #312347 !important;
+    }
+
+
+.btn-outline-purple {
+    color: #513A77 !important;
+    border-color: #513A77 !important
+}
+
+    .btn-outline-purple:hover {
+        color: #FF9F1C !important;
+        background-color: #513A77 !important;
+        border-color: #513A77 !important
+    }
+
+    .btn-check:focus + .btn-outline-purple,
+    .btn-outline-purple:focus {
+        box-shadow: 0 0 0 .25rem rgba(13,110,253,.5) !important
+    }
+
+    .btn-check:active + .btn-outline-purple,
+    .btn-check:checked + .btn-outline-purple,
+    .btn-outline-purple.active,
+    .btn-outline-purple.dropdown-toggle.show,
+    .btn-outline-purple:active {
+        color: #FF9F1C !important;
+        background-color: #513A77 !important;
+        border-color: #513A77 !important
+    }
+
+        .btn-check:active + .btn-outline-purple:focus,
+        .btn-check:checked + .btn-outline-purple:focus,
+        .btn-outline-purple.active:focus,
+        .btn-outline-purple.dropdown-toggle.show:focus,
+        .btn-outline-purple:active:focus {
+            box-shadow: 0 0 0 .25rem rgba(13,110,253,.5) !important
+        }
+
+    .btn-outline-purple.disabled,
+    .btn-outline-purple:disabled {
+        color: #513A77 !important;
+        background-color: transparent !important
+    }
+
+.footer {
+    color: #000;
+    background-color: #FF9F1C;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    max-width: 100% !important;
+}
+
+.footer a {
+    text-decoration:none;
+}
+
+/* Error Page */
+
+.errorPage {
+    background-color: #FFF;
+    display:flex;
+    justify-content:center;
+    font-size:1.5em;
+    max-width: 100% !important;
+}
+
+.errorImage{
+    width:86%;
+}
+
+/*Landing Pages*/
+
+.landingContainer {
+    background: #191919;
+    min-width: 100%;
+    font-family: Montserrat, sans-serif;
+}
+
+.sidebar {
+    background-color: #513A77 !important;
+    position: fixed;
+    left: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 12%;
+    height: calc(100vh - 56px - 61px) !important;
+    border-top: solid 1px black;
+}
+
+.sidebarHeader {
+    color: #FF9F1C;
+    text-decoration: underline;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.sidebar a {
+    font-size: 15px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    padding-top:30px;
+    padding-bottom:30px;
+}
+
+    .sidebar a:hover {
+        color: #FF9F1C !important;
+    }
+
+.landingContainer {
+    display: flex;
+    height: calc(100vh - 56px - 61px) !important;
+    background-color: black;
+    min-width: 100%;
+}
+.landingContent {
+    display:flex;
+    height: calc(100vh - 56px - 61px) !important;
+    background-color: black;
+    min-width:100%;
+}
+
+.slidingPanelContent {
+    padding: 0;
+    height: calc(100vh - 56px - 62px) !important;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0) !important;
+    position: absolute;
+    top: 62px;
+    right: 0;
+}
+
+.slide-pane .slide-pane__title {
+    text-align: center;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    font-weight: bold !important;
+}
+
+.slidingPanelOverlay {
+    background-color: rgba(0, 0, 0, 0) !important;
+    height: calc(100vh - 56px - 62px) !important;
+}
+
