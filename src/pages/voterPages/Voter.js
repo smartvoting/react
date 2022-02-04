@@ -11,7 +11,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 export default function Voter() {
 
-    const panelPages = ["/voter/riding", "/voter/checklist", "/voter/registration", "/voter/faqs"];
+    const panelPages = ["/voter/riding/", "/voter/checklist/", "/voter/registration/", "/voter/faqs/"];
     const panelTitles = ["Find a Riding", "Voter Checklist", "Check Registration", "FAQ"];
     const panelComponents = [<VoterRiding/>, <VoterChecklist/>, <VoterRegistration/>, <VoterFaqs/>];
 
@@ -39,10 +39,10 @@ export default function Voter() {
         <>
             <Nav className="sidebar">
                 <h5 className="sidebarHeader">Voter</h5>
-                <a href="/voter/riding" onClick={changeUrl}>Find A Riding</a>
-                <a href="/voter/checklist" onClick={changeUrl}>Voter Checklist</a>
-                <a href="/voter/registration" onClick={changeUrl}>Check Registration</a>
-                <a href="/voter/faqs" onClick={changeUrl}>FAQ</a>
+                <a href="/voter/riding/" onClick={changeUrl}>Find A Riding</a>
+                <a href="/voter/checklist/" onClick={changeUrl}>Voter Checklist</a>
+                <a href="/voter/registration/" onClick={changeUrl}>Check Registration</a>
+                <a href="/voter/faqs/" onClick={changeUrl}>FAQ</a>
             </Nav>
 
             <Container className="landingContainer">
@@ -55,6 +55,7 @@ export default function Voter() {
                     title={panelTitles[panelPages.indexOf(window.location.pathname)]}
                     width="88%"
                     onRequestClose={() => {
+                        window.history.pushState("", "voter", "/voter/");
                         setState({ isPaneOpen: false });
                     }}
                 >

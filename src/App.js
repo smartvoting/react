@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes, useNavigate, } from 'react-router-dom';
 import Home from './pages/Home';
 import ErrorPage from './pages/ErrorPage';
 import VoterLanding from './pages/voterPages/Voter';
+import PartyLanding from './pages/partyPages/Party';
 
 export default function App() {
 
@@ -15,12 +16,16 @@ export default function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/404" element={<ErrorPage />} />
-                    <Route path="/voter" element={<VoterLanding />} />
-                    <Route path="/voter/riding" element={<VoterLanding />} />
-                    <Route path="/voter/checklist" element={<VoterLanding />} />
-                    <Route path="/voter/registration" element={<VoterLanding />} />
-                    <Route path="/voter/faqs" element={<VoterLanding />} />
+                    <Route path="/voter/" element={<VoterLanding />} />
+                    <Route path="/voter/riding/" element={<VoterLanding />} />
+                    <Route path="/voter/checklist/" element={<VoterLanding />} />
+                    <Route path="/voter/registration/" element={<VoterLanding />} />
+                    <Route path="/voter/faqs/" element={<VoterLanding />} />
+                    <Route path="/party/" element={<PartyLanding />} />
+                    <Route path="/party/list/" element={<PartyLanding />} />
+                    <Route path="/party/donations/" element={<PartyLanding />} />
+                    <Route path="/party/candidates/" element={<PartyLanding />} />
+                    <Route path="*" element={<ErrorPage />} />
 
                 </Routes>
             </BrowserRouter>
@@ -42,20 +47,20 @@ function NavbarFunction() {
                         <Nav.Link href="/">Home</Nav.Link>
                         <NavDropdown title="Voters" id="votersDropdown"
                             renderMenuOnMount={true}
-                            onToggle={() => { window.location.href = '/voter' }}
+                            onToggle={() => { window.location.href = '/voter/' }}
                             menuVariant="dark" >
-                            <NavDropdown.Item href="/voter/riding">Find A Riding</NavDropdown.Item>
-                            <NavDropdown.Item href="/voter/checklist">Voter Checklist</NavDropdown.Item>
-                            <NavDropdown.Item href="/voter/registration">Check Registration</NavDropdown.Item>
-                            <NavDropdown.Item href="/voter/faqs">FAQ</NavDropdown.Item>
+                            <NavDropdown.Item href="/voter/riding/">Find A Riding</NavDropdown.Item>
+                            <NavDropdown.Item href="/voter/checklist/">Voter Checklist</NavDropdown.Item>
+                            <NavDropdown.Item href="/voter/registration/">Check Registration</NavDropdown.Item>
+                            <NavDropdown.Item href="/voter/faqs/">FAQ</NavDropdown.Item>
                         </NavDropdown>
                         <NavDropdown title="Parties" id="partiesDropdown"
                             renderMenuOnMount={true}
-                            onToggle={() => { window.location.href = '/' }}
+                            onToggle={() => { window.location.href = '/party/' }}
                             menuVariant="dark" >
-                            <NavDropdown.Item href="#">Parties List</NavDropdown.Item>
-                            <NavDropdown.Item href="#">Contribution Limits</NavDropdown.Item>
-                            <NavDropdown.Item href="#">Party Candidates</NavDropdown.Item>
+                            <NavDropdown.Item href="/party/list/">Parties List</NavDropdown.Item>
+                            <NavDropdown.Item href="/party/donations/">Contribution Limits</NavDropdown.Item>
+                            <NavDropdown.Item href="/party/candidates/">Party Candidates</NavDropdown.Item>
                         </NavDropdown>
                         <NavDropdown title="Candidates" id="candidatesDropdown"
                             renderMenuOnMount={true}

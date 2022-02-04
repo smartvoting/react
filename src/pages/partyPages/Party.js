@@ -2,18 +2,17 @@ import React, { useState, useEffect } from "react";
 import SlidingPane from "react-sliding-pane";
 import "react-sliding-pane/dist/react-sliding-pane.css";
 import { Nav, Container, } from "react-bootstrap";
-import VoterRiding from './Riding';
-import VoterChecklist from './Checklist';
-import VoterRegistration from './Registration';
-import VoterFaqs from './Faqs';
+import PartyList from './List';
+import PartyDonations from './Donations';
+import PartyCandidates from './Candidates';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 export default function Voter() {
 
-    const panelPages = ["/voter/riding", "/voter/checklist", "/voter/registration", "/voter/faqs"];
-    const panelTitles = ["Find a Riding", "Voter Checklist", "Check Registration", "FAQ"];
-    const panelComponents = [<VoterRiding/>, <VoterChecklist/>, <VoterRegistration/>, <VoterFaqs/>];
+    const panelPages = ["/party/list/", "/party/donations/", "/party/candidates/"];
+    const panelTitles = ["Parties List", "Contribution Limits", "Party Candidates"];
+    const panelComponents = [<PartyList/>, <PartyDonations/>, <PartyCandidates/>];
 
     const [state, setState] = useState({
         isPaneOpen: false
@@ -38,11 +37,10 @@ export default function Voter() {
     return (
         <>
             <Nav className="sidebar">
-                <h5 className="sidebarHeader">Voter</h5>
-                <a href="/voter/riding" onClick={changeUrl}>Find A Riding</a>
-                <a href="/voter/checklist" onClick={changeUrl}>Voter Checklist</a>
-                <a href="/voter/registration" onClick={changeUrl}>Check Registration</a>
-                <a href="/voter/faqs" onClick={changeUrl}>FAQ</a>
+                <h5 className="sidebarHeader">Parties</h5>
+                <a href="/party/list/" onClick={changeUrl}>Parties List</a>
+                <a href="/party/donations/" onClick={changeUrl}>Contribution Limits</a>
+                <a href="/party/candidates/" onClick={changeUrl}>Party Candidates</a>
             </Nav>
 
             <Container className="landingContainer">
@@ -55,6 +53,7 @@ export default function Voter() {
                     title={panelTitles[panelPages.indexOf(window.location.pathname)]}
                     width="88%"
                     onRequestClose={() => {
+                        window.history.pushState("", "party", "/party/");
                         setState({ isPaneOpen: false });
                     }}
                 >
