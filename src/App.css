@@ -160,7 +160,7 @@ body {
     background-color: black;
     min-width: 100%;
 }
-.landingContent {
+.lc {
     display:flex;
     height: calc(100vh - 56px - 61px) !important;
     background-color: black;
