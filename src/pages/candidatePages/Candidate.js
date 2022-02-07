@@ -6,7 +6,7 @@ import LandingPage from '../../static/LandingPage';
 
 export default function Voter() {
 
-    const voterLanding = {
+    const candidateLanding = {
         header: "Candidates",
         pushStateLink1: "candidates", pushStateLink2: "/candidate/",
         panelPages: ["/candidate/list/", "/candidate/party/", "/candidate/find/"],
@@ -16,7 +16,7 @@ export default function Voter() {
 
     return (
         <>
-            <LandingPage lc={voterLanding} />
+            <LandingPage lc={candidateLanding} />
         </>
     );
 }

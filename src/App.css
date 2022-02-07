@@ -33,6 +33,10 @@ body {
     display: block !important
 }
 
+.dropdown-item{
+    width: 94% !important;
+}
+
 .btn-purple {
     color: #FFF !important;
     background-color: #513A77 !important;
@@ -160,7 +164,7 @@ body {
     background-color: black;
     min-width: 100%;
 }
-.lc {
+.landingContent {
     display:flex;
     height: calc(100vh - 56px - 61px) !important;
     background-color: black;

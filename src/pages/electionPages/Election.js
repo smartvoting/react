@@ -6,7 +6,7 @@ import LandingPage from '../../static/LandingPage';
 
 export default function Voter() {
 
-    const voterLanding = {
+    const electionLanding = {
         header: "Elections",
         pushStateLink1: "elections", pushStateLink2: "/elections/",
         panelPages: ["/elections/process/", "/elections/past/", "/elections/turnout/"],
@@ -16,7 +16,7 @@ export default function Voter() {
 
     return (
         <>
-            <LandingPage lc={voterLanding} />
+            <LandingPage lc={electionLanding} />
         </>
     );
 }
