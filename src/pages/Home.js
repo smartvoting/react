@@ -7,7 +7,7 @@ import { TwitterTimelineEmbed, } from 'react-twitter-embed';
 export default class Home extends React.Component  {
     componentDidMount() {
         var observer = new MutationObserver(function (m) {
-            if (m[0].addedNodes[0] !== undefined && m[0].addedNodes[0].nodeName === "IFRAME")
+            if (m[0].addedNodes[0] !== undefined && m[0].addedNodes[0] !== null && m[0].addedNodes[0].nodeName === "IFRAME")
                 document.getElementById("twitter-widget-0").parentElement.style.height = "100%";
         });
 
