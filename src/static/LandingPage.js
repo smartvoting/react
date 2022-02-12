@@ -45,8 +45,9 @@ export default function LandingPage(props) {
                     title={props.lc.panelTitles[props.lc.panelPages.indexOf(window.location.pathname)]}
                     width="88%"
                     onRequestClose={() => {
-                        window.history.pushState("", props.lc.pushStateLink1, props.lc.pushStateLink2);
                         setState({ isPaneOpen: false });
+                        setTimeout(function () { window.history.pushState("", props.lc.pushStateLink1, props.lc.pushStateLink2); }, 600);
+                       
                     }}
                 >
                     <Container>
