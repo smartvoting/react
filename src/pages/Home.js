@@ -1,26 +1,44 @@
+import React from 'react';
 import tempCarouselImage from '../images/tempCarouselImage.png';
 import tempCardImg from '../images/tempCardImg.png'
 import { Container, Card, Carousel, Row, Col, Button, InputGroup, FormControl } from "react-bootstrap";
-import { useNavigate, } from "react-router-dom";
 import { TwitterTimelineEmbed, } from 'react-twitter-embed';
 
-export default function Home() {
-    const navigate = useNavigate();
-    return (
-        <>
-            {< CarouselFunction />}
+export default class Home extends React.Component  {
+    componentDidMount() {
+        var observer = new MutationObserver(function (m) {
+            if (m[0].addedNodes[0] !== undefined && m[0].addedNodes[0].nodeName === "IFRAME")
+                document.getElementById("twitter-widget-0").parentElement.style.height = "100%";
+        });
 
-            <Container className="justify-content-center mt-3">
-                {<CardsFunction />}
-            </Container>
-            <Container className="justify-content-center mt-3 mb-3">
-                <Row className="g-4">
-                    <Col sm={8}>{<VoterInfoService />}</Col>
-                    <Col sm={4}>{<Timeline />}</Col>
-                </Row>
-            </Container>
-        </>
-    );
+        observer.observe(document.body, { childList: true });
+    }
+    
+    render() {
+        return (
+            <>
+                {< CarouselFunction />}
+
+                <Container className="justify-content-center mt-3 mb-3">
+                    <Row className="g-4">
+                        <Col sm={8}>
+                            {<CardsFunction />}
+                            <br />
+                            {<VoterInfoService />}
+                        </Col>
+                        <Col sm={4}>
+                            <TwitterTimelineEmbed
+                                sourceType="profile"
+                                screenName="ElectionsCan_E"
+                                options={{ height: "100%", }}
+                            />
+                        </Col>
+                    </Row>
+                </Container>
+            </>
+        );
+    }
+    
 }
 
 function CarouselFunction() {
@@ -49,13 +67,13 @@ function CarouselFunction() {
 
 function CardsFunction() {
     return (
-        <Row xs={1} md={3} className="g-4">
-            {Array.from({ length: 3 }).map((_, index) => (
+        <Row xs={1} md={2} className="g-4">
+            {Array.from({ length: 4 }).map((_, index) => (
                 <Col key={index}>
-                    <Card className="text-center">
-                        <Card.Img variant="top" src={tempCardImg} />
+                    <Card>
+                        {/*<Card.Img variant="top" src={tempCardImg} />*/}
                         <Card.Body>
-                            <Card.Title>Temp Card title</Card.Title>
+                            <Card.Title>Card title</Card.Title>
                             <Card.Text>
                                 This is a longer card with supporting text below as a natural
                                 lead-in to additional content. This content is a little bit longer.
@@ -71,7 +89,7 @@ function CardsFunction() {
 
 function VoterInfoService() {
     return (
-        <Card className="text-center h-100">
+        <Card className="text-center">
             <Card.Header><h2>Voter Information Service</h2></Card.Header>
             <Card.Body>
                 <Row className="align-items-center mx-auto" style={{ width: "85%", }}>
@@ -96,15 +114,5 @@ function VoterInfoService() {
                 </Row>
             </Card.Body>
         </Card>
-    );
-}
-
-function Timeline() {
-    return (
-        <TwitterTimelineEmbed
-          sourceType="profile"
-          screenName="ElectionsCan_E"
-          options={{ height: "100%" }}
-        />
     );
 }
