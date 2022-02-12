@@ -42,25 +42,21 @@ export default class Home extends React.Component  {
 }
 
 function CarouselFunction() {
-    const labels = ["first", "second", "third"];
-    const paras = ["first", "second", "third"];
-    const buttonTexts = ["first", "second", "third"];
     return (
-        <Carousel>
-            {Array.from({ length: 3 }).map((_, index) => (
-                <Carousel.Item key={index}>
-                    <img
-                        className="d-block w-100"
-                        src={tempCarouselImage}
-                        alt="First slide"
-                    />
-                    <Carousel.Caption>
-                        <h3>{labels[index]}</h3>
-                        <p>{paras[index]}</p>
-                        <Button variant="" className="btn-outline-purple">{buttonTexts[index]}</Button>
-                    </Carousel.Caption>
-                </Carousel.Item>
-            ))}
+        <Carousel indicators={false} controls={false} prevIcon={""} nextIcon={""} style={{minHeight:"calc(100vh - 61px)"}}>
+            <Carousel.Item>
+                <img
+                    className="d-block w-100"
+                    src={tempCarouselImage}
+                    alt="First slide"
+                    style={{ minHeight: "calc(100vh - 61px)" }}
+                />
+                <Carousel.Caption>
+                    <h3>FIRST</h3>
+                    <p>FIRST</p>
+                    <Button variant="" className="btn-purple">Cast Your Vote Now!</Button>
+                </Carousel.Caption>
+            </Carousel.Item>
         </Carousel>
     );
 }
