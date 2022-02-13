@@ -3,11 +3,14 @@ import { BrowserRouter, Route, Routes, } from 'react-router-dom';
 import Home from './pages/Home';
 import NavbarComponent from './static/Navbar';
 import FooterComponent from './static/Footer';
-import ErrorPage from './pages/ErrorPage';
+import ErrorPage from './pages/Error';
 import VoterLanding from './pages/voterPages/Voter';
 import PartyLanding from './pages/partyPages/Party';
 import CandidateLanding from './pages/candidatePages/Candidate';
 import ElectionLanding from './pages/electionPages/Election';
+import AboutPage from './pages/About';
+import SecurityPage from './pages/Security';
+import ContactPage from './pages/Contact';
 import './App.css';
 
 export default function App() {
@@ -40,6 +43,11 @@ export default function App() {
                     <Route path="/elections/process/" element={<ElectionLanding />} />
                     <Route path="/elections/past/" element={<ElectionLanding />} />
                     <Route path="/elections/turnout/" element={<ElectionLanding />} />
+
+                    <Route path="/about/" element={<AboutPage />} />
+                    <Route path="/security/" element={<SecurityPage />} />
+                    <Route path="/contact/" element={<ContactPage />} />
+
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
             </BrowserRouter>

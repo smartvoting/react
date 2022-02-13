@@ -9,8 +9,10 @@ export default function NavbarComponent() {
                     <img alt="Smart Voting Logo" src={logo} width="120" height="61" className="align-top" />
                 </Navbar.Brand>
                 <Navbar.Collapse id="#">
+
                     <Nav className="container-fluid">
                         <Nav.Link href="/">Home</Nav.Link>
+
                         <NavDropdown title="Voters" id="votersDropdown"
                             renderMenuOnMount={true}
                             onToggle={() => { window.location.href = '/voter/' }}
@@ -20,6 +22,7 @@ export default function NavbarComponent() {
                             <NavDropdown.Item href="/voter/registration/">Check Registration</NavDropdown.Item>
                             <NavDropdown.Item href="/voter/faqs/">FAQ</NavDropdown.Item>
                         </NavDropdown>
+
                         <NavDropdown title="Parties" id="partiesDropdown"
                             renderMenuOnMount={true}
                             onToggle={() => { window.location.href = '/party/' }}
@@ -28,6 +31,7 @@ export default function NavbarComponent() {
                             <NavDropdown.Item href="/party/donations/">Contribution Limits</NavDropdown.Item>
                             <NavDropdown.Item href="/party/candidates/">Party Candidates</NavDropdown.Item>
                         </NavDropdown>
+
                         <NavDropdown title="Candidates" id="candidatesDropdown"
                             renderMenuOnMount={true}
                             onToggle={() => { window.location.href = '/candidate/' }}
@@ -36,6 +40,7 @@ export default function NavbarComponent() {
                             <NavDropdown.Item href="/candidate/party/">Party Candidates</NavDropdown.Item>
                             <NavDropdown.Item href="/candidate/find/">Find Candidates</NavDropdown.Item>
                         </NavDropdown>
+
                         <NavDropdown title="Elections" id="electionsDropdown"
                             renderMenuOnMount={true}
                             onToggle={() => { window.location.href = '/elections/' }}
@@ -45,9 +50,11 @@ export default function NavbarComponent() {
                             <NavDropdown.Item href="/elections/turnout/">Voter Turnouts</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
+
                     <Nav className="me-auto">
                         <Nav.Link href="#">Login</Nav.Link>
                     </Nav>
+
                 </Navbar.Collapse>
             </Container>
         </Navbar>
