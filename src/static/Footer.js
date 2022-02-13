@@ -44,6 +44,9 @@ export default function FooterComponent() {
                             <a href="/contact/">Contact</a>
                         </Row>
                     </Col>
+                    <Col style={{textAlign:"right",}}>
+                        <a target="_blank" href="https://github.com/smartvoting">Github</a>
+                    </Col>
                 </Row>
             </Container>
         </Container>
