@@ -102,8 +102,23 @@ body {
     text-decoration:none;
 }
 
-/* Error Page */
+/* Home Page */
+.twitterBackground {
+    background-color: #89CFF0;
+    width: 100%;
+    height: 100%;
+    z-index: -1000;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 25px;
+    flex-direction:column;
+}
 
+/* Error Page */
 .errorPage {
     background-color: #FFF;
     display:flex;

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import tempCarouselImage from '../images/tempCarouselImage.png';
 import tempCardImg from '../images/tempCardImg.png'
 import { Container, Card, Carousel, Row, Col, Button, InputGroup, FormControl } from "react-bootstrap";
@@ -6,9 +6,12 @@ import { TwitterTimelineEmbed, } from 'react-twitter-embed';
 
 export default class Home extends React.Component  {
     componentDidMount() {
-        var observer = new MutationObserver(function (m) {
-            if (m[0].addedNodes[0] !== undefined && m[0].addedNodes[0] !== null && m[0].addedNodes[0].nodeName === "IFRAME")
+        let observer = new MutationObserver(function (m) {
+            if (m[0].addedNodes[0] !== undefined && m[0].addedNodes[0] !== null && m[0].addedNodes[0].nodeName === "IFRAME") {
                 document.getElementById("twitter-widget-0").parentElement.style.height = "100%";
+                let newHeight = -document.getElementById("twitterBackground").clientHeight;
+                document.getElementById("twitter-widget-0").parentElement.style.marginTop = `${newHeight}px`;
+            }
         });
 
         observer.observe(document.body, { childList: true });
@@ -27,10 +30,16 @@ export default class Home extends React.Component  {
                             {<VoterInfoService />}
                         </Col>
                         <Col sm={4}>
+                            <Container id="twitterBackground" className="twitterBackground">
+                                <p>Hey! If you can read this, you're probably using Firefox.</p>
+                                <p>If you want to see Election Canada's Twitter feed, you have to turn off tracking protection (The shield icon in the url).</p>
+                                <p>Otherwise, have a good day!</p>
+                            </Container>
+                               
                             <TwitterTimelineEmbed
                                 sourceType="profile"
                                 screenName="ElectionsCan_E"
-                                options={{ height: "100%", }}
+                                options={{ height: "100%" }}
                             />
                         </Col>
                     </Row>

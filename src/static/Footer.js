@@ -39,10 +39,13 @@ export default function FooterComponent() {
                     </Col>
                     <Col className="text-center">
                         <Row xs={1} md={3}>
-                            <a href="#">About</a>
-                            <a href="#">Security</a>
-                            <a href="#">Contact</a>
+                            <a href="/about/">About</a>
+                            <a href="/security/">Security</a>
+                            <a href="/contact/">Contact</a>
                         </Row>
+                    </Col>
+                    <Col style={{textAlign:"right",}}>
+                        <a target="_blank" href="https://github.com/smartvoting">Github</a>
                     </Col>
                 </Row>
             </Container>
