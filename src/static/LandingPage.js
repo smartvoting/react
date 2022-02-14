@@ -31,7 +31,7 @@ export default function LandingPage(props) {
             <Nav className="sidebar">
                 <h5 className="sidebarHeader">{props.lc.header}</h5>
                 {Array.from({ length: props.lc.panelPages.length }).map((_, index) => (
-                    <a key={index} href={props.lc.panelPages[index]} onClick={changeUrl}>{props.lc.panelTitles[index]}</a>
+                    <a key={index} href={props.lc.panelPages[index]} onClick={changeUrl}>{props.lc.sidebarTitles[index]}</a>
                 ))}
             </Nav>
 

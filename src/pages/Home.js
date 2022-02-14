@@ -33,7 +33,7 @@ export default class Home extends React.Component  {
                             <Container id="twitterBackground" className="twitterBackground">
                                 <p>Hey! If you can read this, you're probably using Firefox.</p>
                                 <p>If you want to see Election Canada's Twitter feed, you have to turn off tracking protection (The shield icon in the url).</p>
-                                <p>Otherwise, have a good day!</p>
+                                <p>Have a good day!</p>
                             </Container>
                                
                             <TwitterTimelineEmbed
@@ -63,7 +63,7 @@ function CarouselFunction() {
                 <Carousel.Caption>
                     <h3>FIRST</h3>
                     <p>FIRST</p>
-                    <Button variant="" className="btn-purple">Cast Your Vote Now!</Button>
+                    <Button variant="" className="vtn-lg btn-purple">Cast Your Vote Now!</Button>
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>
@@ -77,7 +77,7 @@ function CardsFunction() {
                 <Col key={index}>
                     <Card>
                         {/*<Card.Img variant="top" src={tempCardImg} />*/}
-                        <Card.Body>
+                        <Card.Body style={{ textAlign:"center",}}>
                             <Card.Title>Card title</Card.Title>
                             <Card.Text>
                                 This is a longer card with supporting text below as a natural
@@ -99,9 +99,7 @@ function VoterInfoService() {
             <Card.Body>
                 <Row className="align-items-center mx-auto" style={{ width: "85%", }}>
                     <Col style={{ borderRight: "1px solid #d3d3d3", paddingRight:"50px", }}>
-                        <Card.Text>
-                            Find your electoral district
-                        </Card.Text>
+                        <Card.Text>Find your electoral district</Card.Text>
                         <InputGroup className="mb-3">
                             <FormControl
                                 placeholder="Postal Code"

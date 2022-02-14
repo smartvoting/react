@@ -200,10 +200,29 @@ body {
     padding-top: 10px !important;
     padding-bottom: 10px !important;
     font-weight: bold !important;
+    font-size:28px;
+    min-width:90%;
 }
 
 .slidingPanelOverlay {
     background-color: rgba(0, 0, 0, 0) !important;
     height: calc(100vh - 56px - 62px) !important;
+}
+
+/* Checklist */
+.voteByMail {
+    color: #8B2841;
+}
+
+.voteByMail:hover {
+    color: #333333;
+}
+
+/* About, Security, and Contact Pages*/
+.ascContainer{
+    background-color:white;
+    min-width:100%;
+    min-height:100%;
+    text-align:center;
 }
 

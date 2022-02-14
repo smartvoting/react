@@ -45,7 +45,7 @@ export default function FooterComponent() {
                         </Row>
                     </Col>
                     <Col style={{textAlign:"right",}}>
-                        <a target="_blank" href="https://github.com/smartvoting">GitHub</a>
+                        <a target="_blank" href="https://github.com/smartvoting">Github</a>
                     </Col>
                 </Row>
             </Container>

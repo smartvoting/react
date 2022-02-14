@@ -11,7 +11,8 @@ export default function Voter() {
         header: "Voter",
         pushStateLink1:"voter", pushStateLink2:"/voter/",
         panelPages: ["/voter/riding/", "/voter/checklist/", "/voter/registration/", "/voter/faqs/"],
-        panelTitles: ["Find a Riding", "Voter Checklist", "Check Registration", "FAQ"],
+        sidebarTitles: ["Find a Riding", "Voter Checklist", "Check Registration", "FAQ"],
+        panelTitles: ["Find a Riding", "Voter Checklist", "Check Registration", "Voter Frequently Asked Questions"],
         panelComponents: [<VoterRiding />, <VoterChecklist />, <VoterRegistration />, <VoterFaqs />]
     };
 
