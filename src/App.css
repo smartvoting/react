@@ -210,6 +210,22 @@ body {
 }
 
 /* Checklist */
+.downloadInfographic {
+    margin-top:-15px;
+    right:0;
+    position:absolute;
+    text-align: right;
+}
+
+    .downloadInfographic p {
+        border: 1px solid #cecece;
+        background-color: #eaeaea;
+        box-shadow: 5px 5px 5px #888888;
+        padding: 5px 10px;
+        float: right;
+        display: block;
+    }
+
 .voteByMail {
     color: #8B2841;
 }
