@@ -186,6 +186,14 @@ body {
     min-width:100%;
 }
 
+#sp {
+    min-width:100%;
+    overflow-y:hidden;
+    height: calc(100vh - 56px - 62px) !important;
+    top: 62px;
+    right: 0;
+}
+
 .slidingPanelContent {
     padding: 0;
     height: calc(100vh - 56px - 62px) !important;
@@ -208,6 +216,19 @@ body {
     background-color: rgba(0, 0, 0, 0) !important;
     height: calc(100vh - 56px - 62px) !important;
 }
+
+.fadeIn {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 2s linear;
+}
+
+.fadeOut {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 2s linear;
+}
+
 
 /* Checklist */
 .downloadInfographic {
@@ -234,11 +255,72 @@ body {
     color: #333333;
 }
 
+/* FAQ */
+.toc,
+.toccolours {
+    border: 1px solid #a2a9b1;
+    background-color: #f8f9fa;
+    padding: 5px;
+    font-size: 95%
+}
+
+.toc {
+    display: table;
+    padding: 7px
+}
+
+    .toc h2 {
+        display: inline;
+        border: 0;
+        padding: 0;
+        font-size: 100%;
+        font-weight: bold
+    }
+
+    .toc .toctitle {
+        text-align: center
+    }
+
+    .toc ul {
+        list-style: none;
+        margin: 0.3em 0;
+        padding: 0;
+        text-align: left
+    }
+
+        .toc ul ul {
+            margin: 0 0 0 2em
+        }
+
+table.toc {
+    border-collapse: collapse
+}
+
+    table.toc td {
+        padding: 0
+    }
+
+.tocnumber, .toctext {
+    display: table-cell;
+    text-decoration: none;
+}
+
+.tocnumber {
+    color: #202122;
+    padding-left: 0;
+    padding-right: 0.5em
+}
+
+
 /* About, Security, and Contact Pages*/
 .ascContainer{
     background-color:white;
     min-width:100%;
     min-height:100%;
     text-align:center;
+}
+
+.ecContactContainer p{
+    margin-bottom: 0;
 }
 

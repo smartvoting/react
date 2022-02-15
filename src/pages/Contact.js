@@ -25,22 +25,30 @@ export default function Contact() {
                 <Col style={{ paddingLeft: "50px", }}>
                     <img src={electionsCanadaLogo} style={{ width: "100%", paddingBottom: "20px", }} />
                     <h2 style={{ fontWeight: "bold", paddingBottom: "20px" }}>Contact Elections Canada</h2>
-                    <Container style={{ textAlign: "left" }}>
+                    <Container className="ecContactContainer" style={{ textAlign: "left" }}>
                         <h4 style={{ fontWeight: "bold" }}>Telephone</h4>
-                        <p>Toll-free in Canada and the United States:<br /><p style={{ fontSize: "20px" }}>1-800-463-6868</p></p>
-                        <p>Toll-free in Mexico:<br /><p style={{ fontSize: "20px" }}>001-800-514-6868</p></p>
-                        <p>From anywhere in the world:<br /><p style={{ fontSize: "20px" }}>1-613-993-2975</p></p>
+                        <p>Toll-free in Canada and the United States:</p>
+                        <p style={{ fontSize: "20px" }}>1-800-463-6868</p>
+                        <br/>
+                        <p>Toll-free in Mexico:</p>
+                        <p style={{ fontSize: "20px" }}>001-800-514-6868</p>
+                        <br />
+                        <p>From anywhere in the world:</p>
+                        <p style={{ fontSize: "20px" }}>1-613-993-2975</p>
                         <br />
                         <h4 style={{ fontWeight: "bold" }}>Email</h4>
                         <Button variant="" target="_blank" href="https://csep-pesc.elections.ca/en-CA/intake/" className="btn-lg btn-purple">Click Here To Contact Elections Canada</Button>
                         <br />
                         <br />
                         <h4 style={{ fontWeight: "bold" }}>Fax</h4>
-                        <p>Local:<br /><p style={{ fontSize: "20px" }}>1-613-954-8584</p></p>
-                        <p>Toll-free in Canada and the United States:<br /><p style={{ fontSize: "20px" }}>1-888-524-1444</p></p>
+                        <p>Local:</p>
+                        <p style={{ fontSize: "20px" }}>1-613-954-8584</p>
+                        <br />
+                        <p>Toll-free in Canada and the United States:</p>
+                        <p style={{ fontSize: "20px" }}>1-888-524-1444</p>
                         <br />
                         <h4 style={{ fontWeight: "bold" }}>Address - Headquarters</h4>
-                        <p style={{ fontSize: "20px" }}>Elections Canada<br />30 Victoria Street<br />Gatineau, Quebec<br />K1A 0M6</p>
+                        <p style={{ fontSize: "20px", paddingBottom: "20px", }}>Elections Canada<br />30 Victoria Street<br />Gatineau, Quebec<br />K1A 0M6</p>
                     </Container>
                 </Col>
             </Row>
