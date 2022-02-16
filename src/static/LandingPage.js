@@ -4,6 +4,7 @@ import "react-sliding-pane/dist/react-sliding-pane.css";
 import { Nav, Container, } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import tempCarouselImage from '../images/tempCarouselImage.png';
 
 export default function LandingPage(props) {
     const [state, setState] = useState({
@@ -36,7 +37,9 @@ export default function LandingPage(props) {
             </Nav>
 
             <Container className="landingContainer">
-                <Container className="landingContent"></Container>
+                <Container className="landingContent">
+                    <img style={{width:"100%", height:"100%"}} src={tempCarouselImage }/>
+                </Container>
                 <SlidingPane
                     closeIcon={<FontAwesomeIcon icon={faTimes} className="fa-2x" />}
                     className="slidingPanelContent"
@@ -50,7 +53,7 @@ export default function LandingPage(props) {
                        
                     }}
                 >
-                    <Container>
+                    <Container style={{minWidth:"100%",}}>
                         {props.lc.panelComponents[props.lc.panelPages.indexOf(window.location.pathname)]}
                     </Container>
                 </SlidingPane>

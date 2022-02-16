@@ -49,9 +49,9 @@ function tableOfContents() {
 
 export default function Faqs() {
     return (
-        <Container>
-            { tableOfContents() }
-            <br />
+        <Container className="faqContainer">
+            {/*{ tableOfContents() }
+            <br />*/}
             <h4 id="h1" style={{ fontWeight: "bold" }}>How and where to vote?</h4>
             <Accordion id="q1">
                 <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>

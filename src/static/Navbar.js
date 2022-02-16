@@ -4,9 +4,9 @@ import logo from '../images/svLogo2.png';
 export default function NavbarComponent() {
     return (
         <Navbar sticky="top">
-            <Container>
+            <Container style={{ minWidth: "90%",}}>
                 <Navbar.Brand href="/">
-                    <img alt="Smart Voting Logo" src={logo} width="120" height="61" className="align-top" />
+                    <img alt="Smart Voting Logo" src={logo} width="150" height="75" className="align-top" />
                 </Navbar.Brand>
                 <Navbar.Collapse id="#">
 
@@ -52,7 +52,7 @@ export default function NavbarComponent() {
                     </Nav>
 
                     <Nav className="me-auto">
-                        <Nav.Link href="#">Login</Nav.Link>
+                        <Nav.Link href="/login/">Login</Nav.Link>
                     </Nav>
 
                 </Navbar.Collapse>

@@ -8,6 +8,7 @@ import VoterLanding from './pages/voterPages/Voter';
 import PartyLanding from './pages/partyPages/Party';
 import CandidateLanding from './pages/candidatePages/Candidate';
 import ElectionLanding from './pages/electionPages/Election';
+import LoginLanding from './pages/loginPages/SelectAccount';
 import AboutPage from './pages/About';
 import SecurityPage from './pages/Security';
 import ContactPage from './pages/Contact';
@@ -43,6 +44,8 @@ export default function App() {
                     <Route path="/elections/process/" element={<ElectionLanding />} />
                     <Route path="/elections/past/" element={<ElectionLanding />} />
                     <Route path="/elections/turnout/" element={<ElectionLanding />} />
+
+                    <Route path="/login/" element={<LoginLanding />} />
 
                     <Route path="/about/" element={<AboutPage />} />
                     <Route path="/security/" element={<SecurityPage />} />
