@@ -10,6 +10,7 @@ export default function Voter() {
         header: "Candidates",
         pushStateLink1: "candidates", pushStateLink2: "/candidate/",
         panelPages: ["/candidate/list/", "/candidate/party/", "/candidate/find/"],
+        sidebarTitles: ["List of All Candidates", "Party Candidates", "Find Candidates"],
         panelTitles: ["List of All Candidates", "Party Candidates", "Find Candidates"],
         panelComponents: [<CandidateList />, <CandidateParty />, <CandidateFind />]
     };

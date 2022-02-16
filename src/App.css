@@ -8,6 +8,7 @@ body {
 .navbar {
     background-color: #513A77 !important;
     padding: 0 !important;
+    font-size:125% !important;
 }
 
 .navbar-brand {
@@ -20,13 +21,17 @@ body {
 
 .navbar a {
     color: #F5F5F5 !important;
-    margin-left: 5px !important;
-    margin-right: 5px !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
 }
 
 .navbar a:hover {
     color: #FF9F1C !important;
     transition: 0.5s;
+}
+
+.dropdown-toggle {
+    font-size: 100% !important;
 }
 
 .nav-item:hover .dropdown-menu {
@@ -35,6 +40,15 @@ body {
 
 .dropdown-item{
     width: 94% !important;
+    font-size:125% !important;
+}
+
+.btn{
+    font-size: 130% !important;
+}
+
+.bigBoyButton {
+    font-size: 200% !important;
 }
 
 .btn-purple {
@@ -96,6 +110,7 @@ body {
     padding-top: 1em;
     padding-bottom: 1em;
     max-width: 100% !important;
+    font-size:130%;
 }
 
 .footer a {
@@ -114,7 +129,7 @@ body {
     align-items: center;
     border-radius: 5px;
     text-align: center;
-    font-size: 25px;
+    font-size: xx-large;
     flex-direction:column;
 }
 
@@ -127,16 +142,22 @@ body {
     max-width: 100% !important;
 }
 
-.errorImage{
-    width:86%;
-}
-
 /*Landing Pages*/
 
 .landingContainer {
-    background: #191919;
+    display: flex;
+    height: calc(100vh - 147.8px) !important;
+    background-color: white;
     min-width: 100%;
-    font-family: Montserrat, sans-serif;
+}
+
+.landingContent {
+    position:absolute;
+    right:0;
+    height: calc(100vh - 147.8px) !important;
+    min-width: 88%;
+    padding:0 !important;
+    margin:0 !important;
 }
 
 .sidebar {
@@ -148,7 +169,7 @@ body {
     justify-content: space-around;
     flex-direction: column;
     width: 12%;
-    height: calc(100vh - 56px - 61px) !important;
+    height: calc(100vh - 147.8px) !important;
     border-top: solid 1px black;
 }
 
@@ -156,54 +177,160 @@ body {
     color: #FF9F1C;
     text-decoration: underline;
     text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    font-size: 200%;
 }
 
 .sidebar a {
-    font-size: 15px;
     color: #fff;
     text-decoration: none;
     text-align: center;
-    padding-top:30px;
-    padding-bottom:30px;
+    padding-top:50px;
+    padding-bottom:50px;
+    font-size:130%;
 }
 
     .sidebar a:hover {
         color: #FF9F1C !important;
     }
 
-.landingContainer {
-    display: flex;
-    height: calc(100vh - 56px - 61px) !important;
-    background-color: black;
+
+#sp {
     min-width: 100%;
-}
-.landingContent {
-    display:flex;
-    height: calc(100vh - 56px - 61px) !important;
-    background-color: black;
-    min-width:100%;
+    overflow-y: hidden;
+    height: calc(100vh - 148.8px) !important;
+    top: 76px;
+    right: 0;
 }
 
 .slidingPanelContent {
     padding: 0;
-    height: calc(100vh - 56px - 62px) !important;
+    height: calc(100vh - 148.8px) !important;
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0) !important;
     position: absolute;
-    top: 62px;
+    top: 76px;
     right: 0;
 }
 
 .slide-pane .slide-pane__title {
+    font-size:200%;
     text-align: center;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
     font-weight: bold !important;
+    min-width:90%;
 }
 
 .slidingPanelOverlay {
     background-color: rgba(0, 0, 0, 0) !important;
-    height: calc(100vh - 56px - 62px) !important;
+    height: calc(100vh - 147.8px) !important;
+}
+
+/* Checklist */
+.downloadInfographic {
+    margin-top:-15px;
+    right:0;
+    position:absolute;
+    text-align: right;
+    font-size:150%;
+}
+
+    .downloadInfographic p {
+        border: 1px solid #cecece;
+        background-color: #eaeaea;
+        box-shadow: 5px 5px 5px #888888;
+        padding: 5px 10px;
+        float: right;
+        display: block;
+    }
+
+.voteByMail {
+    color: #8B2841;
+}
+
+.voteByMail:hover {
+    color: #333333;
+}
+
+/* FAQ */
+.toc, .toccolours {
+    border: 1px solid #a2a9b1;
+    background-color: #f8f9fa;
+    padding: 5px;
+    font-size: 55%
+}
+
+.toc {
+    display: table;
+    padding: 7px
+}
+
+    .toc h2 {
+        display: inline;
+        border: 0;
+        padding: 0;
+        font-size: 80%;
+        font-weight: bold
+    }
+
+    .toc .toctitle {
+        text-align: center
+    }
+
+    .toc ul {
+        list-style: none;
+        margin: 0.3em 0;
+        padding: 0;
+        text-align: left
+    }
+
+        .toc ul ul {
+            margin: 0 0 0 2em
+        }
+
+table.toc {
+    border-collapse: collapse
+}
+
+    table.toc td {
+        padding: 0
+    }
+
+.tocnumber, .toctext {
+    display: table-cell;
+    text-decoration: none;
+}
+
+.tocnumber {
+    color: #202122;
+    padding-left: 0;
+    padding-right: 0.5em
+}
+
+.faqContainer{
+    font-size:130% !important;
+}
+
+.faqContainer h5 {
+    font-size: 120% !important;
+}
+
+.faqContainer h6 {
+    font-size: 100% !important;
+}
+
+.accordion-button {
+    font-size: 70% !important;
+}
+
+/* About, Security, and Contact Pages*/
+.ascContainer {
+    background-color: white;
+    min-width: 100%;
+    min-height: 100%;
+    text-align: center;
+}
+
+.ecContactContainer p{
+    margin-bottom: 0;
 }
 

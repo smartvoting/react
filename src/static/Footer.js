@@ -3,7 +3,7 @@ import { Container, Row, Col, } from "react-bootstrap";
 export default function FooterComponent() {
     return (
         <Container className="footer w-100">
-            <Container>
+            <Container style={{ minWidth:"95%" }}>
                 {/* Extra footer content that's not really needed, but I didn't want to delete just in case
                  * <Row xs={1} md={3}>
                     <Col>

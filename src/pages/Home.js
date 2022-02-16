@@ -22,7 +22,7 @@ export default class Home extends React.Component  {
             <>
                 {< CarouselFunction />}
 
-                <Container className="justify-content-center mt-3 mb-3">
+                <Container className="justify-content-center mt-3 mb-3" style={{ minWidth:"80%"}}>
                     <Row className="g-4">
                         <Col sm={8}>
                             {<CardsFunction />}
@@ -33,7 +33,7 @@ export default class Home extends React.Component  {
                             <Container id="twitterBackground" className="twitterBackground">
                                 <p>Hey! If you can read this, you're probably using Firefox.</p>
                                 <p>If you want to see Election Canada's Twitter feed, you have to turn off tracking protection (The shield icon in the url).</p>
-                                <p>Otherwise, have a good day!</p>
+                                <p>Have a good day!</p>
                             </Container>
                                
                             <TwitterTimelineEmbed
@@ -61,9 +61,9 @@ function CarouselFunction() {
                     style={{ minHeight: "calc(100vh - 61px)" }}
                 />
                 <Carousel.Caption>
-                    <h3>FIRST</h3>
-                    <p>FIRST</p>
-                    <Button variant="" className="btn-purple">Cast Your Vote Now!</Button>
+                    {/*<h3>A New Way To Vote</h3>*/}
+                    {/*<p>FIRST</p>*/}
+                    <Button variant="" className="btn-lg btn-purple bigBoyButton">Cast Your Vote Now!</Button>
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>
@@ -71,19 +71,22 @@ function CarouselFunction() {
 }
 
 function CardsFunction() {
+    const cardTitles = ["Voters Page", "Parties Page", "Candidates Page", "Elections Page"]
+    const cardContent = ["Here you can find all information on voting; Find Your Riding, Check Your Registration, Go Through Our Checklist, or See Our FAQ!",
+                        "Here you can find all information you need on the parties of Canada! View a List of All Parties, Contribution Limits, and Party Candidates!",
+                        "Here you can go through all information on the different political candidates! You can view all candidates or Find One in any Riding",
+                        "Here you can view information on all Elections Past and Present! You can check out the Voting Process, Past Elections, and Voter Turnouts."]
+    const cardRoutes = ["/voter/", "/party/", "/candidate/", "/elections/"];
     return (
         <Row xs={1} md={2} className="g-4">
             {Array.from({ length: 4 }).map((_, index) => (
                 <Col key={index}>
                     <Card>
                         {/*<Card.Img variant="top" src={tempCardImg} />*/}
-                        <Card.Body>
-                            <Card.Title>Card title</Card.Title>
-                            <Card.Text>
-                                This is a longer card with supporting text below as a natural
-                                lead-in to additional content. This content is a little bit longer.
-                            </Card.Text>
-                            <Button variant="" className="btn-outline-purple">Go somewhere</Button>
+                        <Card.Body style={{ textAlign:"center",}}>
+                            <Card.Title style={{ fontWeight:"bold", fontSize: "170%" }}>{cardTitles[index]}</Card.Title>
+                            <Card.Text style={{ fontSize: "135%" }}>{cardContent[index]}</Card.Text>
+                            <Button variant="" className="btn-outline-purple" onClick={() => { window.location.href = cardRoutes[index]}}>Go To Page</Button>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -97,24 +100,20 @@ function VoterInfoService() {
         <Card className="text-center">
             <Card.Header><h2>Voter Information Service</h2></Card.Header>
             <Card.Body>
-                <Row className="align-items-center mx-auto" style={{ width: "85%", }}>
+                <Row className="align-items-center mx-auto" style={{ width: "90%", fontSize:"140%" }}>
                     <Col style={{ borderRight: "1px solid #d3d3d3", paddingRight:"50px", }}>
-                        <Card.Text>
-                            Find your electoral district
-                        </Card.Text>
+                        <Card.Text>Find your electoral district</Card.Text>
                         <InputGroup className="mb-3">
                             <FormControl
-                                placeholder="Postal Code"
-                                aria-label="PostalCode"
-                                aria-describedby="basic-addon2"
+                                placeholder="Postal Code (A9A9A9)"
+                                maxLength= "7"
+                                style={{fontSize:"90%"}}
                             />
-                            <Button variant="" className="btn-outline-purple" id="button-addon2">
-                                Button
-                            </Button>
+                            <Button variant="" className="btn-outline-purple">Search</Button>
                         </InputGroup>
                     </Col>
                     <Col style={{ paddingLeft: "50px", }}>
-                        <Button variant="" className="btn-purple">Check to see if you are registered to vote</Button>
+                        <Button variant="" className="btn-lg btn-purple">Check to see if you are registered to vote</Button>
                     </Col>
                 </Row>
             </Card.Body>
