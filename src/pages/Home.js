@@ -52,13 +52,13 @@ export default class Home extends React.Component  {
 
 function CarouselFunction() {
     return (
-        <Carousel indicators={false} controls={false} prevIcon={""} nextIcon={""} style={{minHeight:"calc(100vh - 61px)"}}>
+        <Carousel indicators={false} controls={false} prevIcon={""} nextIcon={""} style={{minHeight:"calc(100vh - 75px)"}}>
             <Carousel.Item>
                 <img
                     className="d-block w-100"
                     src={tempCarouselImage}
                     alt="First slide"
-                    style={{ minHeight: "calc(100vh - 61px)" }}
+                    style={{ minHeight: "calc(100vh - 75px)" }}
                 />
                 <Carousel.Caption>
                     {/*<h3>A New Way To Vote</h3>*/}
@@ -100,19 +100,19 @@ function VoterInfoService() {
         <Card className="text-center">
             <Card.Header><h2>Voter Information Service</h2></Card.Header>
             <Card.Body>
-                <Row className="align-items-center mx-auto" style={{ width: "90%", fontSize:"140%" }}>
+                <Row className="align-items-center mx-auto" style={{ width: "90%" }}>
                     <Col style={{ borderRight: "1px solid #d3d3d3", paddingRight:"50px", }}>
-                        <Card.Text>Find your electoral district</Card.Text>
+                        <Card.Text style={{ fontSize: "140%" }}>Find your electoral district</Card.Text>
                         <InputGroup className="mb-3">
                             <FormControl
                                 placeholder="Postal Code (A9A9A9)"
                                 maxLength= "7"
-                                style={{fontSize:"90%"}}
+                                style={{ fontSize: "140%" }}
                             />
-                            <Button variant="" className="btn-outline-purple">Search</Button>
+                            <Button variant="" className="btn-outline-purple" style={{ fontSize: "140%" }}>Search</Button>
                         </InputGroup>
                     </Col>
-                    <Col style={{ paddingLeft: "50px", }}>
+                    <Col style={{ paddingLeft: "50px", fontSize: "125%" }}>
                         <Button variant="" className="btn-lg btn-purple">Check to see if you are registered to vote</Button>
                     </Col>
                 </Row>

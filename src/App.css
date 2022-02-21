@@ -30,17 +30,13 @@ body {
     transition: 0.5s;
 }
 
-.dropdown-toggle {
-    font-size: 100% !important;
-}
-
 .nav-item:hover .dropdown-menu {
     display: block !important
 }
 
 .dropdown-item{
-    width: 94% !important;
-    font-size:125% !important;
+    width: 91% !important;
+    font-size: 120% !important;
 }
 
 .btn{
@@ -225,13 +221,18 @@ body {
     height: calc(100vh - 147.8px) !important;
 }
 
+/* Party List*/
+.modal-dialog{
+    max-width:90% !important;
+}
+
 /* Checklist */
 .downloadInfographic {
-    margin-top:-15px;
-    right:0;
-    position:absolute;
+    margin-top: -15px;
+    right: 0;
+    position: absolute;
     text-align: right;
-    font-size:150%;
+    font-size: 150%;
 }
 
     .downloadInfographic p {
@@ -250,6 +251,31 @@ body {
 .voteByMail:hover {
     color: #333333;
 }
+
+#checkbox {
+    border: solid 4px black;
+    background-color: white;
+    width: 1%;
+    margin-left: 10px;
+    margin-right:20px;
+    cursor:pointer;
+}
+
+    #checkbox:hover {
+        background-color: orange;
+    }
+
+    #checkbox:active {
+        background-color: green;
+    }
+
+    #checkbox p {
+        font-size: 200%;
+        font-weight:bold;
+        color:green;
+        margin-bottom: 0;
+        margin-left: -10px;
+    }
 
 /* FAQ */
 .toc, .toccolours {
