@@ -71,6 +71,7 @@ function CarouselFunction() {
 }
 
 function CardsFunction() {
+    const cardColours = ["#AEC6CF", "#FF6961", "#FFB347", "#C1E1C1"]
     const cardTitles = ["Voters Page", "Parties Page", "Candidates Page", "Elections Page"]
     const cardContent = ["Here you can find all information on voting; Find Your Riding, Check Your Registration, Go Through Our Checklist, or See Our FAQ!",
                         "Here you can find all information you need on the parties of Canada! View a List of All Parties, Contribution Limits, and Party Candidates!",
@@ -81,10 +82,12 @@ function CardsFunction() {
         <Row xs={1} md={2} className="g-4">
             {Array.from({ length: 4 }).map((_, index) => (
                 <Col key={index}>
-                    <Card>
+                    <Card style={{ backgroundColor: cardColours[index] }}>
+                        <Card.Header className="text-center" style={{ fontWeight: "bold", fontSize: "170%" }}>{cardTitles[index]}</Card.Header>
                         {/*<Card.Img variant="top" src={tempCardImg} />*/}
                         <Card.Body style={{ textAlign:"center",}}>
-                            <Card.Title style={{ fontWeight:"bold", fontSize: "170%" }}>{cardTitles[index]}</Card.Title>
+                            {/*<Card.Title style={{ fontWeight: "bold", fontSize: "170%" }}>{cardTitles[index]}</Card.Title>
+                            <hr/>*/}
                             <Card.Text style={{ fontSize: "135%" }}>{cardContent[index]}</Card.Text>
                             <Button variant="" className="btn-outline-purple" onClick={() => { window.location.href = cardRoutes[index]}}>Go To Page</Button>
                         </Card.Body>
@@ -97,8 +100,8 @@ function CardsFunction() {
 
 function VoterInfoService() {
     return (
-        <Card className="text-center">
-            <Card.Header><h2>Voter Information Service</h2></Card.Header>
+        <Card className="text-center" style={{ backgroundColor: "#FDFD96"}}>
+            <Card.Header style={{ fontWeight: "bold", fontSize: "200%" }}>Voter Information Service</Card.Header>
             <Card.Body>
                 <Row className="align-items-center mx-auto" style={{ width: "90%" }}>
                     <Col style={{ borderRight: "1px solid #d3d3d3", paddingRight:"50px", }}>
