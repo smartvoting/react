@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Table, Button, Modal } from "react-bootstrap";
 import axios from 'axios'
 
-export default function List() {
+export default function PartyList() {
     const [parties, setParties] = useState('');
     const [modalShow, setModalShow] = useState(false);
     const [globalIndex, setGI] = useState(-1);

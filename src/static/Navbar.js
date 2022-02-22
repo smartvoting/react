@@ -12,6 +12,7 @@ export default function NavbarComponent() {
 
                     <Nav className="container-fluid">
                         <Nav.Link href="/">Home</Nav.Link>
+                        {/*<Nav.Link href="#">Vote</Nav.Link>*/}
 
                         <NavDropdown title="Voters" id="votersDropdown"
                             renderMenuOnMount={true}
@@ -23,22 +24,15 @@ export default function NavbarComponent() {
                             <NavDropdown.Item href="/voter/faqs/">FAQ</NavDropdown.Item>
                         </NavDropdown>
 
-                        <NavDropdown title="Parties" id="partiesDropdown"
+                        <NavDropdown title="Parties & Candidates" id="partiesDropdown"
                             renderMenuOnMount={true}
-                            onToggle={() => { window.location.href = '/party/' }}
+                            onToggle={() => { window.location.href = '/pac/' }}
                             menuVariant="dark" >
-                            <NavDropdown.Item href="/party/list/">Parties List</NavDropdown.Item>
-                            <NavDropdown.Item href="/party/donations/">Contribution Limits</NavDropdown.Item>
-                            <NavDropdown.Item href="/party/candidates/">Party Candidates</NavDropdown.Item>
-                        </NavDropdown>
-
-                        <NavDropdown title="Candidates" id="candidatesDropdown"
-                            renderMenuOnMount={true}
-                            onToggle={() => { window.location.href = '/candidate/' }}
-                            menuVariant="dark" >
-                            <NavDropdown.Item href="/candidate/list/">List of All Candidates</NavDropdown.Item>
-                            <NavDropdown.Item href="/candidate/party/">Party Candidates</NavDropdown.Item>
-                            <NavDropdown.Item href="/candidate/find/">Find Candidates</NavDropdown.Item>
+                            <NavDropdown.Item href="/pac/list/">Parties List</NavDropdown.Item>
+                            <NavDropdown.Item href="/pac/donations/">Contribution Limits</NavDropdown.Item>
+                            <NavDropdown.Item href="/pac/listc/">List of All Candidates</NavDropdown.Item>
+                            <NavDropdown.Item href="/pac/listpc/">List of Party Candidates</NavDropdown.Item>
+                            <NavDropdown.Item href="/pac/find/">Find Candidates</NavDropdown.Item>
                         </NavDropdown>
 
                         <NavDropdown title="Elections" id="electionsDropdown"

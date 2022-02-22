@@ -110,12 +110,12 @@ function VoterInfoService() {
                             <FormControl
                                 placeholder="Postal Code (A9A9A9)"
                                 maxLength= "7"
-                                style={{ fontSize: "140%" }}
+                                style={{ backgroundColor: "#FDFD96", fontSize: "140%", border:"1px solid #513A77" }}
                             />
                             <Button variant="" className="btn-outline-purple" style={{ fontSize: "140%" }}>Search</Button>
                         </InputGroup>
                     </Col>
-                    <Col style={{ paddingLeft: "50px", fontSize: "125%" }}>
+                    <Col style={{ paddingLeft: "50px", fontSize: "110%" }}>
                         <Button variant="" className="btn-lg btn-purple">Check to see if you are registered to vote</Button>
                     </Col>
                 </Row>
