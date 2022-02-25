@@ -30,10 +30,12 @@ export default function LandingPage(props) {
     return (
         <>
             <Nav className="sidebar">
-                <h5 className="sidebarHeader">{props.lc.header}</h5>
-                {Array.from({ length: props.lc.panelPages.length }).map((_, index) => (
-                    <a key={index} href={props.lc.panelPages[index]} onClick={changeUrl}>{props.lc.sidebarTitles[index]}</a>
-                ))}
+                <Container className="sidebarHeaderContainer"><h5 className="sidebarHeader">{props.lc.header}</h5></Container>
+                <Container className="sidebarContentContainer">
+                    {Array.from({ length: props.lc.panelPages.length }).map((_, index) => (
+                        <a key={index} href={props.lc.panelPages[index]} onClick={changeUrl}>{props.lc.sidebarTitles[index]}</a>
+                    ))}
+                </Container>
             </Nav>
 
             <Container className="landingContainer">

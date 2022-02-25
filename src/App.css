@@ -21,8 +21,8 @@ body {
 
 .navbar a {
     color: #F5F5F5 !important;
-    margin-left: 10px !important;
-    margin-right: 10px !important;
+    margin-left:10px;
+    margin-right:10px;
 }
 
 .navbar a:hover {
@@ -34,8 +34,14 @@ body {
     display: block !important
 }
 
-.dropdown-item{
-    width: 91% !important;
+.dropdown-menu[data-bs-popper] {
+    top: 90% !important;
+    margin-top: 0 !important;
+    padding-left: 0px;
+    padding-right: 20px;
+}
+
+.dropdown-item {
     font-size: 120% !important;
 }
 
@@ -163,31 +169,53 @@ body {
     z-index: 50;
     display: flex;
     justify-content: space-around;
+    align-items:center;
     flex-direction: column;
     width: 12%;
     height: calc(100vh - 147.8px) !important;
     border-top: solid 1px black;
 }
 
+.sidebarHeaderContainer {
+    position: absolute;
+    top:0;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    text-align:center;
+    height: 10%;
+}
+
 .sidebarHeader {
     color: #FF9F1C;
+    top:20px;
+    position:absolute;
     text-decoration: underline;
     text-align: center;
-    font-size: 200%;
+    font-size: 175%;
 }
 
-.sidebar a {
-    color: #fff;
-    text-decoration: none;
-    text-align: center;
-    padding-top:50px;
-    padding-bottom:50px;
-    font-size:130%;
+.sidebarContentContainer {
+    left: 0;
+    display: flex;
+    position:absolute;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 90%;
+    bottom:0;
 }
 
-    .sidebar a:hover {
-        color: #FF9F1C !important;
+    .sidebarContentContainer a {
+        color: #fff;
+        text-decoration: none;
+        text-align: center;
+        font-size: 130%;
     }
+
+        .sidebarContentContainer a:hover {
+            color: #FF9F1C !important;
+        }
 
 
 #sp {

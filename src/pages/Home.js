@@ -71,16 +71,15 @@ function CarouselFunction() {
 }
 
 function CardsFunction() {
-    const cardColours = ["#AEC6CF", "#FF6961", "#FFB347", "#C1E1C1"]
-    const cardTitles = ["Voters Page", "Parties Page", "Candidates Page", "Elections Page"]
+    const cardColours = ["#AEC6CF", "#FF6961", "#FFB347", "#C1E1C1"];
+    const cardTitles = ["Voters", "Elections", "Parties and Candidates",];
     const cardContent = ["Here you can find all information on voting; Find Your Riding, Check Your Registration, Go Through Our Checklist, or See Our FAQ!",
-                        "Here you can find all information you need on the parties of Canada! View a List of All Parties, Contribution Limits, and Party Candidates!",
-                        "Here you can go through all information on the different political candidates! You can view all candidates or Find One in any Riding",
-                        "Here you can view information on all Elections Past and Present! You can check out the Voting Process, Past Elections, and Voter Turnouts."]
-    const cardRoutes = ["/voter/", "/party/", "/candidate/", "/elections/"];
+                        "Here you can view information on all Elections Past and Present! You can check out the Voting Process, Past Elections, and Voter Turnouts.",
+                        "Here you can go through all information on the different political candidates! You can view all candidates or Find One in any Riding"];
+    const cardRoutes = ["/voter/", "/elections/", "/pac/"];
     return (
-        <Row xs={1} md={2} className="g-4">
-            {Array.from({ length: 4 }).map((_, index) => (
+        <Row md={2} className="g-4">
+            {Array.from({ length: 2 }).map((_, index) => (
                 <Col key={index}>
                     <Card style={{ backgroundColor: cardColours[index] }}>
                         <Card.Header className="text-center" style={{ fontWeight: "bold", fontSize: "170%" }}>{cardTitles[index]}</Card.Header>
@@ -94,6 +93,19 @@ function CardsFunction() {
                     </Card>
                 </Col>
             ))}
+
+            <Col md={12}>
+                <Card style={{ backgroundColor: cardColours[3] }}>
+                    <Card.Header className="text-center" style={{ fontWeight: "bold", fontSize: "170%" }}>{cardTitles[2]}</Card.Header>
+                    {/*<Card.Img variant="top" src={tempCardImg} />*/}
+                    <Card.Body style={{ textAlign: "center", }}>
+                        {/*<Card.Title style={{ fontWeight: "bold", fontSize: "170%" }}>{cardTitles[index]}</Card.Title>
+                            <hr/>*/}
+                        <Card.Text style={{ fontSize: "135%" }}>{cardContent[2]}</Card.Text>
+                        <Button variant="" className="btn-outline-purple" onClick={() => { window.location.href = cardRoutes[2] }}>Go To Page</Button>
+                    </Card.Body>
+                </Card>
+            </Col>
         </Row>
     );
 }
@@ -110,7 +122,7 @@ function VoterInfoService() {
                             <FormControl
                                 placeholder="Postal Code (A9A9A9)"
                                 maxLength= "7"
-                                style={{ backgroundColor: "#FDFD96", fontSize: "140%", border:"1px solid #513A77" }}
+                                style={{ backgroundColor: "inherit", fontSize: "140%", border:"1px solid #513A77" }}
                             />
                             <Button variant="" className="btn-outline-purple" style={{ fontSize: "140%" }}>Search</Button>
                         </InputGroup>
