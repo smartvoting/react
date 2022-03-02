@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import tempCarouselImage from '../images/tempCarouselImage.png';
 import tempCardImg from '../images/tempCardImg.png'
-import { Container, Card, Carousel, Row, Col, Button, InputGroup, FormControl } from "react-bootstrap";
+import { Container, Card, Row, Col, Button, InputGroup, FormControl } from "react-bootstrap";
 import { Parallax } from 'react-parallax';
 import { TwitterTimelineEmbed, } from 'react-twitter-embed';
 
