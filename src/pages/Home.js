@@ -60,7 +60,7 @@ function CardsFunction() {
     const cardTitles = ["Voters", "Elections", "Parties and Candidates",];
     const cardContent = ["Here you can find all information on voting; Find Your Riding, Check Your Registration, Go Through Our Checklist, or See Our FAQ!",
                         "Here you can view information on all Elections Past and Present! You can check out the Voting Process, Past Elections, and Voter Turnouts.",
-                        "Here you can go through all information on the different political candidates! You can view all candidates or Find One in any Riding"];
+                        "Here you can find all information needed to be an informed voter! Here, you can get a List of Parties, Contribution Lists for those parties, a List of All Candidates, A List of Candidates by Party and Find a Candiate."];
     const cardRoutes = ["/voter/", "/elections/", "/pac/"];
     return (
         <Row md={2} className="g-4">

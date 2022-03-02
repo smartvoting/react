@@ -212,6 +212,7 @@ body {
         text-decoration: none !important;
         text-align: center !important;
         font-size: 140% !important;
+        border-radius: 15px !important;
     }
 
         .sidebarContentContainer a:hover {

@@ -21,6 +21,8 @@ export default function LandingPage(props) {
         e.preventDefault();
         window.history.pushState("", e.targetTitle, e.target);
         setState({ isPaneOpen: true });
+        let activeElement = document.querySelector(".active");
+        if (activeElement !== null) activeElement.classList.remove("active");
     }
 
     return (

@@ -51,7 +51,7 @@ export default function NavbarComponent() {
                             <NavDropdown.Item href="/pac/list/">Parties List</NavDropdown.Item>
                             <NavDropdown.Item href="/pac/donations/">Contribution Limits</NavDropdown.Item>
                             <NavDropdown.Item href="/pac/listc/">List of All Candidates</NavDropdown.Item>
-                            <NavDropdown.Item href="/pac/listpc/">List of Party Candidates</NavDropdown.Item>
+                            <NavDropdown.Item href="/pac/listpc/">Candidates By Party</NavDropdown.Item>
                             <NavDropdown.Item href="/pac/find/">Find Candidates</NavDropdown.Item>
                         </NavDropdown>
 
