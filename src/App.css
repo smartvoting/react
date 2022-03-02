@@ -6,9 +6,10 @@ body {
 }
 
 .navbar {
-    background-color: #513A77 !important;
     padding: 0 !important;
-    font-size:130% !important;
+    font-size: 130% !important;
+    transition-timing-function: ease-in;
+    transition: 0.5s
 }
 
 .navbar-brand {
@@ -207,7 +208,7 @@ body {
 }
 
     .sidebarContentContainer a {
-        color: #fff;
+        color: #FFF;
         text-decoration: none;
         text-align: center;
         font-size: 130%;
@@ -215,6 +216,13 @@ body {
 
         .sidebarContentContainer a:hover {
             color: #FF9F1C !important;
+        }
+
+        .sidebarContentContainer a:active {
+            background-color:white;
+            color: #000 !important;
+            border:2px solid black;
+            border-radius:15px;
         }
 
 

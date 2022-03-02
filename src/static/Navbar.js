@@ -1,10 +1,30 @@
 import { Navbar, Nav, NavDropdown, Container, } from "react-bootstrap";
 import logo from '../images/svLogo2.png';
 
+import React, { useState, useEffect } from "react"
+
 export default function NavbarComponent() {
+    const [navbar, setNavbar] = useState(false)
+
+    const changeBackground = () => {
+        if (window.scrollY >= 200) setNavbar(true)
+        else setNavbar(false)
+    }
+
+    useEffect(() => {
+        window.addEventListener("scroll", changeBackground)
+    })
+
     return (
-        <Navbar sticky="top">
-            <Container style={{ minWidth: "90%",}}>
+        <Navbar sticky="top" style={
+            window.location.pathname === "/" ?
+                navbar ?
+                    { backgroundColor: "#513A77", position: "fixed", minWidth: "100%", } :
+                    { backgroundColor: "transparent", overflow: "visible", zIndex: "1000", position: "fixed", minWidth: "100%", }
+                :
+                { backgroundColor: "#513A77", minWidth: "100%", }
+                }>
+            <Container style={{ minWidth: "95%", }}>
                 <Navbar.Brand href="/">
                     <img alt="Smart Voting Logo" src={logo} width="150" height="75" className="align-top" />
                 </Navbar.Brand>

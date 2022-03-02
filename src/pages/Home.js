@@ -2,6 +2,7 @@
 import tempCarouselImage from '../images/tempCarouselImage.png';
 import tempCardImg from '../images/tempCardImg.png'
 import { Container, Card, Carousel, Row, Col, Button, InputGroup, FormControl } from "react-bootstrap";
+import { Parallax } from 'react-parallax';
 import { TwitterTimelineEmbed, } from 'react-twitter-embed';
 
 export default class Home extends React.Component  {
@@ -20,7 +21,11 @@ export default class Home extends React.Component  {
     render() {
         return (
             <>
-                {< CarouselFunction />}
+                <Parallax bgImage={tempCarouselImage} strength={300}>
+                    <Container style={{ minHeight: "100vh", textAlign: "center",}}>
+                        <Button variant="" className="btn-lg btn-purple bigBoyButton" style={{ position: "absolute", top: "90%", transform: "translate(-50%,-50%)"}}>Cast Your Vote Now!</Button>
+                    </Container>
+                </Parallax>
 
                 <Container className="justify-content-center mt-3 mb-3" style={{ minWidth:"80%"}}>
                     <Row className="g-4">
@@ -48,26 +53,6 @@ export default class Home extends React.Component  {
         );
     }
     
-}
-
-function CarouselFunction() {
-    return (
-        <Carousel indicators={false} controls={false} prevIcon={""} nextIcon={""} style={{minHeight:"calc(100vh - 75px)"}}>
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    src={tempCarouselImage}
-                    alt="First slide"
-                    style={{ minHeight: "calc(100vh - 75px)" }}
-                />
-                <Carousel.Caption>
-                    {/*<h3>A New Way To Vote</h3>*/}
-                    {/*<p>FIRST</p>*/}
-                    <Button variant="" className="btn-lg btn-purple bigBoyButton">Cast Your Vote Now!</Button>
-                </Carousel.Caption>
-            </Carousel.Item>
-        </Carousel>
-    );
 }
 
 function CardsFunction() {
