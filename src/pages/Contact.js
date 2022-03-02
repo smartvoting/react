@@ -4,7 +4,7 @@ import electionsCanadaLogo from '../images/ecLogo.png';
 
 export default function Contact() {
     return (
-        <Container style={{ minWidth:"90%", paddingTop:"20px", }}>
+        <Container style={{ minWidth: "90%", paddingTop: "20px", paddingBottom: "20px", }}>
             <Row style={{ fontSize:"150%", }}>
                 <Col md={6} style={{ borderRight: "1px solid #d3d3d3", paddingRight: "50px", }}>
                     <Card style={{ borderRadius: "15px", alignItems: "center", padding: "5px", marginBottom: "10px" }}>
