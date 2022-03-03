@@ -80,7 +80,7 @@ function ChecklistItem(index, text) {
         <Row key={index} style={index % 2 !== 1 ? { backgroundColor: "#3333", alignItems: "center", padding: "10px 0 10px 0" } : { alignItems: "center", padding: "10px 0 10px 0" }}>
             <Col sm={4}><img style={{ width: "100%", }} src={index >= 3 ? images[index + 4] : images[index]} /></Col>
             <Col sm={8} style={{ display: "flex" }}>
-                <Container id="checkbox" onClick={() => { toggleCheckmark(index) }}><p id='checkmark'></p></Container>
+                <Container id="checkbox" onClick={() => { toggleCheckmark(index) }}><p id="checkmark" className="noSelect"></p></Container>
                 <p id="itemText" style={{ fontSize: "150%", margin: "10px 0 10px 0" }} dangerouslySetInnerHTML={{ __html: text }}></p>
             </Col>
             {index === 2 ?
