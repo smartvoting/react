@@ -1,53 +1,63 @@
-import { Container, Row, Col, Button, } from "react-bootstrap";
+import { Container, Card, Row, Col, Button, } from "react-bootstrap";
 import smartVotingLogo from '../images/svLogo1.png';
 import electionsCanadaLogo from '../images/ecLogo.png';
 
 export default function Contact() {
     return (
-        <Container className="ascContainer">
-            <Row className="mx-auto" style={{ width: "85%", fontSize:"150%" }}>
-                <Col style={{ borderRight: "1px solid #d3d3d3", paddingRight: "50px", }}>
-                    <img src={smartVotingLogo} style={{ width: "57%", paddingBottom: "20px", }} />
-                    <h2 style={{ fontWeight: "bold", paddingBottom: "20px", }}>Contact Smart Voting</h2>
-                    <Container style={{ textAlign: "left" }}>
-                        <h4 style={{ fontWeight: "bold", fontSize:"125%" }}>Telephone</h4>
-                        <p>647-483-3779</p>
-                        <br />
-                        <h4 style={{ fontWeight: "bold", fontSize: "125%" }}>Email</h4>
-                        <p>contact@smartvoting.cc</p>
-                        <br />
-                        <h4 style={{ fontWeight: "bold", fontSize: "125%" }}>Address - Headquarters</h4>
-                        <p>George Brown College<br />160 Kendal Avenue<br />Toronto, Quebec<br />M5R 1M3</p>
-                    </Container>
+        <Container style={{ minWidth: "90%", paddingTop: "20px", paddingBottom: "20px", }}>
+            <Row style={{ fontSize: "150%", }}>
+                <Col md={6} style={{ display: "flex", borderRight: "1px solid #d3d3d3", paddingRight: "50px", }}>
+                    <Card style={{ width: "100%", borderRadius: "15px", alignItems: "center", padding: "5px", marginBottom: "10px" }}>
+                        <img src={smartVotingLogo} style={{ width: "60%", }} />
+                    </Card>
                 </Col>
-                <Col style={{ paddingLeft: "50px", }}>
-                    <img src={electionsCanadaLogo} style={{ width: "100%", paddingBottom: "20px", }} />
-                    <h2 style={{ fontWeight: "bold", paddingBottom: "20px" }}>Contact Elections Canada</h2>
-                    <Container className="ecContactContainer" style={{ textAlign: "left" }}>
-                        <h4 style={{ fontWeight: "bold", fontSize: "125%" }}>Telephone</h4>
-                        <p>Toll-free in Canada and the United States:</p>
-                        <p>1-800-463-6868</p>
-                        <br/>
-                        <p>Toll-free in Mexico:</p>
-                        <p>001-800-514-6868</p>
-                        <br />
-                        <p>From anywhere in the world:</p>
-                        <p>1-613-993-2975</p>
-                        <br />
-                        <h4 style={{ fontWeight: "bold", fontSize: "125%" }}>Email</h4>
-                        <Button variant="" target="_blank" href="https://csep-pesc.elections.ca/en-CA/intake/" className="btn-lg btn-purple">Click Here To Contact Elections Canada</Button>
-                        <br />
-                        <br />
-                        <h4 style={{ fontWeight: "bold", fontSize: "125%" }}>Fax</h4>
-                        <p>Local:</p>
-                        <p>1-613-954-8584</p>
-                        <br />
-                        <p>Toll-free in Canada and the United States:</p>
-                        <p>1-888-524-1444</p>
-                        <br />
-                        <h4 style={{ fontWeight: "bold", fontSize: "125%" }}>Address - Headquarters</h4>
-                        <p style={{ paddingBottom: "20px", }}>Elections Canada<br />30 Victoria Street<br />Gatineau, Quebec<br />K1A 0M6</p>
-                    </Container>
+                <Col md={6} style={{ display:"flex", paddingLeft: "50px", }}>
+                    <Card style={{ width: "100%", borderRadius: "15px", alignItems: "center", padding: "5px", marginBottom: "10px" }}>
+                        <img src={electionsCanadaLogo} style={{ width: "94%", paddingBottom: "20px", }} />
+                    </Card>
+                </Col>
+            </Row>
+            <Row style={{ fontSize: "150%", }}>
+                <Col md={6} style={{ borderRight: "1px solid #d3d3d3", paddingRight: "50px", }}>
+                    <Card style={{ borderRadius: "15px", border: "5px solid #513A77" }}>
+                        <Card.Header className="text-center" style={{ fontWeight: "bold", fontSize: "150%", }}>Contact Smart Voting</Card.Header>
+                        <Card.Body style={{ textAlign: "left", padding: "20px", }}>
+                            <h4 style={{ fontWeight: "bold", fontSize: "125%" }}>Telephone</h4>
+                            <p>647-483-3779</p>
+                            <hr />
+                            <h4 style={{ fontWeight: "bold", fontSize: "125%" }}>Email</h4>
+                            <p>contact@smartvoting.cc</p>
+                            <hr />
+                            <h4 style={{ fontWeight: "bold", fontSize: "125%" }}>Address - Headquarters</h4>
+                            <p>George Brown College<br />160 Kendal Avenue<br />Toronto, Quebec<br />M5R 1M3</p>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col md={6} style={{ paddingLeft: "50px", }}>
+                    <Card style={{ borderRadius: "15px", marginBottom: "20px", border: "5px solid #860038" }}>
+                        <Card.Header className="text-center" style={{ fontWeight: "bold", fontSize: "150%" }}>Contact Elections Canada</Card.Header>
+                        <Card.Body style={{ textAlign: "left", padding: "20px", }}>
+                            <h4 style={{ fontWeight: "bold", fontSize: "125%" }}>Telephone</h4>
+                            <strong>Toll-free in Canada and the United States:</strong>
+                            <p>1-800-463-6868</p>
+                            <strong>Toll-free in Mexico:</strong>
+                            <p>001-800-514-6868</p>
+                            <strong>From anywhere in the world:</strong>
+                            <p>1-613-993-2975</p>
+                            <hr />
+                            <h4 style={{ fontWeight: "bold", fontSize: "125%" }}>Email</h4>
+                            <Button variant="" target="_blank" href="https://csep-pesc.elections.ca/en-CA/intake/" className="btn-lg btn-purple">Click Here To Contact Elections Canada</Button>
+                            <hr />
+                            <h4 style={{ fontWeight: "bold", fontSize: "125%" }}>Fax</h4>
+                            <strong>Local:</strong>
+                            <p>1-613-954-8584</p>
+                            <strong>Toll-free in Canada and the United States:</strong>
+                            <p>1-888-524-1444</p>
+                            <hr />
+                            <h4 style={{ fontWeight: "bold", fontSize: "125%" }}>Address - Headquarters</h4>
+                            <p>Elections Canada<br />30 Victoria Street<br />Gatineau, Quebec<br />K1A 0M6</p>
+                        </Card.Body>
+                    </Card>
                 </Col>
             </Row>
         </Container>

@@ -1,3 +1,4 @@
+import courseOutline from '../files/courseOutline.pdf';
 import { Container, Row, Col, } from "react-bootstrap";
 
 export default function FooterComponent() {
@@ -35,7 +36,7 @@ export default function FooterComponent() {
                 */}
                 <Row xs={1} md={3}>
                     <Col>
-                        &copy;{new Date().getFullYear()} Smart Voting LLC
+                        <a title="For Educational Purposes Only" target="_blank" href={courseOutline}>&copy;{new Date().getFullYear()} Smart Voting LLC</a>
                     </Col>
                     <Col className="text-center">
                         <Row xs={1} md={3}>
@@ -44,8 +45,8 @@ export default function FooterComponent() {
                             <a href="/contact/">Contact</a>
                         </Row>
                     </Col>
-                    <Col style={{textAlign:"right",}}>
-                        <a target="_blank" href="https://github.com/smartvoting">Github</a>
+                    <Col style={{ textAlign: "right", }}>
+                        <a target="_blank" href="https://github.com/smartvoting">GitHub</a>
                     </Col>
                 </Row>
             </Container>

@@ -5,8 +5,7 @@ import NavbarComponent from './static/Navbar';
 import FooterComponent from './static/Footer';
 import ErrorPage from './pages/Error';
 import VoterLanding from './pages/voterPages/Voter';
-import PartyLanding from './pages/partyPages/Party';
-import CandidateLanding from './pages/candidatePages/Candidate';
+import PACLanding from './pages/pacPages/PAC';
 import ElectionLanding from './pages/electionPages/Election';
 import LoginLanding from './pages/loginPages/SelectAccount';
 import AboutPage from './pages/About';
@@ -30,15 +29,12 @@ export default function App() {
                     <Route path="/voter/registration/" element={<VoterLanding />} />
                     <Route path="/voter/faqs/" element={<VoterLanding />} />
 
-                    <Route path="/party/" element={<PartyLanding />} />
-                    <Route path="/party/list/" element={<PartyLanding />} />
-                    <Route path="/party/donations/" element={<PartyLanding />} />
-                    <Route path="/party/candidates/" element={<PartyLanding />} />
-
-                    <Route path="/candidate/" element={<CandidateLanding />} />
-                    <Route path="/candidate/list/" element={<CandidateLanding />} />
-                    <Route path="/candidate/party/" element={<CandidateLanding />} />
-                    <Route path="/candidate/find/" element={<CandidateLanding />} />
+                    <Route path="/pac/" element={<PACLanding />} />
+                    <Route path="/pac/list/" element={<PACLanding />} />
+                    <Route path="/pac/donations/" element={<PACLanding />} />
+                    <Route path="/pac/listc/" element={<PACLanding />} />
+                    <Route path="/pac/listpc/" element={<PACLanding />} />
+                    <Route path="/pac/find/" element={<PACLanding />} />
 
                     <Route path="/elections/" element={<ElectionLanding />} />
                     <Route path="/elections/process/" element={<ElectionLanding />} />

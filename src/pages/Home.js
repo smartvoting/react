@@ -1,7 +1,8 @@
 ﻿import React from 'react';
 import tempCarouselImage from '../images/tempCarouselImage.png';
 import tempCardImg from '../images/tempCardImg.png'
-import { Container, Card, Carousel, Row, Col, Button, InputGroup, FormControl } from "react-bootstrap";
+import { Container, Card, Row, Col, Button, InputGroup, FormControl } from "react-bootstrap";
+import { Parallax } from 'react-parallax';
 import { TwitterTimelineEmbed, } from 'react-twitter-embed';
 
 export default class Home extends React.Component  {
@@ -20,7 +21,11 @@ export default class Home extends React.Component  {
     render() {
         return (
             <>
-                {< CarouselFunction />}
+                <Parallax bgImage={tempCarouselImage} strength={300}>
+                    <Container style={{ minHeight: "100vh", textAlign: "center",}}>
+                        <Button variant="" className="btn-lg btn-purple bigBoyButton" style={{ position: "absolute", top: "90%", transform: "translate(-50%,-50%)"}}>Cast Your Vote Now!</Button>
+                    </Container>
+                </Parallax>
 
                 <Container className="justify-content-center mt-3 mb-3" style={{ minWidth:"80%"}}>
                     <Row className="g-4">
@@ -50,69 +55,64 @@ export default class Home extends React.Component  {
     
 }
 
-function CarouselFunction() {
-    return (
-        <Carousel indicators={false} controls={false} prevIcon={""} nextIcon={""} style={{minHeight:"calc(100vh - 61px)"}}>
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    src={tempCarouselImage}
-                    alt="First slide"
-                    style={{ minHeight: "calc(100vh - 61px)" }}
-                />
-                <Carousel.Caption>
-                    {/*<h3>A New Way To Vote</h3>*/}
-                    {/*<p>FIRST</p>*/}
-                    <Button variant="" className="btn-lg btn-purple bigBoyButton">Cast Your Vote Now!</Button>
-                </Carousel.Caption>
-            </Carousel.Item>
-        </Carousel>
-    );
-}
-
 function CardsFunction() {
-    const cardTitles = ["Voters Page", "Parties Page", "Candidates Page", "Elections Page"]
+    const cardColours = ["#AEC6CF", "#FF6961", "#FFB347", "#C1E1C1"];
+    const cardTitles = ["Voters", "Elections", "Parties and Candidates",];
     const cardContent = ["Here you can find all information on voting; Find Your Riding, Check Your Registration, Go Through Our Checklist, or See Our FAQ!",
-                        "Here you can find all information you need on the parties of Canada! View a List of All Parties, Contribution Limits, and Party Candidates!",
-                        "Here you can go through all information on the different political candidates! You can view all candidates or Find One in any Riding",
-                        "Here you can view information on all Elections Past and Present! You can check out the Voting Process, Past Elections, and Voter Turnouts."]
-    const cardRoutes = ["/voter/", "/party/", "/candidate/", "/elections/"];
+                        "Here you can view information on all Elections Past and Present! You can check out the Voting Process, Past Elections, and Voter Turnouts.",
+                        "Here you can find all information needed to be an informed voter! Here, you can get a List of Parties, Contribution Lists for those parties, a List of All Candidates, A List of Candidates by Party and Find a Candiate."];
+    const cardRoutes = ["/voter/", "/elections/", "/pac/"];
     return (
-        <Row xs={1} md={2} className="g-4">
-            {Array.from({ length: 4 }).map((_, index) => (
+        <Row md={2} className="g-4">
+            {Array.from({ length: 2 }).map((_, index) => (
                 <Col key={index}>
-                    <Card>
+                    <Card style={{ backgroundColor: cardColours[index] }}>
+                        <Card.Header className="text-center" style={{ fontWeight: "bold", fontSize: "170%" }}>{cardTitles[index]}</Card.Header>
                         {/*<Card.Img variant="top" src={tempCardImg} />*/}
                         <Card.Body style={{ textAlign:"center",}}>
-                            <Card.Title style={{ fontWeight:"bold", fontSize: "170%" }}>{cardTitles[index]}</Card.Title>
+                            {/*<Card.Title style={{ fontWeight: "bold", fontSize: "170%" }}>{cardTitles[index]}</Card.Title>
+                            <hr/>*/}
                             <Card.Text style={{ fontSize: "135%" }}>{cardContent[index]}</Card.Text>
                             <Button variant="" className="btn-outline-purple" onClick={() => { window.location.href = cardRoutes[index]}}>Go To Page</Button>
                         </Card.Body>
                     </Card>
                 </Col>
             ))}
+
+            <Col md={12}>
+                <Card style={{ backgroundColor: cardColours[3] }}>
+                    <Card.Header className="text-center" style={{ fontWeight: "bold", fontSize: "170%" }}>{cardTitles[2]}</Card.Header>
+                    {/*<Card.Img variant="top" src={tempCardImg} />*/}
+                    <Card.Body style={{ textAlign: "center", }}>
+                        {/*<Card.Title style={{ fontWeight: "bold", fontSize: "170%" }}>{cardTitles[index]}</Card.Title>
+                            <hr/>*/}
+                        <Card.Text style={{ fontSize: "135%" }}>{cardContent[2]}</Card.Text>
+                        <Button variant="" className="btn-outline-purple" onClick={() => { window.location.href = cardRoutes[2] }}>Go To Page</Button>
+                    </Card.Body>
+                </Card>
+            </Col>
         </Row>
     );
 }
 
 function VoterInfoService() {
     return (
-        <Card className="text-center">
-            <Card.Header><h2>Voter Information Service</h2></Card.Header>
+        <Card className="text-center" style={{ backgroundColor: "#FDFD96"}}>
+            <Card.Header style={{ fontWeight: "bold", fontSize: "200%" }}>Voter Information Service</Card.Header>
             <Card.Body>
-                <Row className="align-items-center mx-auto" style={{ width: "90%", fontSize:"140%" }}>
+                <Row className="align-items-center mx-auto" style={{ width: "90%" }}>
                     <Col style={{ borderRight: "1px solid #d3d3d3", paddingRight:"50px", }}>
-                        <Card.Text>Find your electoral district</Card.Text>
+                        <Card.Text style={{ fontSize: "140%" }}>Find your electoral district</Card.Text>
                         <InputGroup className="mb-3">
                             <FormControl
                                 placeholder="Postal Code (A9A9A9)"
                                 maxLength= "7"
-                                style={{fontSize:"90%"}}
+                                style={{ backgroundColor: "inherit", fontSize: "140%", border:"1px solid #513A77" }}
                             />
                             <Button variant="" className="btn-outline-purple">Search</Button>
                         </InputGroup>
                     </Col>
-                    <Col style={{ paddingLeft: "50px", }}>
+                    <Col style={{ paddingLeft: "50px", fontSize: "110%" }}>
                         <Button variant="" className="btn-lg btn-purple">Check to see if you are registered to vote</Button>
                     </Col>
                 </Row>

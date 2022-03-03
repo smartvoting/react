@@ -1,7 +1,7 @@
 import React from "react";
 import monkey from '../../images/underConstruction.png';
 import { Container, } from "react-bootstrap";
-export default function Candidates() {
+export default function CandidatesList() {
     return (
         <>
             <Container className="errorPage">
