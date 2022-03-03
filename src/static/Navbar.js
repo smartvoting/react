@@ -1,5 +1,6 @@
 import { Navbar, Nav, NavDropdown, Container, } from "react-bootstrap";
-import logo from '../images/svLogo2.png';
+import logo1 from '../images/svLogo2.png';
+import logo2 from '../images/svLogo4.png';
 
 import React, { useState, useEffect } from "react"
 
@@ -26,7 +27,7 @@ export default function NavbarComponent() {
                 }>
             <Container style={{ minWidth: "95%", }}>
                 <Navbar.Brand href="/">
-                    <img alt="Smart Voting Logo" src={logo} width="150" height="75" className="align-top" />
+                    <img alt="Smart Voting Logo" src={navbar || window.location.pathname !== "/"  ? logo1 : logo2} width="150" height="75" className="align-top" />
                 </Navbar.Brand>
                 <Navbar.Collapse id="#">
 

@@ -46,6 +46,11 @@ body {
     font-size: 120% !important;
 }
 
+.form-control:focus, .form-select:focus, .input-group-btn:focus {
+    border-color: #513A77 !important;
+    box-shadow: 0 0 0 0.25rem rgba(127, 17, 224, 0.25) !important;
+}
+
 .btn{
     font-size: 130% !important;
 }
@@ -80,7 +85,7 @@ body {
 
     .btn-check:focus + .btn-outline-purple,
     .btn-outline-purple:focus {
-        box-shadow: 0 0 0 .25rem rgba(13,110,253,.5) !important
+        box-shadow: 0 0 0 0.25rem rgba(127, 17, 224, 0.25) !important;
     }
 
     .btn-check:active + .btn-outline-purple,
@@ -98,7 +103,7 @@ body {
         .btn-outline-purple.active:focus,
         .btn-outline-purple.dropdown-toggle.show:focus,
         .btn-outline-purple:active:focus {
-            box-shadow: 0 0 0 .25rem rgba(13,110,253,.5) !important
+            box-shadow: 0 0 0 0.25rem rgba(127, 17, 224, 0.25) !important;
         }
 
     .btn-outline-purple.disabled,
@@ -378,6 +383,19 @@ table.toc {
 
 .faqContainer h6 {
     font-size: 100% !important;
+}
+
+.accordion-item {
+    border-color: #513A77 !important;
+}
+
+.accordion-button:not(.collapsed) {
+    color:white !important;
+    background-color: #513A77 !important
+}
+.accordion-button:focus {
+    border-color: #513A77 !important;
+    box-shadow: 0 0 0 0.25rem rgba(127, 17, 224, 0.25) !important;
 }
 
 .accordion-button {

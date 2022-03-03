@@ -109,7 +109,7 @@ function VoterInfoService() {
                                 maxLength= "7"
                                 style={{ backgroundColor: "inherit", fontSize: "140%", border:"1px solid #513A77" }}
                             />
-                            <Button variant="" className="btn-outline-purple" style={{ fontSize: "140%" }}>Search</Button>
+                            <Button variant="" className="btn-outline-purple">Search</Button>
                         </InputGroup>
                     </Col>
                     <Col style={{ paddingLeft: "50px", fontSize: "110%" }}>
