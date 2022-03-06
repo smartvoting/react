@@ -36,7 +36,13 @@ export default function FooterComponent() {
                 */}
                 <Row xs={1} md={3}>
                     <Col>
-                        <a title="For Educational Purposes Only" target="_blank" href={courseOutline}>&copy;{new Date().getFullYear()} Smart Voting LLC</a>
+                        <a
+                            href={courseOutline}
+                            target="_blank"
+                            data-tip="For educational purposes only"
+                            className="tip-above">
+                            &copy;{new Date().getFullYear()} Smart Voting LLC
+                        </a>
                     </Col>
                     <Col className="text-center">
                         <Row xs={1} md={3}>

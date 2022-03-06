@@ -53,7 +53,7 @@ export default function Faqs() {
             {/*{ tableOfContents() } <br />*/}
             <h4 id="h1" style={{ fontWeight: "bold" }}>How and where to vote?</h4>
             <Accordion id="q1">
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>How do I vote - what are my options?</Accordion.Header>
                     <Accordion.Body>
                         <h5 style={{ fontWeight: "bold" }}>Vote on election day</h5>
@@ -131,7 +131,7 @@ export default function Faqs() {
             </Accordion>
             <br />
             <Accordion id="q2">
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>I'm a Canadian elector living abroad. How do I vote?</Accordion.Header>
                     <Accordion.Body>
                         <h5 style={{ fontWeight: "bold" }}>What is the International Register of Electors?</h5>
@@ -203,7 +203,7 @@ export default function Faqs() {
             </Accordion>
             <br />
             <Accordion id="q3">
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>I live in Canada but will be out of my riding on election day. How do I vote?</Accordion.Header>
                     <Accordion.Body>
                         <p>If your residence is in Canada but you will be out of your riding on election day, you have two choices:</p>
@@ -246,7 +246,7 @@ export default function Faqs() {
             </Accordion>
             <br />
             <Accordion id="q4">
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>I'm homeless. How do I vote?</Accordion.Header>
                     <Accordion.Body>
                         <p>Eligible electors who are homeless or have no fixed address are welcome to register and vote.</p>
@@ -264,7 +264,7 @@ export default function Faqs() {
             </Accordion>
             <br />
             <Accordion id="q5">
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>I live in a hospital or long-term care facility. How can I vote?</Accordion.Header>
                     <Accordion.Body>
                         <p>Electors who live in hospitals and facilities that provide long-term care may have the extra option of voting at a mobile polling station in their residence.</p>
@@ -288,7 +288,7 @@ export default function Faqs() {
             <br />
             <h4 id="h2" style={{ fontWeight: "bold" }}>Time off work to vote</h4>
             <Accordion id="q6">
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>Am I allowed time off work to vote?</Accordion.Header>
                     <Accordion.Body>
                         <p><a target="_blank" href="https://laws-lois.justice.gc.ca/eng/acts/E-2.01/page-16.html?txthl=pencil#s-121">By law</a>, electors must have three consecutive hours to cast their vote on election day. If your hours of work do not allow for three consecutive hours to vote, your employer must give you time off.</p>
@@ -300,7 +300,7 @@ export default function Faqs() {
             </Accordion>
             <br />
             <Accordion id="q7">
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>Are all employers required to give time off work to vote?</Accordion.Header>
                     <Accordion.Body>
                         <p>Yes, the law applies to all employers. However, for employers in the transportation industry, the obligation to provide three consecutive hours off to vote does not apply if these four conditions are met:</p>
@@ -315,7 +315,7 @@ export default function Faqs() {
             </Accordion>
             <br />
             <Accordion id="q8">
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>Who decides when employees may take time off work to vote?</Accordion.Header>
                     <Accordion.Body>
                         <p>Your employer has the right to decide when in the day to give this time off.</p>
@@ -324,7 +324,7 @@ export default function Faqs() {
             </Accordion>
             <br />
             <Accordion id="q9">
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>Can an employee lose pay for taking time off to vote?</Accordion.Header>
                     <Accordion.Body>
                         <p>No.</p>
@@ -334,7 +334,7 @@ export default function Faqs() {
             </Accordion>
             <br />
             <Accordion id="q10">
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>Is there a penalty for employers who do not give employees time off to vote?</Accordion.Header>
                     <Accordion.Body>
                         <p>Yes.</p>
@@ -348,7 +348,7 @@ export default function Faqs() {
             <br />
             <h4 id="h3" style={{ fontWeight: "bold" }}>Voter ID</h4>
             <Accordion id="q11">
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>What pieces of ID can I use to vote?</Accordion.Header>
                     <Accordion.Body>
                         <p>To vote, you must show a proof of identity and address. <a target="_blank" href="https://www.elections.ca/content.aspx?section=vot&dir=ids&document=index&lang=e">Your options are listed here.</a></p>
@@ -359,7 +359,7 @@ export default function Faqs() {
             <br />
             <h4 id="h4" style={{ fontWeight: "bold" }}>Who May Vote</h4>
             <Accordion id="q12">
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>Who is eligible to vote in the federal election and referendums?</Accordion.Header>
                     <Accordion.Body>
                         <p>You may vote in this federal election if you:</p>
@@ -374,7 +374,7 @@ export default function Faqs() {
             </Accordion>
             <br />
             <Accordion id="q13">
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>My income tax form asked if I want to share some of my information with Elections Canada, and I answered "no." Do I still have the right to vote?</Accordion.Header>
                     <Accordion.Body>
                         <p>Yes. If you are eligible to vote, you may vote. Saying "no" to this question on your income tax form does not remove your name from the <a target="_blank" href="https://www.elections.ca/content.aspx?section=vot&dir=reg/des&document=index&lang=e">National Register of Electors</a> if it was already listed there.</p>
@@ -383,7 +383,7 @@ export default function Faqs() {
             </Accordion>
             <br />
             <Accordion id="q14">
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>I am serving a prison sentence in Canada. Can I vote?</Accordion.Header>
                     <Accordion.Body>
                         <p>Yes.</p>
@@ -396,7 +396,7 @@ export default function Faqs() {
             <br />
             <h4 id="h5" style={{ fontWeight: "bold" }}>Polling station</h4>
             <Accordion>
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>Can I vote wearing a face covering?</Accordion.Header>
                     <Accordion.Body>
                         <p>An elector may vote with their face covered by establishing proof of their identity and residence under any of the <a target="_blank" href="https://www.elections.ca/content.aspx?section=vot&dir=ids&document=index&lang=e">three options listed on this page.</a> An elector is not required to remove their face covering when establishing proof of their identity and residence.</p>
@@ -407,7 +407,7 @@ export default function Faqs() {
             <br />
             <h4 id="h6" style={{ fontWeight: "bold" }}>Why Voting Matters</h4>
             <Accordion>
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>Why should I vote?</Accordion.Header>
                     <Accordion.Body>
                         <p>Your vote is the way you choose someone to represent you in Canada's Parliament. By expressing your choice, you are exercising a democratic right that is key to the democratic process of government that generations of Canadians have fought to build. For more information, see <a target="_blank" href="https://www.elections.ca/content.aspx?section=res&dir=his&document=index&lang=e"> A History of the Vote in Canada.</a></p>
@@ -418,7 +418,7 @@ export default function Faqs() {
             <br />
             <h4 id="h7" style={{ fontWeight: "bold" }}>Canadian Armed Forces voters and their relatives</h4>
             <Accordion id="q15">
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>I am a member of the Canadian Armed Forces. How do I vote?</Accordion.Header>
                     <Accordion.Body>
                         <p>If you are an elector and member of the Canadian Armed Forces, you may vote using any of the methods available to all other Canadian electors.</p>
@@ -429,7 +429,7 @@ export default function Faqs() {
             </Accordion>
             <br />
             <Accordion id="q16">
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>I am living with a member of the Canadian Armed Forces. I am away from home. How do I vote?</Accordion.Header>
                     <Accordion.Body>
                         <p>As a Canadian citizen temporarily away from your riding, inside or outside Canada, you can vote by special ballot.</p>
@@ -439,7 +439,7 @@ export default function Faqs() {
             </Accordion>
             <br />
             <Accordion id="q17">
-                <Accordion.Item eventKey="0" style={{ borderColor: "#007bff" }}>
+                <Accordion.Item eventKey="0">
                     <Accordion.Header>I am a member of the Canadian Armed Forces. Does my address for voting purposes change whenever I am posted or deployed?</Accordion.Header>
                     <Accordion.Body>
                         <p>According to the Canada Elections Act, Canadian Armed Forces electors may register and update their information using any of the methods available to all other Canadian electors. Your address for voting purposes will be the address you consider your place of residence. Remember, when you vote at your assigned civilian polling station (either on an advance polling day or election day) or using the special ballot process outside a military polling station, you will need to <a target="_blank" href="https://www.elections.ca/content.aspx?section=vot&dir=ids&document=index&lang=e">show proof of identity and address.</a></p>

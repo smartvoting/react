@@ -51,6 +51,12 @@ body {
     box-shadow: 0 0 0 0.25rem rgba(127, 17, 224, 0.25) !important;
 }
 
+.required {
+    color: #C00000;
+    font-size: 75%;
+    font-weight: bold;
+}
+
 .btn{
     font-size: 130% !important;
 }
@@ -124,6 +130,54 @@ body {
 .footer a {
     text-decoration:none;
 }
+
+[data-tip] {
+    position: relative;
+}
+
+    [data-tip]:before {
+        content: '';
+        display: none;
+        border: 5px solid #1a1a1a;
+        border-top-color: #1a1a1a;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        position: absolute;
+        top: -10px;
+        left: 50%;
+    }
+
+    [data-tip]:after {
+        display: none;
+        content: attr(data-tip);
+        position: absolute;
+        padding: 15px 8px;
+        background: #1a1a1a;
+        color: #fff;
+        z-index: 1000;
+        font-size: .8em;
+        line-height: 18px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        white-space: normal;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    [data-tip]:hover:before,
+    [data-tip]:hover:after {
+        display: block;
+    }
+
+.tip-above[data-tip]:after {
+    top: -60px;
+    left: -10px;
+    height: 50px;
+    width:250px;
+}
+
 
 /* Home Page */
 .twitterBackground {
@@ -293,38 +347,188 @@ body {
     color: #333333;
 }
 
-#checkbox {
-    border: solid 4px black;
-    background-color: white;
-    width: 1%;
-    margin-left: 10px;
-    margin-right:20px;
-    cursor:pointer;
+.checkbox,
+.radio {
+    position: relative;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px
 }
 
-    #checkbox:hover {
-        background-color: orange;
+    .checkbox.disabled label,
+    .radio.disabled label,
+    fieldset[disabled] .checkbox label,
+    fieldset[disabled] .radio label {
+        cursor: not-allowed
     }
 
-    #checkbox:active {
-        background-color: green;
-    }
-
-    #checkbox p {
-        font-size: 200%;
-        font-weight:bold;
-        color:green;
+    .checkbox label,
+    .radio label {
+        min-height: 23px;
+        padding-left: 20px;
         margin-bottom: 0;
-        margin-left: -10px;
+        font-weight: 400;
+        cursor: pointer
     }
 
-.noSelect {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none; 
-    -ms-user-select: none;
-    user-select: none;
+    .checkbox input[type=checkbox],
+    .checkbox-inline input[type=checkbox],
+    .radio input[type=radio],
+    .radio-inline input[type=radio] {
+        position: absolute;
+        margin-left: -20px
+    }
+
+    .checkbox + .checkbox,
+    .radio + .radio {
+        margin-top: -5px
+    }
+
+.checkbox-inline,
+.radio-inline {
+    position: relative;
+    display: inline-block;
+    padding-left: 20px;
+    margin-bottom: 0;
+    font-weight: 400;
+    vertical-align: middle;
+    cursor: pointer
+}
+
+    .checkbox-inline.disabled,
+    .radio-inline.disabled,
+    fieldset[disabled] .checkbox-inline,
+    fieldset[disabled] .radio-inline {
+        cursor: not-allowed
+    }
+
+    .checkbox-inline + .checkbox-inline,
+    .radio-inline + .radio-inline {
+        margin-top: 0;
+        margin-left: 10px
+    }
+
+:not(form) .provisional.gc-checklist ul {
+    padding-left: 0;
+}
+
+:not(form) .provisional.gc-checklist output {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+:not(form) .provisional.gc-checklist label {
+    cursor: pointer;
+    display: block;
+    font-size: 20px;
+}
+
+:not(form) .provisional.gc-checklist legend {
+    float: none;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+:not(form) .provisional.gc-checklist input[type="checkbox"] {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+    :not(form) .provisional.gc-checklist input[type="checkbox"][disabled] + label {
+        cursor: not-allowed;
+        opacity: .5;
+    }
+
+    :not(form) .provisional.gc-checklist input[type="checkbox"] + label {
+        display: inline-block;
+        line-height: 2;
+        margin-left: 36px;
+        width: auto;
+    }
+
+        :not(form) .provisional.gc-checklist input[type="checkbox"] + label::before {
+            border: 4px solid #fff;
+            -webkit-box-shadow: 0 0 0 2px #000 !important;
+            box-shadow: 0 0 0 2px #000 !important;
+            content: "";
+            display: inline-block;
+            height: 36px;
+            left: 0;
+            position: absolute;
+            top: 2px;
+            width: 36px;
+        }
+
+    :not(form) .provisional.gc-checklist input[type="checkbox"]:focus + label::before {
+        -webkit-box-shadow: 0 0 0 2px #000, 0 0 8px 4px #3b99fc;
+        box-shadow: 0 0 0 2px #000, 0 0 8px 4px #3b99fc;
+    }
+
+    :not(form) .provisional.gc-checklist input[type="checkbox"]:not(:checked) + label:hover::before {
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#bcb8bc), color-stop(30%, #eeedee));
+        background-image: linear-gradient(to bottom, #bcb8bc, #eeedee 30%);
+    }
+
+    :not(form) .provisional.gc-checklist input[type="checkbox"]:checked + label::before {
+        background-color: #318000 !important;
+        border: none;
+    }
+
+    :not(form) .provisional.gc-checklist input[type="checkbox"]:checked + label::after {
+        border-color: #fff;
+        border-style: solid;
+        border-width: 0 5px 5px 0;
+        content: "";
+        display: inline-block;
+        height: 26px;
+        left: 12px;
+        position: absolute;
+        top: 4px;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        width: 13px;
+    }
+
+:not(form) .provisional.gc-checklist .checkbox-sm input[type="checkbox"] + label,
+:not(form) .provisional.gc-checklist .checkbox-sm input[type="checkbox"] + label + ul {
+    font-size: 17px;
+    min-height: 23px;
+}
+
+    :not(form) .provisional.gc-checklist .checkbox-sm input[type="checkbox"] + label::before {
+        height: 24px;
+        left: 6px;
+        top: 4px;
+        width: 24px;
+    }
+
+:not(form) .provisional.gc-checklist .checkbox-sm input[type="checkbox"]:checked + label::after {
+    border-width: 0 3px 3px 0;
+    height: 16px;
+    left: 14px;
+    top: 6px;
+    width: 9px;
+}
+
+:not(form) .provisional.gc-checklist.form-inline .label-inline {
+    padding-right: 20px;
+}
+
+    :not(form) .provisional.gc-checklist.form-inline .label-inline label {
+        padding-left: 10px;
+    }
+
+/* Check Registration */
+.registrationAccordion .accordion-button {
+    padding: 0.5rem 1.25rem !important;
 }
 
 /* FAQ */
