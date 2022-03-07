@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import tempCarouselImage from '../images/tempCarouselImage.png';
 import tempCardImg from '../images/tempCardImg.png'
-import { Container, Card, Row, Col, Button, InputGroup, FormControl } from "react-bootstrap";
+import { Container, Card, Row, Col, Button, InputGroup, Form } from "react-bootstrap";
 import { Parallax } from 'react-parallax';
 import { TwitterTimelineEmbed, } from 'react-twitter-embed';
 
@@ -104,7 +104,7 @@ function VoterInfoService() {
                     <Col style={{ borderRight: "1px solid #d3d3d3", paddingRight:"50px", }}>
                         <Card.Text style={{ fontSize: "140%" }}>Find your electoral district</Card.Text>
                         <InputGroup className="mb-3">
-                            <FormControl
+                            <Form.Control
                                 placeholder="Postal Code (A9A9A9)"
                                 maxLength= "7"
                                 style={{ backgroundColor: "inherit", fontSize: "140%", border:"1px solid #513A77" }}

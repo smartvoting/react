@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Form, Button, Accordion } from "react-bootstrap";
+import { Container, Form, InputGroup, FormControl, Button, Accordion } from "react-bootstrap";
 import courseOutline from '../../files/courseOutline.pdf';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
@@ -14,6 +14,16 @@ export default class Registration extends React.Component {
         month: "",
         day: "",
         gender: "",
+        province: "",
+        city: "",
+        street: "",
+        buildingNum: "",
+        usa: "",
+        meridian: "",
+        section: "",
+        township: "",
+        range: "",
+        lot: ""
     }
 
     prevStep = (e) => {
@@ -243,8 +253,8 @@ function PersonalInfo(props) {
                     <Container style={{ maxWidth: "50%", display: "flex", flexDirection: "row", margin: "0", padding: "0", fontSize: "90%", }}>
                         <Form.Group style={{ paddingRight: "10px" }}>
                             <Form.Label style={{ fontWeight: "bold" }}>Year:</Form.Label>
-                            <Form.Select id="year">
-                                <option style={{ display: "none", }}>(Please Choose One)</option>
+                            <Form.Select defaultValue="" id="year">
+                                <option value="" disabled hidden>(Please Choose One)</option>
                                 {Array.from({ length: ((new Date().getFullYear() - 17) - (new Date().getFullYear() - 120)) }).map((_, index) => (
                                     <option key={index} value={index + new Date().getFullYear() - 120}>{index + new Date().getFullYear() - 120}</option>
                                 ))}
@@ -252,8 +262,8 @@ function PersonalInfo(props) {
                         </Form.Group>
                         <Form.Group style={{ paddingRight: "10px" }}>
                             <Form.Label style={{ fontWeight: "bold" }}>Month:</Form.Label>
-                            <Form.Select id="month">
-                                <option style={{ display: "none", }}>(Please Choose One)</option>
+                            <Form.Select defaultValue="" id="month">
+                                <option value="" disabled hidden>(Please Choose One)</option>
                                 {Array.from({ length: 12 }).map((_, index) => (
                                     <option key={index} value={index}>{months[index]}</option>
                                 ))}
@@ -262,8 +272,8 @@ function PersonalInfo(props) {
 
                         <Form.Group>
                             <Form.Label style={{ fontWeight: "bold" }}>Day:</Form.Label>
-                            <Form.Select id="day">
-                                <option style={{ display: "none", }}>(Please Choose One)</option>
+                            <Form.Select defaultValue="" id="day">
+                                <option value="" disabled hidden>(Please Choose One)</option>
                                 {Array.from({ length: 31 }).map((_, index) => (
                                     <option key={index} value={index + 1}>{index + 1}</option>
                                 ))}
@@ -304,6 +314,157 @@ function PersonalInfo(props) {
 }
 
 function Address(props) {
+    const sectionProvinces = ["AB - Alberta", "BC - British Columbia", "MB - Manitoba", "SK - Saskatchewan"]
+    const sectionValues = ["ab", "bc", "mb", "sk"];
+
+    function hideAll() {
+        document.getElementById("postal").style.height = "0";
+        document.getElementById("postal").style.visibility = "hidden";
+        document.getElementById("postal").style.opacity = "0";
+        document.getElementById("section").style.height = "0";
+        document.getElementById("section").style.visibility = "hidden";
+        document.getElementById("section").style.opacity = "0";
+        document.getElementById("lot").style.height = "0";
+        document.getElementById("lot").style.visibility = "hidden";
+        document.getElementById("lot").style.opacity = "0";
+    }
+
+    function showSelected(id) {
+        document.getElementById(id).style.height = "auto";
+        document.getElementById(id).style.visibility = "visible";
+        document.getElementById(id).style.opacity = "1";
+    }
+
+    function selectItem(e) {
+        hideAll();
+        if (e.target.value === "street" || e.target.value === "other") showSelected("postal");
+        else if (e.target.value === "section") showSelected("section");
+        else if (e.target.value === "lot") showSelected("lot");
+    }
+
+    function resetSelect(element) {
+        let i, L = element.options.length - 1;
+        for (i = L; i >= 0; i--) {
+            if (i != 0) element.remove(i);
+        }
+        let chooseOne = document.createElement("option")
+        chooseOne.value = "";
+        chooseOne.innerHTML = "(Please Choose One)";
+        chooseOne.disabled = true;
+        chooseOne.hidden = true;
+        chooseOne.selected = true;
+        element.appendChild(chooseOne);
+    }
+
+    function enableMeridian(e) {
+        const ab = ["W4", "W5", "W6"];
+        const bc = ["W5", "W6"];
+        const mb = ["E1", "W1"];
+        const sk = ["W1", "W2", "W3"]
+        const array = [ab, bc, mb, sk];
+
+        let meridian = document.getElementById("meridian");
+        resetSelect(meridian);
+
+        let currentList = array[sectionValues.indexOf(e.target.value)]
+        for (let i = 0; i < currentList.length; i++) {
+            let opt =  document.createElement("option")
+            opt.value = currentList[i];
+            opt.innerHTML = currentList[i];
+            meridian.appendChild(opt);
+        }
+        meridian.disabled = false;
+        document.getElementById("section2").disabled = true;
+        document.getElementById("township").disabled = true;
+        document.getElementById("range").disabled = true;
+    }
+
+    function enableOtherStuff(e) {
+        document.getElementById("section2").disabled = false;
+        populateTownship(e)
+        document.getElementById("township").disabled = false;
+        populateRange(e)
+        document.getElementById("range").disabled = false;
+    }
+
+    function populateTownship(e) {
+        let province = document.getElementById("provinceDropdown");
+        let meridian = e.target.value;
+        let lowestValue = 0;
+        let highestValue = 0;
+        let township = document.getElementById("township");
+        resetSelect(township);
+
+        if (province.value === "ab") {
+            if (meridian === "W6") lowestValue = 38;
+            highestValue = 126;
+        }
+        if (province.value === "bc") {
+            if (meridian === "W5") highestValue = 40;
+            if (meridian === "W6") {
+                lowestValue = 38;
+                highestValue = 90;
+            }
+        }
+        if (province.value === "mb") {
+            if (meridian === "E1") highestValue = 32;
+            if (meridian === "W1") highestValue = 67;
+        }
+        if (province.value === "sk") {
+            if (meridian === "W1") highestValue = 55;
+            if (meridian === "W2") highestValue = 57;
+            if (meridian === "W3") highestValue = 64;
+        }
+
+        for (let i = lowestValue; i < highestValue; i++) {
+            let opt = document.createElement("option")
+            opt.value = i + 1;
+            opt.innerHTML = i + 1;
+            township.appendChild(opt);
+        }
+    }
+
+    function populateRange(e) {
+        let province = document.getElementById("provinceDropdown");
+        let meridian = e.target.value;
+        let lowestValue = 0;
+        let highestValue = 0;
+        let range = document.getElementById("range");
+        resetSelect(range);
+
+        if (province.value === "ab") {
+            if (meridian === "W4") highestValue = 30;
+            if (meridian === "W5") highestValue = 28;
+            if (meridian === "W6") highestValue = 13;
+        }
+        if (province.value === "bc") {
+            if (meridian === "W5") highestValue = 29;
+            if (meridian === "W6") highestValue = 25;
+        }
+        if (province.value === "mb") {
+            if (meridian === "E1") highestValue = 17;
+            if (meridian === "W1") highestValue = 30;
+        }
+        if (province.value === "sk") {
+            if (meridian === "W1") {
+                lowestValue = 29
+                highestValue = 34;
+            }
+            else highestValue = 30;
+        }
+
+        for (let i = lowestValue; i < highestValue; i++) {
+            let opt = document.createElement("option")
+            opt.value = i + 1;
+            opt.innerHTML = i + 1;
+            if (province.value === "mb" && meridian === "W1" && i == highestValue - 1) {
+                opt.value = "29A";
+                opt.innerHTML = "29A";
+            }
+            range.appendChild(opt);
+        }
+    }
+
     return (
         <Container style={{ minWidth: "100%", fontSize: "130%", }}>
             <Form>
@@ -340,18 +501,104 @@ function Address(props) {
                 <Container style={{ border: "2px solid black", minWidth: "100%", backgroundColor: "#f2f2f2", padding: "20px", }}>
                     <strong>What is your address type?: </strong><span className="required">(required)</span>
                     <br />
-                    <input type="radio" required id="street" name="address" value="streetCivic" style={{ marginRight: "10px",cursor: "pointer", scale: "1.5" }} />
-                    <Form.Label htmlFor="street" style={{ cursor: "pointer" }}>Street/Civic</Form.Label>
-                    <br/>
-                    <input type="radio" id="section" name="address" value="section" style={{ marginRight: "10px",cursor: "pointer", scale: "1.5" }} />
-                    <Form.Label htmlFor="section" style={{ cursor: "pointer" }}>Section/Township/Range/Meridian (AB, BC, SK, MB Rural only)</Form.Label>
-                    <br />
-                    <input type="radio" id="lot" name="address" value="lot" style={{ marginRight: "10px",cursor: "pointer", scale: "1.5" }} />
-                    <Form.Label htmlFor="lot" style={{ cursor: "pointer" }}>Lot & Concession (Ontario Rural only)</Form.Label>
-                    <br />
-                    <input type="radio" id="other" name="address" value="other" style={{ marginRight: "10px",cursor: "pointer", scale: "1.5" }} />
-                    <Form.Label htmlFor="other" style={{ cursor: "pointer" }}>I have a different address type</Form.Label>
-                    <br />
+                    <Form.Select defaultValue="" id="addressDropdown" onChange={(e) => { selectItem(e) }} style={{ width: "25%", fontSize: "80%" }} required>
+                        <option value="" disabled hidden>(Please Choose One)</option>
+                        <option value="street">Street/Civic</option>
+                        <option value="section">Section/Township/Range/Meridian (AB, BC, SK, MB Rural only)</option>
+                        <option value="lot">Lot & Concession (Ontario Rural only)</option>
+                        <option value="other">I have a different address type</option>
+                    </Form.Select>
+                    <Container id="addressInfo" style={{ minWidth: "100%", padding: "0", paddingTop: "10px" }}>
+
+                        {/* POSTAL CODE OR OTHER SELECTION*/}
+                        <Form.Group id="postal" style={{ visibility: "hidden", opacity: "0", height: "0", transition: "visibility 0s, opacity 0.5s linear" }}>
+                            <Form.Label style={{ fontWeight: "bold" }}>Postal Code: <span className="required">(required)</span></Form.Label>
+                            <InputGroup style={{ width: "25%", fontSize: "80%", }}>
+                                <Form.Control
+                                    placeholder="Postal Code (A9A9A9)"
+                                    maxLength="7"
+                                    style={{ backgroundColor: "inherit", fontSize: "120%", border: "1px solid #513A77" }}
+                                />
+                                <Button variant="" className="btn-outline-purple">Find</Button>
+                            </InputGroup>
+                        </Form.Group>
+
+                        {/* SECTION/TOWNSHIP ETC.SELECTION*/}
+                        <Form.Group id="section" style={{ visibility: "hidden", opacity: "0", height: "0", transition: "visibility 0s, opacity 0.5s linear" }}>
+                            <h5><strong>Province: </strong><span className="required">(required)</span></h5>
+                            <Form.Select defaultValue="" id="provinceDropdown" onChange={(e) => { enableMeridian(e) }} style={{ width: "25%", fontSize: "80%" }} required>
+                                <option value="" disabled hidden>(Please Choose One)</option>
+                                {Array.from({ length: 4 }).map((_, index) => (
+                                    <option key={index} value={sectionValues[index]}>{sectionProvinces[index]}</option>
+                                ))}
+                            </Form.Select>
+                            <br/>
+                            <Container style={{ display: "flex", flexDirection: "row", margin: "0", padding: "0", fontSize: "90%", }}>
+
+                                {/* MERIDIAN */}
+                                <Form.Group style={{ paddingRight: "10px" }}>
+                                    <Form.Label style={{ fontWeight: "bold" }}>Meridian: <span className="required">(required)</span></Form.Label>
+                                    <Form.Select disabled defaultValue="" onChange={(e) => { enableOtherStuff(e) }} id="meridian">
+                                        <option value="" disabled hidden>(Please Choose One)</option>
+                                    </Form.Select>
+                                </Form.Group>
+
+                                {/* SECTION */}
+                                <Form.Group style={{ paddingRight: "10px" }}>
+                                    <Form.Label style={{ fontWeight: "bold" }}>Section: <span className="required">(required)</span></Form.Label>
+                                    <Form.Select disabled defaultValue="" id="section2">
+                                        <option value="" disabled hidden>(Please Choose One)</option>
+                                        {Array.from({ length: 36 }).map((_, index) => (
+                                            <option key={index} value={index + 1}>{index + 1}</option>
+                                        ))}
+                                    </Form.Select>
+                                </Form.Group>
+
+                                {/* TOWNSHIP */}
+                                <Form.Group style={{ paddingRight: "10px" }}>
+                                    <Form.Label style={{ fontWeight: "bold" }}>Township: <span className="required">(required)</span></Form.Label>
+                                    <Form.Select disabled defaultValue="" id="township">
+                                        <option value="" disabled hidden>(Please Choose One)</option>
+                                        {Array.from({ length: 31 }).map((_, index) => (
+                                            <option key={index} value={index + 1}>{index + 1}</option>
+                                        ))}
+                                    </Form.Select>
+                                </Form.Group>
+
+                                {/* RANGE */}
+                                <Form.Group>
+                                    <Form.Label style={{ fontWeight: "bold" }}>Range: <span className="required">(required)</span></Form.Label>
+                                    <Form.Select disabled defaultValue="" id="range">
+                                        <option value="" disabled hidden>(Please Choose One)</option>
+                                        {Array.from({ length: 31 }).map((_, index) => (
+                                            <option key={index} value={index + 1}>{index + 1}</option>
+                                        ))}
+                                    </Form.Select>
+                                </Form.Group>
+
+                            </Container>
+                        </Form.Group>
+
+                        {/* LOT SELECTION */}
+                        <Form.Group id="lot" style={{visibility: "hidden", opacity: "0", height: "0", transition: "visibility 0s, opacity 0.5s linear"}}>
+                            
+                            <Container style={{ minWidth:"100%", padding:"0", display:"flex", flexDirection:"row"}}>
+                                <Form.Group style={{ paddingRight: "10px", width:"20%" }}>
+                                    <Form.Label style={{ fontWeight: "bold" }}>City or Town: <span className="required">(required)</span></Form.Label>
+                                    <Form.Control type="text" id="fname" name="fname" required />
+                                </Form.Group>
+                                <Form.Group style={{ paddingRight: "10px", width: "20%"  }}>
+                                    <Form.Label style={{ fontWeight: "bold" }}>Lot: <span className="required">(required)</span></Form.Label>
+                                    <Form.Control type="text" id="fname" name="fname" required />
+                                </Form.Group>
+                                <Form.Group style={{ width: "20%" }}>
+                                    <Form.Label style={{ fontWeight: "bold" }}>Concession: <span className="required">(required)</span></Form.Label>
+                                    <Form.Control type="text" id="fname" name="fname" required />
+                                </Form.Group>
+                            </Container>
+                        </Form.Group>
+
+                    </Container>
                 </Container>
                 <br />
 
@@ -361,8 +608,7 @@ function Address(props) {
                         Previous
                     </Button>
                     <Button onClick={(e) => {
-                        if (document.querySelector('input[name="citizen"]:checked').value === "No" || document.querySelector('input[name="age"]:checked').value === "No") this.setStep(e, 5);
-                        else props.nextStep(e);
+                        props.nextStep(e);
                     }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                         Next
                         {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
