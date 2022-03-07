@@ -75,7 +75,7 @@ function Welcome(props) {
                 <hr />
                 <strong style={{ fontSize: "130%", }}>PLEASE READ BEFORE CONTINUING</strong>
                 <p>Under the <a href="https://laws-lois.justice.gc.ca/eng/acts/e-2.01/" target="__blank">Canada Elections Act (S.C. 2000, c. 9)</a>, it is illegal to make false statements about voter registration.</p>
-                <p>Please be aware that this website was made for <a href={courseOutline} target="_blank">George Brown College's Winter 2022 Capstone Project</a> and is for educational purposes only. While all information on Ridings, Candidates, and Past Elections is true, all voter info is not real and has been generated using our own programs.</p>
+                <p>Please be aware that this website was made for <a href={courseOutline} target="_blank">George Brown College's Winter 2022 Capstone Project</a> and is for educational purposes only. While information on ridings, locations, and history is true, all voter and candidate info is not real and has been generated using our own programs.</p>
                 <p>If you'd like to see if you are actually registered to vote, please <a href="https://www.elections.ca/content.aspx?section=vot&dir=reg&document=index&lang=e" target="_blank">Click Here</a> to go to Election Canada's official service.</p>
                 <br />
                 <input type="checkbox" id="tos" style={{ scale: "1.5", }} required />
@@ -202,7 +202,7 @@ function Eligibility(props) {
                     <Button onClick={(e) => {
                         if (document.querySelector('input[name="question1"]:checked').value === "No" || document.querySelector('input[name="question2"]:checked').value === "No" || document.querySelector('input[name="question3"]:checked').value === "No") this.setStep(e, 5);
                         props.nextStep(e);
-                    }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
+                    }} type="button" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                         Next
                         {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
                     </Button>
@@ -217,7 +217,7 @@ function PersonalInfo(props) {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Novemeber", "December"];
     return (
         <Container style={{ minWidth: "100%", fontSize: "130%", }}>
-            <Form>
+            <Form onSubmit={(e) => { e.preventDefault(); }}>
                 <h6><strong>Step 2 of 5</strong></h6>
                 <h2 style={{ fontWeight: "bold", }}>Personal Information</h2>
                 <hr />
@@ -256,7 +256,7 @@ function PersonalInfo(props) {
                             <Form.Select defaultValue="" id="year">
                                 <option value="" disabled hidden>(Please Choose One)</option>
                                 {Array.from({ length: ((new Date().getFullYear() - 17) - (new Date().getFullYear() - 120)) }).map((_, index) => (
-                                    <option key={index} value={index + new Date().getFullYear() - 120}>{index + new Date().getFullYear() - 120}</option>
+                                    <option key={index} value={(new Date().getFullYear() - 18) - index}>{(new Date().getFullYear() - 18) - index}</option>
                                 ))}
                             </Form.Select>
                         </Form.Group>
@@ -300,10 +300,7 @@ function PersonalInfo(props) {
                         {<FontAwesomeIcon style={{ float: "left", marginTop: "7px" }} icon={faChevronLeft} />}
                         Previous
                     </Button>
-                    <Button onClick={(e) => {
-                        if (document.querySelector('input[name="citizen"]:checked').value === "No" || document.querySelector('input[name="age"]:checked').value === "No") this.setStep(e, 5);
-                        else props.nextStep(e);
-                    }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
+                    <Button onClick={(e) => { props.nextStep(e); }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                         Next
                         {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
                     </Button>
