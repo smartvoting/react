@@ -6,7 +6,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 
 export default class Registration extends React.Component {
     state = {
-        step: 5,
+        step: 1,
         fname: "",
         mname: "",
         lname: "",
