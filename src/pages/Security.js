@@ -1,7 +1,7 @@
 import Template from '../static/ASCTemplate';
 
 export default function Security() {
-    const about = {
+    const security = {
         link1: "https://api.smartvoting.cc/v1/security/sv",
         link2: "https://api.smartvoting.cc/v1/security/ec",
         header1: "Smart Voting Security",
@@ -9,6 +9,6 @@ export default function Security() {
     };
 
     return (
-        <Template content={about} />
+        <Template content={security} />
     );
 }
