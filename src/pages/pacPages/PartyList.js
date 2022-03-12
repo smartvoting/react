@@ -27,7 +27,7 @@ export default function PartyList() {
                     <tbody>
                         {Array.from({ length: parties.length }).map((_, index) => (
                             <tr key={index}>
-                                <td style={{ fontSize: "150%", }}>{parties[index].partyName}</td>
+                                <td style={{ fontSize: "150%", }}>{parties[index].name}</td>
                                 <td className="text-center" style={{ fontSize: "150%" }}>{parties[index].isRegistered === false ? "Not Registered" : "Registered"}</td>
                                 <td className="text-center">
                                     <Button id={index} variant="primary" onClick={() => {
@@ -55,7 +55,7 @@ function PartyInfoModal(props) {
         <Modal {...props} dialogClassName="modal-90w" centered >
             <Modal.Header style={{ fontSize: "150%", fontWeight: "bold", }} closeButton>
                 <Modal.Title style={{ fontSize: "125%", fontWeight: "bold", }}id="contained-modal-title-vcenter">
-                    {props.i !== -1 ? props.p[props.i].partyName : null}
+                    {props.i !== -1 ? props.p[props.i].name : null}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body style={{ fontSize: "150%" }} className="text-justify">

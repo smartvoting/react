@@ -8,34 +8,32 @@ export default function Riding() {
 
     function selectItem(e) {
         setSV({ value: e.target.value })
-        document.getElementById("searchbar").placeholder = e.target.value === "zip" ? "Postal Code (ex. A9A9A9)" : e.target.value === "district" ? "District Name (ex. St. Paul's)" : e.target.value === "candidate" ? "Candidate Name (ex. Justin Trudeau)" : e.target.value === "location" ? "Location (ex. Toronto)" : ""
+        document.getElementById("searchbar").placeholder = e.target.value === "zip" ? "Postal Code (ex. A9A9A9, A9A A9A, or a9a a9a)" : e.target.value === "district" ? "District Name (ex. St. Paul's)" : e.target.value === "candidate" ? "Candidate Name (ex. Justin Trudeau)" : e.target.value === "location" ? "Location (ex. Toronto)" : ""
     }
 
     function search() {
+        let searchString = document.getElementById("searchbar").value;
         if (selectValue.value === "zip") {
-            let searchString = document.getElementById("searchbar").value.toUpperCase();
-            axios.get("https://represent.opennorth.ca/postcodes/" + searchString).then(res => {
+            axios.get("https://api.smartvoting.cc/v1/Riding/Locate/" + searchString).then(res => {
                 console.log(res.data)
                 setData(res.data);
             }).catch(err => console.log(err))
+        } else {
+            axios.get("https://api.smartvoting.cc/v1/Riding/List").then(res => {
+                let filter;
+                if (selectValue.value === "district") filter = res.data.filter(i => i.name === searchString)[0];
+                else if (selectValue.value === "candidate") filter = res.data.filter(i => i.candidates.includes(searchString))[0];
+                else if (selectValue.value === "location") filter = res.data.filter(i => i.office.city === searchString);
+                console.log(filter);
+                setData(filter);
+            }).catch(err => console.log(err))
         }
     }
-    /*const [SV, setSV] = useState('');
-    const [EC, setEC] = useState('');
-
-    useEffect(() => {
-        axios.get(props.content.link1).then(res => {
-            setSV(res.data);
-        }).catch(err => console.log(err))
-        axios.get(props.content.link2).then(res => {
-            setEC(res.data);
-        }).catch(err => console.log(err))
-    }, []);*/
 
     return (
         <Container style={{ minWidth: "100%",}}>
-            <InputGroup className="mb-3">
-                <Form.Select defaultValue="" id="rsDropdown" style={{ width: "25%", fontSize:"120%" }} onChange={(e) => {selectItem(e)}} required>
+            <InputGroup className="mt-3 mb-3">
+                <Form.Select defaultValue="" id="rsDropdown" style={{ width: "25%", fontSize:"130%" }} onChange={(e) => {selectItem(e)}} required>
                     <option value="" disabled hidden>Search By:</option>
                     <option value="zip">Postal Code</option>
                     <option value="district">District Name</option>
@@ -52,10 +50,12 @@ export default function Riding() {
                     data-val-required={selectValue.value === "zip" ? "Please enter a postal code to continue." : "A keyword is required to continue."}
                     maxLength={selectValue.value === "zip" ? "7" : "999"}
                     type="text"
-                    style={{ width: "65%", fontSize: "120%"  }}
+                    style={{ width: "65%", fontSize: "130%"  }}
                 />
-                <Button variant="" className="btn-outline-purple" id="button-addon2" type="submit" style={{ width: "10%", }} onClick={() => { search() }}>Search</Button>
+                <Button variant="" className="btn-outline-purple" id="button-addon2" type="submit" style={{ width: "10%", fontSize: "130%"  }} onClick={() => { search() }}>Search</Button>
             </InputGroup>
+            <Container>
+            </Container>
         </Container>
     );
 }
