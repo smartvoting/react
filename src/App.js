@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, } from 'react-router-dom';
 import Home from './pages/Home';
+import Vote from './pages/Vote';
 import NavbarComponent from './static/Navbar';
 import FooterComponent from './static/Footer';
 import ErrorPage from './pages/Error';
@@ -22,6 +23,7 @@ export default function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/vote/" element={<Vote />} />
 
                     <Route path="/voter/" element={<VoterLanding />} />
                     <Route path="/voter/riding/" element={<VoterLanding />} />

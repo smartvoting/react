@@ -1,12 +1,12 @@
 import React from "react";
-import { Container, Form, InputGroup, FormControl, Button, Accordion } from "react-bootstrap";
+import { Container, Form, InputGroup, Button, Accordion, Row, Col } from "react-bootstrap";
 import courseOutline from '../../files/courseOutline.pdf';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 export default class Registration extends React.Component {
     state = {
-        step: 5,
+        step: 1,
         fname: "",
         mname: "",
         lname: "",
@@ -51,11 +51,12 @@ export default class Registration extends React.Component {
         switch (step) {
             case 1: return (<Welcome nextStep={(e) => this.nextStep(e)}/>);
             case 2: return (<Privacy prevStep={(e) => this.prevStep(e) } nextStep={(e) => this.nextStep(e)} />)
-            case 3: return ((<Eligibility prevStep={(e) => this.prevStep(e)} nextStep={(e) => this.nextStep(e)} />) )
+            case 3: return ((<Eligibility prevStep={(e) => this.prevStep(e)} nextStep={(e) => this.nextStep(e)} setStep={(e, n) => this.setStep(e, n)}/>) )
             case 4: return ((<PersonalInfo prevStep={(e) => this.prevStep(e)} nextStep={(e) => this.nextStep(e)} />))
             case 5: return ((<Address prevStep={(e) => this.prevStep(e)} nextStep={(e) => this.nextStep(e)} />))
-            default:
-                return (null)
+            case 6: return ((<Review prevStep={(e) => this.prevStep(e)} nextStep={(e) => this.nextStep(e)} />))
+            case 7: return ((<Results prevStep={(e) => this.prevStep(e)} nextStep={(e) => this.nextStep(e)} setStep={(e, n) => this.setStep(e, n)} />))
+            default: return (null)
         }
     }
 }
@@ -75,17 +76,14 @@ function Welcome(props) {
                 <hr />
                 <strong style={{ fontSize: "130%", }}>PLEASE READ BEFORE CONTINUING</strong>
                 <p>Under the <a href="https://laws-lois.justice.gc.ca/eng/acts/e-2.01/" target="__blank">Canada Elections Act (S.C. 2000, c. 9)</a>, it is illegal to make false statements about voter registration.</p>
-                <p>Please be aware that this website was made for <a href={courseOutline} target="_blank">George Brown College's Winter 2022 Capstone Project</a> and is for educational purposes only. While information on ridings, locations, and history is true, all voter and candidate info is not real and has been generated using our own programs.</p>
+                <p>Please be aware that this website was made for <a href={courseOutline} target="_blank">George Brown College's Winter 2022 Capstone Project</a> and is for educational purposes only. While information on ridings, locations, and history is true, all voter and candidate information is not real and has been generated using our own programs. Any similarity to actual persons, living or dead, or actual events, is purely coincidental.</p>
                 <p>If you'd like to see if you are actually registered to vote, please <a href="https://www.elections.ca/content.aspx?section=vot&dir=reg&document=index&lang=e" target="_blank">Click Here</a> to go to Election Canada's official service.</p>
                 <br />
-                <input type="checkbox" id="tos" style={{ scale: "1.5", }} required />
-                <label htmlFor="tos" style={{ fontWeight: "bold", marginLeft: "10px" }}> I have read the above statement and am aware that this service does not show that I will be registered to vote.</label>
+                <input type="checkbox" id="tos" style={{ scale: "1.5", marginLeft:"5px", cursor: "pointer" }} required />
+                <label htmlFor="tos" style={{ fontWeight: "bold", marginLeft: "10px", cursor: "pointer" }}> I have read the above statement and am aware that this service does not show that I will be registered to vote.</label>
                 <br />
                 <br />
-                <Button
-                    onClick={(e) => { if (document.getElementById("tos").checked) props.nextStep(e); }}
-                    type="submit"
-                    className="btn btn-purple">Start</Button>
+                <Button onClick={(e) => { if (document.getElementById("tos").checked) props.nextStep(e); }} type="submit" className="btn btn-purple">Start</Button>
             </Form>
         </Container>
     );
@@ -189,7 +187,7 @@ function Eligibility(props) {
                         Previous
                     </Button>
                     <Button onClick={(e) => {
-                        if (document.getElementById('citizen2').checked || document.getElementById('age1').checked || document.getElementById('add2').checked) this.setStep(e, 5);
+                        if (document.getElementById('citizen2').checked || document.getElementById('age1').checked || document.getElementById('add2').checked) props.setStep(e, 7);
                         props.nextStep(e);
                     }} type="button" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                         Next
@@ -225,7 +223,6 @@ function PersonalInfo(props) {
                 <br />
                 <strong>Please answer the following questions:</strong>
                 <Container style={{ border: "2px solid black", minWidth: "100%", backgroundColor: "#f2f2f2", padding: "20px", }}>
-
                     <Form.Group>
                         <Form.Label style={{ fontWeight: "bold" }}>First Name: <span className="required">(required)</span></Form.Label>
                         <Form.Control type="text" id="fname" name="fname" required />
@@ -349,6 +346,30 @@ function Address(props) {
                                 <Button variant="" className="btn-outline-purple">Find</Button>
                             </InputGroup>
                         </Form.Group>
+                        <Row style={{ width: "50%", paddingTop:"10px",}}>
+                            <Col md={8}>
+                                <Form.Label htmlFor="name" style={{ fontWeight: "bold" }}>City or Town: <span className="required">(required)</span></Form.Label>
+                                <Form.Control type="text" name="ct" id="ct" required />
+                            </Col>
+                            <Col md={4}>
+                                <Form.Group>
+                                    <Form.Label htmlFor="name" style={{ fontWeight: "bold" }}>Province: <span className="required">(required)</span></Form.Label>
+                                    <Form.Control type="text" name="text" id="text" maxLength={2} required />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row style={{ width: "50%", paddingTop: "10px", }}>
+                            <Col md={8}>
+                                <Form.Label style={{ fontWeight: "bold" }}>Street Name: <span className="required">(required)</span></Form.Label>
+                                <Form.Control type="text" id="street" name="street" />
+                            </Col>
+                            <Col md={4}>
+                                <Form.Group>
+                                    <Form.Label style={{ fontWeight: "bold" }}>Unit/Suite/Apt:</Form.Label>
+                                    <Form.Control type="text" id="usa" name="usa" />
+                                </Form.Group>
+                            </Col>
+                        </Row>
                     </Container>
                 </Container>
                 <br />
@@ -363,6 +384,69 @@ function Address(props) {
                     }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                         Next
                         {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
+                    </Button>
+                </Container>
+            </Form>
+        </Container>
+    );
+}
+
+function Review(props) {
+    return (
+        <Container style={{ minWidth: "100%", fontSize: "130%", }}>
+            <Form onSubmit={(e) => { e.preventDefault(); }}>
+                <h6><strong>Step 4 of 5</strong></h6>
+                <h2 style={{ fontWeight: "bold", }}>Review Information</h2>
+                <hr />
+                <p>This is the information you entered. If you need to make a correction, return to the previous page.<br />Otherwise, please submit your information to see if you are registered at the address provided.</p>
+
+                <h4 style={{ fontWeight: "bold", textDecoration: "underline", }}>Personal Information</h4>
+                <h5 style={{ fontWeight: "bold", }}>Name (first / middle / last):</h5>
+                <p>[ Insert Name Here ]</p>
+                <h5 style={{ fontWeight: "bold", }}>Date of birth (year / month / day):</h5>
+                <p>[ Insert DOB Here ]</p>
+                <h5 style={{ fontWeight: "bold", }}>Gender:</h5>
+                <p>[ Insert Gender Here ]</p>
+                <h5 style={{ fontWeight: "bold", }}>Home Address:</h5>
+                <p>[ Insert Street Here ] <br />[ Insert City and Postal Code Here ]</p>
+                {/*CAPTCHA*/}
+                <Container style={{ width: "25%", padding: "0", float: "left", display: "flex", justifyContent: "space-between" }}>
+                    <Button onClick={(e) => { props.prevStep(e); }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
+                        {<FontAwesomeIcon style={{ float: "left", marginTop: "7px" }} icon={faChevronLeft} />}
+                        Previous
+                    </Button>
+                    <Button onClick={(e) => { props.nextStep(e); }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
+                        Submit
+                        {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
+                    </Button>
+                </Container>
+            </Form>
+        </Container>
+    );
+}
+
+function Results(props) {
+    return (
+        <Container style={{ minWidth: "100%", fontSize: "130%", }}>
+            <Form onSubmit={(e) => { e.preventDefault(); }}>
+                <h6><strong>Step 5 of 5</strong></h6>
+                <h2 style={{ fontWeight: "bold", }}>Results</h2>
+                <hr />
+                <Container>
+                </Container>
+
+                <h4 style={{ fontWeight: "bold", }}>Protect your Privacy</h4>
+                <p>Do not save filled forms on shared computers at the end of your session</p>
+                <ol>
+                    <li>Delete any outstanding print jobs,</li>
+                    <li>Clear the web browser cache (see FAQs at the top of this page) and</li>
+                    <li>Close the browser.</li>
+                </ol>
+
+                <Container style={{ width: "25%", padding: "0", float: "left", display: "flex", justifyContent: "space-between" }}>
+                    <Button onClick={(e) => { props.setStep(e, 1); }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
+                        {<FontAwesomeIcon style={{ float: "left", marginTop: "7px" }} icon={faChevronLeft} />}
+                        Restart
                     </Button>
                 </Container>
             </Form>
