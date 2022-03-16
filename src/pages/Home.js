@@ -105,7 +105,7 @@ function VoterInfoService() {
                         <Card.Text style={{ fontSize: "140%" }}>Find your electoral district</Card.Text>
                         <InputGroup className="mb-3">
                             <Form.Control
-                                placeholder="Postal Code (A9A9A9)"
+                                placeholder="Postal Code"
                                 maxLength= "7"
                                 style={{ backgroundColor: "inherit", fontSize: "140%", border:"1px solid #513A77" }}
                             />
@@ -113,7 +113,7 @@ function VoterInfoService() {
                         </InputGroup>
                     </Col>
                     <Col style={{ paddingLeft: "50px", fontSize: "110%" }}>
-                        <Button variant="" className="btn-lg btn-purple">Check to see if you are registered to vote</Button>
+                        <Button variant="" className="btn-lg btn-purple" onClick={() => { }}>Check to see if you are registered to vote</Button>
                     </Col>
                 </Row>
             </Card.Body>

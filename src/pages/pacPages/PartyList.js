@@ -14,39 +14,37 @@ export default function PartyList() {
     }, []);
 
     return (
-        <>
-            <Container>
-                <Table striped bordered hover style={{minWidth:"100%"}}>
-                    <thead>
-                        <tr className="text-center">
-                            <th style={{ fontSize: "150%" }}>Party Name</th>
-                            <th style={{ fontSize: "150%" }}>Is Registered</th>
-                            <th style={{ fontSize: "150%" }}></th>
+        <Container>
+            <Table striped bordered hover style={{minWidth:"100%"}}>
+                <thead>
+                    <tr className="text-center">
+                        <th style={{ fontSize: "150%" }}>Party Name</th>
+                        <th style={{ fontSize: "150%" }}>Is Registered</th>
+                        <th style={{ fontSize: "150%" }}></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {Array.from({ length: parties.length }).map((_, index) => (
+                        <tr key={index}>
+                            <td style={{ fontSize: "150%", }}>{parties[index].name}</td>
+                            <td className="text-center" style={{ fontSize: "150%" }}>{parties[index].isRegistered === false ? "Not Registered" : "Registered"}</td>
+                            <td className="text-center">
+                                <Button id={index} variant="primary" onClick={() => {
+                                    setGI(index)
+                                    setModalShow(true)
+                                }}>More Info</Button>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {Array.from({ length: parties.length }).map((_, index) => (
-                            <tr key={index}>
-                                <td style={{ fontSize: "150%", }}>{parties[index].partyName}</td>
-                                <td className="text-center" style={{ fontSize: "150%" }}>{parties[index].isRegistered === false ? "Not Registered" : "Registered"}</td>
-                                <td className="text-center">
-                                    <Button id={index} variant="primary" onClick={() => {
-                                        setGI(index)
-                                        setModalShow(true)
-                                    }}>More Info</Button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </Table>
-                <PartyInfoModal
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                    i={globalIndex}
-                    p={ parties }
-                />
-            </Container>
-        </>
+                    ))}
+                </tbody>
+            </Table>
+            <PartyInfoModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                i={globalIndex}
+                p={ parties }
+            />
+        </Container>
     );
 }
 
@@ -55,7 +53,7 @@ function PartyInfoModal(props) {
         <Modal {...props} dialogClassName="modal-90w" centered >
             <Modal.Header style={{ fontSize: "150%", fontWeight: "bold", }} closeButton>
                 <Modal.Title style={{ fontSize: "125%", fontWeight: "bold", }}id="contained-modal-title-vcenter">
-                    {props.i !== -1 ? props.p[props.i].partyName : null}
+                    {props.i !== -1 ? props.p[props.i].name : null}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body style={{ fontSize: "150%" }} className="text-justify">

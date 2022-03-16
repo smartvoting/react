@@ -33,8 +33,7 @@ export default function NavbarComponent() {
 
                     <Nav className="container-fluid">
                         <Nav.Link href="/">Home</Nav.Link>
-                        {/*<Nav.Link href="#">Vote</Nav.Link>*/}
-
+                        
                         <NavDropdown title="Voters" id="votersDropdown"
                             renderMenuOnMount={true}
                             onToggle={() => { window.location.href = '/voter/' }}
@@ -64,6 +63,8 @@ export default function NavbarComponent() {
                             <NavDropdown.Item href="/elections/past/">Past Elections</NavDropdown.Item>
                             <NavDropdown.Item href="/elections/turnout/">Voter Turnouts</NavDropdown.Item>
                         </NavDropdown>
+
+                        <Nav.Link href="/vote/" style={{ fontWeight: "600", border: "2px solid orange", borderRadius: "15px", }}>Vote Now!</Nav.Link>
                     </Nav>
 
                     <Nav className="me-auto">
