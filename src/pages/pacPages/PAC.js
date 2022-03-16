@@ -18,8 +18,6 @@ export default function Voter() {
     };
 
     return (
-        <>
-            <LandingPage lc={voterLanding} />
-        </>
+        <LandingPage lc={voterLanding} />
     );
 }
