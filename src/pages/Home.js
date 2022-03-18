@@ -1,11 +1,11 @@
-﻿import React from 'react';
+﻿import React, { Component } from 'react';
 import tempCarouselImage from '../images/tempCarouselImage.png';
 import tempCardImg from '../images/tempCardImg.png'
 import { Container, Card, Row, Col, Button, InputGroup, Form } from "react-bootstrap";
 import { Parallax } from 'react-parallax';
 import { TwitterTimelineEmbed, } from 'react-twitter-embed';
 
-export default class Home extends React.Component  {
+export default class Home extends Component  {
     componentDidMount() {
         let observer = new MutationObserver(function (m) {
             if (m[0].addedNodes[0] !== undefined && m[0].addedNodes[0] !== null && m[0].addedNodes[0].nodeName === "IFRAME") {
@@ -14,7 +14,6 @@ export default class Home extends React.Component  {
                 document.getElementById("twitter-widget-0").parentElement.style.marginTop = `${newHeight}px`;
             }
         });
-
         observer.observe(document.body, { childList: true });
     }
     
@@ -57,7 +56,7 @@ export default class Home extends React.Component  {
 
 function CardsFunction() {
     const cardColours = ["#AEC6CF", "#FF6961", "#FFB347", "#C1E1C1"];
-    const cardTitles = ["Voters", "Elections", "Parties and Candidates",];
+    const cardTitles = ["Voters", "Elections", "Parties and Candidates"];
     const cardContent = ["Here you can find all information on voting; Find Your Riding, Check Your Registration, Go Through Our Checklist, or See Our FAQ!",
                         "Here you can view information on all Elections Past and Present! You can check out the Voting Process, Past Elections, and Voter Turnouts.",
                         "Here you can find all information needed to be an informed voter! Here, you can get a List of Parties, Contribution Lists for those parties, a List of All Candidates, A List of Candidates by Party and Find a Candiate."];

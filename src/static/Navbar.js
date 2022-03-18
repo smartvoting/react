@@ -1,19 +1,18 @@
+import React, { useState, useEffect } from "react";
 import { Navbar, Nav, NavDropdown, Container, } from "react-bootstrap";
 import logo1 from '../images/svLogo2.png';
 import logo2 from '../images/svLogo4.png';
 
-import React, { useState, useEffect } from "react"
-
 export default function NavbarComponent() {
-    const [navbar, setNavbar] = useState(false)
+    const [navbar, setNavbar] = useState(false);
 
     const changeBackground = () => {
-        if (window.scrollY >= 200) setNavbar(true)
-        else setNavbar(false)
+        if (window.scrollY >= 200) setNavbar(true);
+        else setNavbar(false);
     }
 
     useEffect(() => {
-        window.addEventListener("scroll", changeBackground)
+        window.addEventListener("scroll", changeBackground);
     })
 
     return (

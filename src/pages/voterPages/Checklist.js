@@ -1,4 +1,6 @@
-﻿import img1 from '../../images/checklistImages/mobYellow3.jpg';
+﻿import React from 'react';
+import { Card, CardGroup, Container, Row, Col, } from "react-bootstrap";
+import img1 from '../../images/checklistImages/mobYellow3.jpg';
 import img2 from '../../images/checklistImages/greenMal4.jpg';
 import img3 from '../../images/checklistImages/purpleCalArrowv3.jpg';
 import img4 from '../../images/checklistImages/vote1.jpg';
@@ -9,8 +11,6 @@ import img8 from '../../images/checklistImages/bluePC2.jpg';
 import img9 from '../../images/checklistImages/PinkID2.jpg';
 import img10 from '../../images/checklistImages/logoGreen.png';
 import ecLogo from '../../images/ecLogo.png';
-import React from 'react';
-import { Card, CardGroup, Container, Row, Col, } from "react-bootstrap";
 
 export default function CheckList() {   
     const checklistArray = [
@@ -33,7 +33,7 @@ export default function CheckList() {
             <br />
             <Container>
                 {Array.from({ length: checklistArray.length }).map((_, idx) => (
-                    ChecklistItem(idx, checklistArray[idx])
+                    ChecklistItem(idx, checklistArray[idx]);
                 ))}
             </Container>
             <br />
@@ -55,11 +55,12 @@ export default function CheckList() {
 }
 
 function ChecklistItem(index, text) {
-    const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9,]
+    const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9];
     const cardGroupText = ["At your assigned polling station<strong> on election day</strong>",
         "At your assigned polling station<strong> on advance polling days</strong>",
         "<strong>By mail:</strong> visit <strong>elections.ca</strong> to see if voting by mail is the right choice for you (deadlines apply)",
-        "At any <strong>Elections Canada office</strong> across Canada (deadlines apply)"];
+        "At any <strong>Elections Canada office</strong> across Canada (deadlines apply)"
+    ];
 
     return (
         <Row key={index} style={index % 2 !== 1 ? { backgroundColor: "#3333", alignItems: "center", padding: "10px 0 10px 0" } : { alignItems: "center", padding: "10px 0 10px 0" }}>
@@ -77,7 +78,7 @@ function ChecklistItem(index, text) {
             {index === 2 ?
                 <CardGroup>
                     {Array.from({ length: cardGroupText.length }).map((_, idx) => (
-                        CreateCardGroupItem(idx, images[idx + 3], cardGroupText[idx])
+                        CreateCardGroupItem(idx, images[idx + 3], cardGroupText[idx]);
                     ))}
                 </CardGroup> :
                 null

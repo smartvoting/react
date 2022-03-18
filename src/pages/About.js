@@ -5,7 +5,7 @@ export default function About() {
         link1: "https://api.smartvoting.cc/v1/about/sv",
         link2: "https://api.smartvoting.cc/v1/about/ec",
         header1: "About Smart Voting",
-        header2: "About Elections Canada",
+        header2: "About Elections Canada"
     };
 
     return (

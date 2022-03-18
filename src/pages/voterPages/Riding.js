@@ -15,21 +15,21 @@ export default function Riding() {
         googleMapsApiKey: "AIzaSyDZW4oX9GNAXSn6fXCN12nc8LsgzDiOlKo"
     })
 
-    const [map, setMap] = useState(null)
+    const [map, setMap] = useState(null);
 
     const onLoad = React.useCallback(function callback(map) {
         const bounds = new window.google.maps.LatLngBounds();
         map.fitBounds(bounds);
-        setMap(map)
+        setMap(map);
     }, [])
 
     const onUnmount = React.useCallback(function callback(map) {
-        setMap(null)
+        setMap(null);
     }, [])
 
     function selectItem(e) {
         setSV({ value: e.target.value })
-        document.getElementById("searchbar").placeholder = e.target.value === "zip" ? "Postal Code (ex. A9A9A9, A9A A9A, a9aa9a, or a9a a9a)" : e.target.value === "district" ? "District Name (ex. St. Paul's)" : e.target.value === "candidate" ? "Candidate Name (ex. Justin Trudeau)" : e.target.value === "location" ? "Location (ex. Toronto)" : ""
+        document.getElementById("searchbar").placeholder = e.target.value === "zip" ? "Postal Code (ex. A9A9A9, A9A A9A, a9aa9a, or a9a a9a)" : e.target.value === "district" ? "District Name (ex. St. Paul's)" : e.target.value === "candidate" ? "Candidate Name (ex. Justin Trudeau)" : e.target.value === "location" ? "Location (ex. Toronto)" : "";
     }
 
     function search() {
@@ -76,12 +76,9 @@ export default function Riding() {
         
     }
 
-
-
     function capitalize(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
-
 
     function swapView() {
         document.getElementById("instructions").style.height = "0";
@@ -91,7 +88,6 @@ export default function Riding() {
         document.getElementById("map").style.visibility = "visible";
         document.getElementById("map").style.opacity = "1";
     }
-
 
     return (
         <Container style={{ minWidth: "100%",}}>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Table, Button, Modal } from "react-bootstrap";
-import axios from 'axios'
+import axios from 'axios';
 
 export default function PartyList() {
     const [parties, setParties] = useState('');

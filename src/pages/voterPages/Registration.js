@@ -1,11 +1,12 @@
 import React from "react";
 import { Container, Form, InputGroup, Button, Accordion, Row, Col } from "react-bootstrap";
 import courseOutline from '../../files/courseOutline.pdf';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-export default class Registration extends React.Component {
-    state = {
+export default function Registration() {
+
+    const [state, setState] = React.useState({
         step: 1,
         fname: "",
         mname: "",
@@ -24,40 +25,34 @@ export default class Registration extends React.Component {
         township: "",
         range: "",
         lot: ""
-    }
+    });
 
-    prevStep = (e) => {
+    function prevStep(e){
         e.preventDefault();
-        this.setState({ step: this.state.step - 1 });
+        setState({ step: state.step - 1 });
     }
 
-    nextStep = (e) => {
+    function nextStep(e){
         e.preventDefault();
-        this.setState({ step: this.state.step + 1 });
+        setState({ step: state.step + 1 });
     }
 
-    setStep = (e, newStep) => {
+    function setStep(e, newStep){
         e.preventDefault();
-        this.setState({ step: newStep });
+        setState({ step: newStep });
     }
 
-    handleChange = input => e => {
-        this.setState({ [input]: e.target.value });
-    }
-
-    render() {
-        const { step } = this.state;
+    const step = state.step;
         
-        switch (step) {
-            case 1: return (<Welcome nextStep={(e) => this.nextStep(e)}/>);
-            case 2: return (<Privacy prevStep={(e) => this.prevStep(e) } nextStep={(e) => this.nextStep(e)} />)
-            case 3: return ((<Eligibility prevStep={(e) => this.prevStep(e)} nextStep={(e) => this.nextStep(e)} setStep={(e, n) => this.setStep(e, n)}/>) )
-            case 4: return ((<PersonalInfo prevStep={(e) => this.prevStep(e)} nextStep={(e) => this.nextStep(e)} />))
-            case 5: return ((<Address prevStep={(e) => this.prevStep(e)} nextStep={(e) => this.nextStep(e)} />))
-            case 6: return ((<Review prevStep={(e) => this.prevStep(e)} nextStep={(e) => this.nextStep(e)} />))
-            case 7: return ((<Results prevStep={(e) => this.prevStep(e)} nextStep={(e) => this.nextStep(e)} setStep={(e, n) => this.setStep(e, n)} />))
-            default: return (null)
-        }
+    switch (step) {
+        case 1: return (<Welcome nextStep={(e) => nextStep(e)}/>);
+        case 2: return (<Privacy prevStep={(e) => prevStep(e) } nextStep={(e) => nextStep(e)} />)
+        case 3: return (<Eligibility prevStep={(e) => prevStep(e)} nextStep={(e) => nextStep(e)} setStep={(e, n) => setStep(e, n)}/>)
+        case 4: return (<PersonalInfo prevStep={(e) => prevStep(e)} nextStep={(e) => nextStep(e)} />)
+        case 5: return (<Address prevStep={(e) => prevStep(e)} nextStep={(e) => nextStep(e)} />)
+        case 6: return (<Review prevStep={(e) => prevStep(e)} nextStep={(e) => nextStep(e)} />)
+        case 7: return (<Results prevStep={(e) => prevStep(e)} nextStep={(e) => nextStep(e)} setStep={(e, n) => setStep(e, n)} />)
+        default: return (null)
     }
 }
 

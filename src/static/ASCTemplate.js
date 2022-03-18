@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Container, Row, Col, } from "react-bootstrap";
 import smartVotingLogo from '../images/svLogo1.png';
 import electionsCanadaLogo from '../images/ecLogo.png';
-import axios from 'axios'
+import axios from 'axios';
 
 export default function ASCTemplate(props) {
     const [SV, setSV] = useState('');
@@ -11,10 +11,10 @@ export default function ASCTemplate(props) {
     useEffect(() => {
         axios.get(props.content.link1).then(res => {
             setSV(res.data);
-        }).catch(err => console.log(err))
+        }).catch(err => console.log(err));
         axios.get(props.content.link2).then(res => {
             setEC(res.data);
-        }).catch(err => console.log(err))
+        }).catch(err => console.log(err));
     }, []);
 
     return (

@@ -1,5 +1,5 @@
-import courseOutline from '../files/courseOutline.pdf';
 import { Container, Row, Col, } from "react-bootstrap";
+import courseOutline from '../files/courseOutline.pdf';
 
 export default function FooterComponent() {
     return (
