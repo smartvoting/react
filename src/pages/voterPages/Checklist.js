@@ -33,7 +33,7 @@ export default function CheckList() {
             <br />
             <Container>
                 {Array.from({ length: checklistArray.length }).map((_, idx) => (
-                    ChecklistItem(idx, checklistArray[idx]);
+                    ChecklistItem(idx, checklistArray[idx])
                 ))}
             </Container>
             <br />
@@ -78,7 +78,7 @@ function ChecklistItem(index, text) {
             {index === 2 ?
                 <CardGroup>
                     {Array.from({ length: cardGroupText.length }).map((_, idx) => (
-                        CreateCardGroupItem(idx, images[idx + 3], cardGroupText[idx]);
+                        CreateCardGroupItem(idx, images[idx + 3], cardGroupText[idx])
                     ))}
                 </CardGroup> :
                 null
