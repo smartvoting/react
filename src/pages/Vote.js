@@ -50,16 +50,9 @@ export default function Vote() {
         setState({ step: newStep });
     }
 
-    useEffect(() => {
-        const unloadCallback = (event) => {
-            event.preventDefault();
-            event.returnValue = "";
-            return "";
-        };
-
-        window.addEventListener("beforeunload", unloadCallback);
-        return () => window.removeEventListener("beforeunload", unloadCallback);
-    }, []);
+    window.onbeforeunload = function () {
+        if (state.step !== 8) return "";
+    };
 
     const step = state.step;
 
