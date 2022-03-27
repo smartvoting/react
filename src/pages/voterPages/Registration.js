@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Form, InputGroup, Button, Accordion, Row, Col } from "react-bootstrap";
 import courseOutline from '../../files/courseOutline.pdf';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 export default function Registration() {
 
-    const [state, setState] = React.useState({
+    const [state, setState] = useState({
         step: 1,
         fname: "",
         mname: "",
@@ -387,6 +388,17 @@ function Address(props) {
 }
 
 function Review(props) {
+    const [token, setToken] = useState(null);
+    const captchaRef = useRef(null);
+
+    const onLoad = () => {
+        captchaRef.current.execute();
+    };
+
+    useEffect(() => {
+        if (token) console.log(`hCaptcha Token: ${token}`);
+    }, [token]);
+
     return (
         <Container style={{ minWidth: "100%", fontSize: "130%", }}>
             <Form onSubmit={(e) => { e.preventDefault(); }}>
@@ -404,7 +416,12 @@ function Review(props) {
                 <p>[ Insert Gender Here ]</p>
                 <h5 style={{ fontWeight: "bold", }}>Home Address:</h5>
                 <p>[ Insert Street Here ] <br />[ Insert City and Postal Code Here ]</p>
-                {/*CAPTCHA*/}
+                <HCaptcha
+                    sitekey={process.env.REACT_APP_HCAPTCHA_API_KEY}
+                    onLoad={onLoad}
+                    onVerify={setToken}
+                    ref={captchaRef}
+                />
                 <Container style={{ width: "25%", padding: "0", float: "left", display: "flex", justifyContent: "space-between" }}>
                     <Button onClick={(e) => { props.prevStep(e); }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                         {<FontAwesomeIcon style={{ float: "left", marginTop: "7px" }} icon={faChevronLeft} />}
