@@ -25,8 +25,8 @@ export default function NavbarComponent() {
                 { backgroundColor: "#513A77", minWidth: "100%", }
                 }>
             <Container style={{ minWidth: "95%", }}>
-                <Navbar.Brand href="/">
-                    <img alt="Smart Voting Logo" src={navbar || window.location.pathname !== "/"  ? logo1 : logo2} width="150" height="75" className="align-top" />
+                <Navbar.Brand href="/" style={{ padding: "0", }}>
+                    <img alt="Smart Voting Logo" src={navbar || window.location.pathname !== "/" ? logo1 : logo2} width="150" height="75" className="align-top" style={{ padding: "7px 14px" }} />
                 </Navbar.Brand>
                 <Navbar.Collapse id="#">
 

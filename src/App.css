@@ -7,17 +7,9 @@ body {
 
 .navbar {
     padding: 0 !important;
-    font-size: 130% !important;
+    font-size: 1.2vw !important;
     transition-timing-function: ease-in;
     transition: 0.5s
-}
-
-.navbar-brand {
-    padding: 0 !important;
-}
-
-.navbar-brand > img {
-    padding: 7px 14px;
 }
 
 .navbar a {
@@ -43,7 +35,7 @@ body {
 }
 
 .dropdown-item {
-    font-size: 120% !important;
+    font-size: 1.1vw !important;
 }
 
 .form-control:focus, .form-select:focus, .input-group-btn:focus {
@@ -53,16 +45,12 @@ body {
 
 .required {
     color: #C00000;
-    font-size: 75%;
+    font-size: 0.8vw;
     font-weight: bold;
 }
 
 .btn{
-    font-size: 130% !important;
-}
-
-.bigBoyButton {
-    font-size: 200% !important;
+    font-size: 1.3vw !important;
 }
 
 .btn-purple {
@@ -124,7 +112,8 @@ body {
     padding-top: 1em;
     padding-bottom: 1em;
     max-width: 100% !important;
-    font-size:130%;
+    min-height: 75px !important;
+    font-size:1.1vw;
 }
 
 .footer a {
@@ -156,7 +145,7 @@ body {
         background: #1a1a1a;
         color: #fff;
         z-index: 1000;
-        font-size: .8em;
+        font-size: 0.8em;
         line-height: 18px;
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
@@ -191,24 +180,23 @@ body {
     align-items: center;
     border-radius: 5px;
     text-align: center;
-    font-size: xx-large;
+    font-size: 1.6vw;
     flex-direction:column;
 }
 
 /* Error Page */
 .errorPage {
-    background-color: #FFF;
-    display:flex;
-    justify-content:center;
-    font-size:1.5em;
     max-width: 100% !important;
+    background-color: #FFF;
+    display: flex;
+    justify-content: center;
 }
 
 /*Landing Pages*/
 
 .landingContainer {
     display: flex;
-    height: calc(100vh - 147.8px) !important;
+    height: calc(100vh - 150px) !important;
     background-color: white;
     min-width: 100%;
 }
@@ -216,7 +204,7 @@ body {
 .landingContent {
     position:absolute;
     right:0;
-    height: calc(100vh - 147.8px) !important;
+    height: calc(100vh - 150px) !important;
     min-width: 85%;
     padding:0 !important;
     margin:0 !important;
@@ -232,7 +220,7 @@ body {
     align-items:center;
     flex-direction: column;
     width: 15%;
-    height: calc(100vh - 147.8px) !important;
+    height: calc(100vh - 150px) !important;
     border-top: solid 1px black;
 }
 
@@ -252,7 +240,7 @@ body {
     position:absolute;
     text-decoration: underline;
     text-align: center;
-    font-size: 175%;
+    font-size: 1.4vw;
 }
 
 .sidebarContentContainer {
@@ -270,7 +258,7 @@ body {
         color: #FFF !important;
         text-decoration: none !important;
         text-align: center !important;
-        font-size: 140% !important;
+        font-size: 1.2vw !important;
         border-radius: 15px !important;
     }
 
@@ -288,14 +276,14 @@ body {
 #sp {
     min-width: 100%;
     overflow-y: hidden;
-    height: calc(100vh - 148.8px) !important;
+    height: calc(100vh - 151px) !important;
     top: 76px;
     right: 0;
 }
 
 .slidingPanelContent {
     padding: 0;
-    height: calc(100vh - 148.8px) !important;
+    height: calc(100vh - 151px) !important;
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0) !important;
     position: absolute;
     top: 76px;
@@ -303,7 +291,7 @@ body {
 }
 
 .slide-pane .slide-pane__title {
-    font-size:200%;
+    font-size:1.7vw;
     text-align: center;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
@@ -313,7 +301,7 @@ body {
 
 .slidingPanelOverlay {
     background-color: rgba(0, 0, 0, 0) !important;
-    height: calc(100vh - 147.8px) !important;
+    height: calc(100vh - 151px) !important;
 }
 
 /* Party List*/
@@ -327,7 +315,7 @@ body {
     right: 0;
     position: absolute;
     text-align: right;
-    font-size: 150%;
+    font-size: 1.25vw;
 }
 
     .downloadInfographic p {
@@ -355,80 +343,24 @@ body {
     margin-bottom: 10px
 }
 
-    .checkbox.disabled label,
-    .radio.disabled label,
-    fieldset[disabled] .checkbox label,
-    fieldset[disabled] .radio label {
-        cursor: not-allowed
-    }
-
     .checkbox label,
     .radio label {
         min-height: 23px;
-        padding-left: 20px;
+        padding-left: 30px;
         margin-bottom: 0;
         font-weight: 400;
         cursor: pointer
-    }
-
-    .checkbox input[type=checkbox],
-    .checkbox-inline input[type=checkbox],
-    .radio input[type=radio],
-    .radio-inline input[type=radio] {
-        position: absolute;
-        margin-left: -20px
-    }
-
-    .checkbox + .checkbox,
-    .radio + .radio {
-        margin-top: -5px
-    }
-
-.checkbox-inline,
-.radio-inline {
-    position: relative;
-    display: inline-block;
-    padding-left: 20px;
-    margin-bottom: 0;
-    font-weight: 400;
-    vertical-align: middle;
-    cursor: pointer
-}
-
-    .checkbox-inline.disabled,
-    .radio-inline.disabled,
-    fieldset[disabled] .checkbox-inline,
-    fieldset[disabled] .radio-inline {
-        cursor: not-allowed
-    }
-
-    .checkbox-inline + .checkbox-inline,
-    .radio-inline + .radio-inline {
-        margin-top: 0;
-        margin-left: 10px
     }
 
 :not(form) .provisional.gc-checklist ul {
     padding-left: 0;
 }
 
-:not(form) .provisional.gc-checklist output {
-    font-size: 20px;
-    font-weight: bold;
-}
 
 :not(form) .provisional.gc-checklist label {
     cursor: pointer;
     display: block;
-    font-size: 20px;
-}
-
-:not(form) .provisional.gc-checklist legend {
-    float: none;
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 15px;
-    margin-top: 0;
+    font-size: 1.3vw;
 }
 
 :not(form) .provisional.gc-checklist input[type="checkbox"] {
@@ -443,7 +375,6 @@ body {
 }
 
     :not(form) .provisional.gc-checklist input[type="checkbox"][disabled] + label {
-        cursor: not-allowed;
         opacity: .5;
     }
 
@@ -455,26 +386,20 @@ body {
     }
 
         :not(form) .provisional.gc-checklist input[type="checkbox"] + label::before {
-            border: 4px solid #fff;
             -webkit-box-shadow: 0 0 0 2px #000 !important;
             box-shadow: 0 0 0 2px #000 !important;
             content: "";
             display: inline-block;
-            height: 36px;
+            height: 42px;
             left: 0;
             position: absolute;
             top: 2px;
-            width: 36px;
+            width: 42px;
         }
 
-    :not(form) .provisional.gc-checklist input[type="checkbox"]:focus + label::before {
-        -webkit-box-shadow: 0 0 0 2px #000, 0 0 8px 4px #3b99fc;
-        box-shadow: 0 0 0 2px #000, 0 0 8px 4px #3b99fc;
-    }
-
     :not(form) .provisional.gc-checklist input[type="checkbox"]:not(:checked) + label:hover::before {
-        background-image: -webkit-gradient(linear, left top, left bottom, from(#bcb8bc), color-stop(30%, #eeedee));
-        background-image: linear-gradient(to bottom, #bcb8bc, #eeedee 30%);
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#bcb8bc), color-stop(50%, #eeedee));
+        background-image: linear-gradient(to bottom, #bcb8bc, #eeedee 50%);
     }
 
     :not(form) .provisional.gc-checklist input[type="checkbox"]:checked + label::before {
@@ -483,48 +408,20 @@ body {
     }
 
     :not(form) .provisional.gc-checklist input[type="checkbox"]:checked + label::after {
-        border-color: #fff;
+        border-color: #FFF;
         border-style: solid;
         border-width: 0 5px 5px 0;
         content: "";
         display: inline-block;
-        height: 26px;
-        left: 12px;
+        height: 30px;
+        left: 15px;
         position: absolute;
-        top: 4px;
+        top: 6px;
         -webkit-transform: rotate(45deg);
         transform: rotate(45deg);
         width: 13px;
     }
 
-:not(form) .provisional.gc-checklist .checkbox-sm input[type="checkbox"] + label,
-:not(form) .provisional.gc-checklist .checkbox-sm input[type="checkbox"] + label + ul {
-    font-size: 17px;
-    min-height: 23px;
-}
-
-    :not(form) .provisional.gc-checklist .checkbox-sm input[type="checkbox"] + label::before {
-        height: 24px;
-        left: 6px;
-        top: 4px;
-        width: 24px;
-    }
-
-:not(form) .provisional.gc-checklist .checkbox-sm input[type="checkbox"]:checked + label::after {
-    border-width: 0 3px 3px 0;
-    height: 16px;
-    left: 14px;
-    top: 6px;
-    width: 9px;
-}
-
-:not(form) .provisional.gc-checklist.form-inline .label-inline {
-    padding-right: 20px;
-}
-
-    :not(form) .provisional.gc-checklist.form-inline .label-inline label {
-        padding-left: 10px;
-    }
 
 /* Check Registration */
 .registrationAccordion .accordion-button {
@@ -532,70 +429,16 @@ body {
 }
 
 /* FAQ */
-.toc, .toccolours {
-    border: 1px solid #a2a9b1;
-    background-color: #f8f9fa;
-    padding: 5px;
-    font-size: 55%
-}
-
-.toc {
-    display: table;
-    padding: 7px
-}
-
-    .toc h2 {
-        display: inline;
-        border: 0;
-        padding: 0;
-        font-size: 80%;
-        font-weight: bold
-    }
-
-    .toc .toctitle {
-        text-align: center
-    }
-
-    .toc ul {
-        list-style: none;
-        margin: 0.3em 0;
-        padding: 0;
-        text-align: left
-    }
-
-        .toc ul ul {
-            margin: 0 0 0 2em
-        }
-
-table.toc {
-    border-collapse: collapse
-}
-
-    table.toc td {
-        padding: 0
-    }
-
-.tocnumber, .toctext {
-    display: table-cell;
-    text-decoration: none;
-}
-
-.tocnumber {
-    color: #202122;
-    padding-left: 0;
-    padding-right: 0.5em
-}
-
 .faqContainer{
-    font-size:130% !important;
+    font-size:1vw !important;
 }
 
 .faqContainer h5 {
-    font-size: 120% !important;
+    font-size: 1.2vw !important;
 }
 
 .faqContainer h6 {
-    font-size: 100% !important;
+    font-size: 1vw !important;
 }
 
 .accordion-item {
@@ -612,14 +455,14 @@ table.toc {
 }
 
 .accordion-button {
-    font-size: 70% !important;
+    font-size: 1.1vw !important;
 }
 
 /* About, Security, and Contact Pages*/
 .ascContainer {
     background-color: white;
-    min-width: 100%;
-    min-height: 100%;
+    min-width: 100% !important;
+    min-height: 100% !important;
     text-align: center;
 }
 

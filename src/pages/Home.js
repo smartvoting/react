@@ -22,7 +22,7 @@ export default class Home extends Component  {
             <>
                 <Parallax bgImage={tempCarouselImage} strength={300}>
                     <Container style={{ minHeight: "100vh", textAlign: "center",}}>
-                        <Button variant="" className="btn-lg btn-purple bigBoyButton" style={{ position: "absolute", top: "90%", transform: "translate(-50%,-50%)"}}>Cast Your Vote Now!</Button>
+                        <Button variant="" className="btn-lg btn-purple" style={{ position: "absolute", top: "90%", transform: "translate(-50%,-50%)", fontSize: "2vw",}}>Cast Your Vote Now!</Button>
                     </Container>
                 </Parallax>
 
@@ -66,12 +66,12 @@ function CardsFunction() {
             {Array.from({ length: 2 }).map((_, index) => (
                 <Col key={index}>
                     <Card style={{ backgroundColor: cardColours[index] }}>
-                        <Card.Header className="text-center" style={{ fontWeight: "bold", fontSize: "170%" }}>{cardTitles[index]}</Card.Header>
+                        <Card.Header className="text-center" style={{ fontWeight: "bold", fontSize: "1.5vw" }}>{cardTitles[index]}</Card.Header>
                         {/*<Card.Img variant="top" src={tempCardImg} />*/}
                         <Card.Body style={{ textAlign:"center",}}>
                             {/*<Card.Title style={{ fontWeight: "bold", fontSize: "170%" }}>{cardTitles[index]}</Card.Title>
                             <hr/>*/}
-                            <Card.Text style={{ fontSize: "135%" }}>{cardContent[index]}</Card.Text>
+                            <Card.Text style={{ fontSize: "1.3vw" }}>{cardContent[index]}</Card.Text>
                             <Button variant="" className="btn-outline-purple" onClick={() => { window.location.href = cardRoutes[index]}}>Go To Page</Button>
                         </Card.Body>
                     </Card>
@@ -80,12 +80,12 @@ function CardsFunction() {
 
             <Col md={12}>
                 <Card style={{ backgroundColor: cardColours[3] }}>
-                    <Card.Header className="text-center" style={{ fontWeight: "bold", fontSize: "170%" }}>{cardTitles[2]}</Card.Header>
+                    <Card.Header className="text-center" style={{ fontWeight: "bold", fontSize: "1.5vw" }}>{cardTitles[2]}</Card.Header>
                     {/*<Card.Img variant="top" src={tempCardImg} />*/}
                     <Card.Body style={{ textAlign: "center", }}>
                         {/*<Card.Title style={{ fontWeight: "bold", fontSize: "170%" }}>{cardTitles[index]}</Card.Title>
                             <hr/>*/}
-                        <Card.Text style={{ fontSize: "135%" }}>{cardContent[2]}</Card.Text>
+                        <Card.Text style={{ fontSize: "1.3vw" }}>{cardContent[2]}</Card.Text>
                         <Button variant="" className="btn-outline-purple" onClick={() => { window.location.href = cardRoutes[2] }}>Go To Page</Button>
                     </Card.Body>
                 </Card>
@@ -97,21 +97,21 @@ function CardsFunction() {
 function VoterInfoService() {
     return (
         <Card className="text-center" style={{ backgroundColor: "#FDFD96"}}>
-            <Card.Header style={{ fontWeight: "bold", fontSize: "200%" }}>Voter Information Service</Card.Header>
+            <Card.Header style={{ fontWeight: "bold", fontSize: "1.6vw" }}>Voter Information Service</Card.Header>
             <Card.Body>
                 <Row className="align-items-center mx-auto" style={{ width: "90%" }}>
                     <Col style={{ borderRight: "1px solid #d3d3d3", paddingRight:"50px", }}>
-                        <Card.Text style={{ fontSize: "140%" }}>Find your electoral district</Card.Text>
+                        <Card.Text style={{ fontSize: "1.2vw" }}>Find your electoral district</Card.Text>
                         <InputGroup className="mb-3">
                             <Form.Control
                                 placeholder="Postal Code"
                                 maxLength= "7"
-                                style={{ backgroundColor: "inherit", fontSize: "140%", border:"1px solid #513A77" }}
+                                style={{ backgroundColor: "inherit", fontSize: "1.2vw", border:"1px solid #513A77" }}
                             />
                             <Button variant="" className="btn-outline-purple">Search</Button>
                         </InputGroup>
                     </Col>
-                    <Col style={{ paddingLeft: "50px", fontSize: "110%" }}>
+                    <Col style={{ paddingLeft: "50px", }}>
                         <Button variant="" className="btn-lg btn-purple" onClick={() => { }}>Check to see if you are registered to vote</Button>
                     </Col>
                 </Row>

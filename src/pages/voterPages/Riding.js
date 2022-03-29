@@ -35,7 +35,7 @@ export default function Riding() {
     function search() {
         let searchString = document.getElementById("searchbar").value;
         if (selectValue.value === "zip") {
-            axios.get("https://api.smartvoting.cc/v1/Riding/Locate/" + searchString).then(res => {
+            axios.get("https://api.smartvoting.cc/v1/Riding/Locate/PostCode/" + searchString).then(res => {
                 console.log(res.data)
                 if (res.data !== undefined) {
                     setData(res.data);
@@ -92,7 +92,7 @@ export default function Riding() {
     return (
         <Container style={{ minWidth: "100%",}}>
             <InputGroup className="mt-3 mb-3">
-                <Form.Select defaultValue="" id="rsDropdown" style={{ width: "25%", fontSize:"130%" }} onChange={(e) => {selectItem(e)}} required>
+                <Form.Select defaultValue="" id="rsDropdown" style={{ width: "25%", fontSize:"1.2vw" }} onChange={(e) => {selectItem(e)}} required>
                     <option value="" disabled hidden>Search By:</option>
                     <option value="zip">Postal Code</option>
                     <option value="district">District Name</option>
@@ -109,14 +109,14 @@ export default function Riding() {
                     data-val-required={selectValue.value === "zip" ? "Please enter a postal code to continue." : "A keyword is required to continue."}
                     maxLength={selectValue.value === "zip" ? "7" : "999"}
                     type="text"
-                    style={{ width: "65%", fontSize: "130%"  }}
+                    style={{ width: "65%", fontSize:"1.2vw"  }}
                 />
-                <Button variant="" className="btn-outline-purple" id="button-addon2" type="submit" style={{ width: "10%", fontSize: "130%"  }} onClick={() => { search() }}>Search</Button>
+                <Button variant="" className="btn-outline-purple" id="button-addon2" type="submit" style={{ width: "10%", fontSize:"1.2vw"  }} onClick={() => { search() }}>Search</Button>
             </InputGroup>
             
             <Container id="instructions" style={{minWidth:"100%", }}>
                 <h4 style={{ fontWeight: "bold", }}>Instructions:</h4>
-                <Table striped bordered style={{ fontSize:"120%", }}>
+                <Table striped bordered style={{ fontSize:"1.1vw", }}>
                     <tbody>
                         <tr>
                             <th>Search by postal code:</th>
@@ -140,18 +140,18 @@ export default function Riding() {
             <Row id="map" style={{ minWidth: "100%", /* visibility: "hidden", opacity: "0", height: "0", transition: "visibility 0s, opacity 0.5s linear" */ }}>
                 <Col>
                     {searchData.length > 1 ?
-                        <Table striped bordered hover style={{ minWidth: "100%" }}>
+                        <Table striped bordered hover style={{ minWidth: "100%", fontSize:"1.3vw" }}>
                             <thead>
                                 <tr className="text-center">
-                                    <th style={{ fontSize: "150%" }}>Electoral District</th>
-                                    <th style={{ fontSize: "150%" }}>Province</th>
+                                    <th>Electoral District</th>
+                                    <th>Province</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {Array.from({ length: searchData.length }).map((_, index) => (
                                     <tr key={index}>
-                                        <td style={{ fontSize: "150%", }}>{searchData[index].name}</td>
-                                        <td className="text-center" style={{ fontSize: "150%" }}>{searchData[index].office.province}</td>
+                                        <td>{searchData[index].name}</td>
+                                        <td className="text-center">{searchData[index].office.province}</td>
                                     </tr>
                                 ))}
                             </tbody>

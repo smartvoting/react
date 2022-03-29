@@ -4,7 +4,7 @@ import { Container, } from "react-bootstrap";
 export default function ErrorPage() {
     return (
         <Container className="errorPage">
-            <img src={shrug} style={{ width: "98.5%" }} alt='Shrugging Man' />
+            <img src={shrug} style={{ width: "100%" }} alt='Shrugging Man' />
         </Container>
     );
 }

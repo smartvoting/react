@@ -1,56 +1,8 @@
-import { Card, Container, Accordion } from "react-bootstrap";
-
-function tableOfContents() {
-    return (
-        <Container className="toc" id="toc">
-            <div className="toctitle" dir="ltr" lang="en">
-                <h2>Table of Contents</h2>
-            </div>
-            <ul>
-                <li className=""><a href="#h1"><span className="tocnumber">1</span> <span className="toctext">How and where to vote</span></a>
-                    <ul>
-                        <li><a href="#q1"><span className="tocnumber">1.1</span> <span className="toctext">How do I vote - what are my options?</span></a></li>
-                        <li><a href="#q2"><span className="tocnumber">1.2</span> <span className="toctext">I'm a Canadian elector living abroad. How do I vote?</span></a></li>
-                        <li><a href="#q3"><span className="tocnumber">1.3</span> <span className="toctext">My home is in Canada but I will be out of town on election day. How do I vote?</span></a></li>
-                        <li><a href="#q4"><span className="tocnumber">1.4</span> <span className="toctext">I'm homeless. How do I vote?</span></a></li>
-                        <li><a href="#q5"><span className="tocnumber">1.5</span> <span className="toctext">I live in a hospital or long-term care facility. How do I vote?</span></a></li>
-                        <li><a href="#q6"><span className="tocnumber">1.6</span> <span className="toctext">Do I have to use a pencil to mark my ballot?</span></a></li>
-                    </ul>
-                </li>
-                <li className=""><a href="#h2"><span className="tocnumber">2</span> <span className="toctext">Time off work to vote</span></a>
-                    <ul>
-                        <li><a href="#q7"><span className="tocnumber">2.1</span> <span className="toctext">Am I allowed time off work to vote?</span></a></li>
-                        <li><a href="#q8"><span className="tocnumber">2.2</span> <span className="toctext">Are all employers required to give time off work to vote?</span></a></li>
-                        <li><a href="#q9"><span className="tocnumber">2.3</span> <span className="toctext">Who decides when employees may take time off work to vote?</span></a></li>
-                        <li><a href="#q10"><span className="tocnumber">2.4</span> <span className="toctext">Can an employee lose pay for taking time off to vote?</span></a></li>
-                        <li><a href="#q11"><span className="tocnumber">2.5</span> <span className="toctext">Is there a penalty for employers who do not give employees time off to vote?</span></a></li>
-                    </ul>
-                </li>
-                <li className=""><a href="#h3"><span className="tocnumber">3</span> <span className="toctext">Voter ID - What pieces of ID can I use to vote?</span></a></li>
-                <li className=""><a href="#h4"><span className="tocnumber">4</span> <span className="toctext">Who may vote</span></a>
-                    <ul>
-                        <li><a href="#q12"><span className="tocnumber">4.1</span> <span className="toctext">Who is eligible to vote in federal elections and referendums?</span></a></li>
-                        <li><a href="#q13"><span className="tocnumber">4.2</span> <span className="toctext">My income tax form asked if I want to share some of my information with Elections Canada, and I answered "no." Do I still have the right to vote?</span></a></li>
-                        <li><a href="#q14"><span className="tocnumber">4.3</span> <span className="toctext">I am serving a prison sentence in Canada. Can I vote?</span></a></li>
-                    </ul>
-                </li>
-                <li className=""><a href="#h5"><span className="tocnumber">5</span> <span className="toctext">Polling place - Can I vote wearing a face covering?</span></a></li>
-                <li className=""><a href="#h6"><span className="tocnumber">6</span> <span className="toctext">Why voting matters - Why should I vote?</span></a></li>
-                <li className=""><a href="#h7"><span className="tocnumber">7</span> <span className="toctext">Canadian Armed Forces voters and their relatives</span></a>
-                    <ul>
-                        <li><a href="#q15"><span className="tocnumber">7.1</span> <span className="toctext">I am a member of the Canadian Armed Forces. How do I vote?</span></a></li>
-                        <li><a href="#q16"><span className="tocnumber">7.2</span> <span className="toctext">I am living with a member of the Canadian Armed Forces. I am away from home. How do I vote?</span></a></li>
-                        <li><a href="#q17"><span className="tocnumber">7.3</span> <span className="toctext">I am a member of the Canadian Armed Forces. Does my address for voting purposes change whenever I am posted or deployed?</span></a></li>
-                    </ul>
-                </li>
-            </ul>
-        </Container>);
-}
+import { Container, Accordion } from "react-bootstrap";
 
 export default function Faqs() {
     return (
         <Container className="faqContainer">
-            {/*{ tableOfContents() } <br />*/}
             <h4 id="h1" style={{ fontWeight: "bold" }}>How and where to vote?</h4>
             <Accordion id="q1">
                 <Accordion.Item eventKey="0">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Container, Form, InputGroup, Button, Accordion, Row, Col } from "react-bootstrap";
+import { Container, Form, Button, Accordion, Row, Col } from "react-bootstrap";
 import courseOutline from '../../files/courseOutline.pdf';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -50,16 +50,15 @@ export default function Registration() {
         case 2: return (<Privacy prevStep={(e) => prevStep(e) } nextStep={(e) => nextStep(e)} />)
         case 3: return (<Eligibility prevStep={(e) => prevStep(e)} nextStep={(e) => nextStep(e)} setStep={(e, n) => setStep(e, n)}/>)
         case 4: return (<PersonalInfo prevStep={(e) => prevStep(e)} nextStep={(e) => nextStep(e)} />)
-        case 5: return (<Address prevStep={(e) => prevStep(e)} nextStep={(e) => nextStep(e)} />)
-        case 6: return (<Review prevStep={(e) => prevStep(e)} nextStep={(e) => nextStep(e)} />)
-        case 7: return (<Results prevStep={(e) => prevStep(e)} nextStep={(e) => nextStep(e)} setStep={(e, n) => setStep(e, n)} />)
+        case 5: return (<Review prevStep={(e) => prevStep(e)} nextStep={(e) => nextStep(e)} />)
+        case 6: return (<Results prevStep={(e) => prevStep(e)} nextStep={(e) => nextStep(e)} setStep={(e, n) => setStep(e, n)} />)
         default: return (null)
     }
 }
 
 function Welcome(props) {
     return (
-        <Container style={{ minWidth: "100%", fontSize: "130%", }}>
+        <Container style={{ minWidth: "100%", fontSize: "1.2vw", }}>
             <Form>
                 <h2 style={{ fontWeight: "bold" }}>Welcome</h2>
                 <hr />
@@ -70,14 +69,13 @@ function Welcome(props) {
                     <li>register to vote.</li>
                 </ul>
                 <hr />
-                <strong style={{ fontSize: "130%", }}>PLEASE READ BEFORE CONTINUING</strong>
+                <strong style={{ fontSize: "1.4vw", }}>PLEASE READ BEFORE CONTINUING</strong>
                 <p>Under the <a href="https://laws-lois.justice.gc.ca/eng/acts/e-2.01/" target="__blank">Canada Elections Act (S.C. 2000, c. 9)</a>, it is illegal to make false statements about voter registration.</p>
                 <p>Please be aware that this website was made for <a href={courseOutline} target="_blank">George Brown College's Winter 2022 Capstone Project</a> and is for educational purposes only. While information on ridings, locations, and history is true, all voter and candidate information is not real and has been generated using our own programs. Any similarity to actual persons, living or dead, or actual events, is purely coincidental.</p>
                 <p>If you'd like to see if you are actually registered to vote, please <a href="https://www.elections.ca/content.aspx?section=vot&dir=reg&document=index&lang=e" target="_blank">Click Here</a> to go to Election Canada's official service.</p>
                 <br />
-                <input type="checkbox" id="tos" style={{ scale: "1.5", marginLeft:"5px", cursor: "pointer" }} required />
-                <label htmlFor="tos" style={{ fontWeight: "bold", marginLeft: "10px", cursor: "pointer" }}> I have read the above statement and am aware that this service does not show that I will be registered to vote.</label>
-                <br />
+                <input type="checkbox" id="tos" style={{ scale: "1.5", marginLeft: "5px", cursor: "pointer" }} required />
+                <Form.Label htmlFor="tos" style={{ fontWeight: "bold", marginLeft: "10px", cursor: "pointer" }}> I have read the above statement and am aware that this service does not show that I will be registered to vote.</Form.Label>
                 <br />
                 <Button onClick={(e) => { if (document.getElementById("tos").checked) props.nextStep(e); }} type="submit" className="btn btn-purple">Start</Button>
             </Form>
@@ -87,7 +85,7 @@ function Welcome(props) {
 
 function Privacy(props) {
     return (
-        <Container style={{ minWidth: "100%", fontSize: "130%", }}>
+        <Container style={{ minWidth: "100%", fontSize: "1.2vw", }}>
             <h2 style={{ fontWeight: "bold" }}>Privacy and Security</h2>
             <ul>
                 <li>The personal information you provide is collected under the authority of the Canada Elections Act and is required to update or include your personal information in the National Register of Electors.</li>
@@ -113,9 +111,9 @@ function Privacy(props) {
 
 function Eligibility(props) {
     return (
-        <Container style={{ minWidth: "100%", fontSize: "130%", }}>
+        <Container style={{ minWidth: "100%", fontSize: "1.2vw", }}>
             <Form>
-                <h6><strong>Step 1 of 5</strong></h6>
+                <h6><strong>Step 1 of 4</strong></h6>
                 <h2 style={{ fontWeight: "bold", }}>Eligibility</h2>
                 <hr />
                 <Accordion className="registrationAccordion">
@@ -199,9 +197,9 @@ function Eligibility(props) {
 function PersonalInfo(props) {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Novemeber", "December"];
     return (
-        <Container style={{ minWidth: "100%", fontSize: "130%", }}>
+        <Container style={{ minWidth: "100%", fontSize: "1.2vw", }}>
             <Form onSubmit={(e) => { e.preventDefault(); }}>
-                <h6><strong>Step 2 of 5</strong></h6>
+                <h6><strong>Step 2 of 4</strong></h6>
                 <h2 style={{ fontWeight: "bold", }}>Personal Information</h2>
                 <hr />
                 <Accordion className="registrationAccordion">
@@ -236,7 +234,7 @@ function PersonalInfo(props) {
                         <Form.Control type="email" id="email" name="email" required />
                     </Form.Group>
                     <strong>Date of Birth: </strong><span className="required">(required)</span>
-                    <Container style={{ maxWidth: "50%", display: "flex", flexDirection: "row", margin: "0", padding: "0", fontSize: "90%", }}>
+                    <Container style={{ maxWidth: "50%", display: "flex", flexDirection: "row", margin: "0", padding: "0", fontSize: "1.1vw", }}>
                         <Form.Group style={{ paddingRight: "10px" }}>
                             <Form.Label style={{ fontWeight: "bold" }}>Year:</Form.Label>
                             <Form.Select defaultValue="" id="year">
@@ -278,6 +276,24 @@ function PersonalInfo(props) {
                         <Form.Label htmlFor="gender3" style={{ cursor: "pointer" }}>Another Gender</Form.Label>
                     </fieldset>
                     <br />
+                    <br />
+                    <Form.Group>
+                        <Form.Label style={{ fontWeight: "bold" }}>Postal Code: <span className="required">(required)</span></Form.Label>
+                        <Form.Control type="text" id="zip" name="zip" placeholder="Postal Code (A9A9A9)" maxLength="7" />
+                    </Form.Group>
+                    <Row style={{ width: "50%", paddingTop: "10px", }}>
+                        <Col md={8}>
+                            <Form.Label style={{ fontWeight: "bold" }}>Street Name: <span className="required">(required)</span></Form.Label>
+                            <Form.Control type="text" id="street" name="street" />
+                        </Col>
+                        <Col md={4}>
+                            <Form.Group>
+                                <Form.Label style={{ fontWeight: "bold" }}>Unit/Suite/Apt:</Form.Label>
+                                <Form.Control type="text" id="usa" name="usa" />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <br/>
                 </Container>
                 <br />
 
@@ -287,97 +303,6 @@ function PersonalInfo(props) {
                         Previous
                     </Button>
                     <Button onClick={(e) => { props.nextStep(e); }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
-                        Next
-                        {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
-                    </Button>
-                </Container>
-            </Form>
-        </Container>
-    );
-}
-
-function Address(props) {
-    return (
-        <Container style={{ minWidth: "100%", fontSize: "130%", }}>
-            <Form>
-                <h6><strong>Step 3 of 5</strong></h6>
-                <h2 style={{ fontWeight: "bold", }}>Home Address - Address Type</h2>
-                <hr />
-                <Accordion className="registrationAccordion">
-                    <Accordion.Item eventKey="0">
-                        <Accordion.Header><strong>More information about home address</strong></Accordion.Header>
-                        <Accordion.Body>
-                            <h4 style={{ fontWeight: "bold" }}>Information</h4>
-                            <ul>
-                                <li><strong>Your home address</strong> is where you live. You vote at the place you consider your home. If you are a student, this may be:
-                                    <ul>
-                                        <li>where you live while at school, <strong>OR</strong></li>
-                                        <li>where you live while not at school (e.g. with your parents).</li>
-                                    </ul>
-                                </li>
-                                If you are unsure what to list as your home address, contact Elections Canada.
-                                <li><strong>A Street/Civic</strong> is the address type used by most Canadians (e.g. 123 Main Street).
-                                    <ul>
-                                        <li><strong>A Suffix</strong> is a single letter like A, B or a fraction like &#188;. They are usually treated by Canada Post and Elections Canada as a suffix, not a unit.</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </Accordion.Body>
-                    </Accordion.Item>
-                </Accordion>
-                <br />
-                <strong>Please answer the following questions:</strong>
-                <Container style={{ border: "2px solid black", minWidth: "100%", backgroundColor: "#f2f2f2", padding: "20px", }}>
-                    <strong>What is your address?: </strong><span className="required">(required)</span>
-                    <br />
-                    <Container id="addressInfo" style={{ minWidth: "100%", padding: "0", paddingTop: "10px" }}>
-                        <Form.Group id="postal">
-                            <Form.Label style={{ fontWeight: "bold" }}>Postal Code: <span className="required">(required)</span></Form.Label>
-                            <InputGroup style={{ width: "25%", fontSize: "80%", }}>
-                                <Form.Control
-                                    placeholder="Postal Code (A9A9A9)"
-                                    maxLength="7"
-                                    style={{ backgroundColor: "inherit", fontSize: "120%", border: "1px solid #513A77" }}
-                                />
-                                <Button variant="" className="btn-outline-purple">Find</Button>
-                            </InputGroup>
-                        </Form.Group>
-                        <Row style={{ width: "50%", paddingTop:"10px",}}>
-                            <Col md={8}>
-                                <Form.Label htmlFor="name" style={{ fontWeight: "bold" }}>City or Town: <span className="required">(required)</span></Form.Label>
-                                <Form.Control type="text" name="ct" id="ct" required />
-                            </Col>
-                            <Col md={4}>
-                                <Form.Group>
-                                    <Form.Label htmlFor="name" style={{ fontWeight: "bold" }}>Province: <span className="required">(required)</span></Form.Label>
-                                    <Form.Control type="text" name="text" id="text" maxLength={2} required />
-                                </Form.Group>
-                            </Col>
-                        </Row>
-                        <Row style={{ width: "50%", paddingTop: "10px", }}>
-                            <Col md={8}>
-                                <Form.Label style={{ fontWeight: "bold" }}>Street Name: <span className="required">(required)</span></Form.Label>
-                                <Form.Control type="text" id="street" name="street" />
-                            </Col>
-                            <Col md={4}>
-                                <Form.Group>
-                                    <Form.Label style={{ fontWeight: "bold" }}>Unit/Suite/Apt:</Form.Label>
-                                    <Form.Control type="text" id="usa" name="usa" />
-                                </Form.Group>
-                            </Col>
-                        </Row>
-                    </Container>
-                </Container>
-                <br />
-
-                <Container style={{ width: "25%", padding: "0", float: "left", display: "flex", justifyContent: "space-between" }}>
-                    <Button onClick={(e) => { props.prevStep(e); }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
-                        {<FontAwesomeIcon style={{ float: "left", marginTop: "7px" }} icon={faChevronLeft} />}
-                        Previous
-                    </Button>
-                    <Button onClick={(e) => {
-                        props.nextStep(e);
-                    }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                         Next
                         {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
                     </Button>
@@ -400,9 +325,9 @@ function Review(props) {
     }, [token]);
 
     return (
-        <Container style={{ minWidth: "100%", fontSize: "130%", }}>
+        <Container style={{ minWidth: "100%", fontSize: "1.2vw", }}>
             <Form onSubmit={(e) => { e.preventDefault(); }}>
-                <h6><strong>Step 4 of 5</strong></h6>
+                <h6><strong>Step 3 of 4</strong></h6>
                 <h2 style={{ fontWeight: "bold", }}>Review Information</h2>
                 <hr />
                 <p>This is the information you entered. If you need to make a correction, return to the previous page.<br />Otherwise, please submit your information to see if you are registered at the address provided.</p>
@@ -439,9 +364,9 @@ function Review(props) {
 
 function Results(props) {
     return (
-        <Container style={{ minWidth: "100%", fontSize: "130%", }}>
+        <Container style={{ minWidth: "100%", fontSize: "1.2vw", }}>
             <Form onSubmit={(e) => { e.preventDefault(); }}>
-                <h6><strong>Step 5 of 5</strong></h6>
+                <h6><strong>Step 4 of 4</strong></h6>
                 <h2 style={{ fontWeight: "bold", }}>Results</h2>
                 <hr />
                 <Container>

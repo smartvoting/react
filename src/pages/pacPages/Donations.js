@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Table } from "react-bootstrap";
 export default function Donations() {
     return (
-        <Container style={{ minWidth: "100%", fontSize: "120%", }}>
+        <Container style={{ minWidth: "100%", fontSize: "1vw", }}>
             <h5 className="text-center" style={{ fontWeight: "bold", marginTop:"-10px" }}>Limits on Contributions, Loans and Loan Guarantees</h5>
             <Table striped bordered hover>
                 <thead>
