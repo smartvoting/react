@@ -7,58 +7,49 @@ import axios from 'axios'
 
 export default function Vote() {
     const [state, setState] = useState({
-        step: 2,
-        fname: "",
-        mname: "",
-        lname: "",
-        year: "",
-        month: "",
-        day: "",
-        gender: "",
-        province: "",
-        city: "",
-        street: "",
-        buildingNum: "",
-        usa: "",
-        meridian: "",
-        section: "",
-        township: "",
-        range: "",
-        lot: ""
+        step: 1
     });
-
-    function prevStep(e){
-        e.preventDefault();
-        document.getElementById("hideContainer").style.opacity = "0";
-        setTimeout(() => {
-            setState({ step: state.step - 1 });
-            document.getElementById("hideContainer").style.opacity = "1";
-        }, 400);
-    }
-
-    function nextStep(e){
-        e.preventDefault();
-        document.getElementById("hideContainer").style.opacity = "0";
-        setTimeout(() => {
-            setState({ step: state.step + 1 });
-            document.getElementById("hideContainer").style.opacity = "1";
-        }, 400);
-    }
-
-    function valueCheck(i) {
-        return i === "" || i === undefined || i === null || i.length === 0;
-    }
-
-    function setStep(e, newStep) {
-        e.preventDefault();
-        setState({ step: newStep });
-    }
+    const [jwt, setJWT] = useState("")
 
     window.onbeforeunload = function () {
-        if (state.step !== 8) return "";
+        if (state.step !== 8 || state.step !== 9) return "";
     };
 
     const step = state.step;
+
+    const allInOne = {
+        jwt: jwt,
+        setJWT: function (jwt) {
+            setJWT(jwt);
+        },
+        prevStep: function (e) {
+            e.preventDefault();
+            document.getElementById("hideContainer").style.opacity = "0";
+            setTimeout(() => {
+                setState({ step: state.step - 1 });
+                document.getElementById("hideContainer").style.opacity = "1";
+            }, 400);
+        },
+        nextStep: function (e) {
+            e.preventDefault();
+            document.getElementById("hideContainer").style.opacity = "0";
+            setTimeout(() => {
+                setState({ step: state.step + 1 });
+                document.getElementById("hideContainer").style.opacity = "1";
+            }, 400);
+        },
+        setStep: function (e, newStep) {
+            e.preventDefault();
+            document.getElementById("hideContainer").style.opacity = "0";
+            setTimeout(() => {
+                setState({ step: newStep });
+                document.getElementById("hideContainer").style.opacity = "1";
+            }, 400);
+        },
+        valueCheck: function (i) {
+            return i === "" || i === undefined || i === null || i.length === 0;
+        }
+    };
 
     return (
         <Container style={{ minWidth: "90%", height: "100vh", display: "flex", alignItems: "center", fontSize: "1.1vw" }}>
@@ -66,14 +57,15 @@ export default function Vote() {
                 <Card style={{ borderRadius: "15px", border: "5px solid #513A77" }}>
                     <Card.Header className="text-center" style={{ fontWeight: "bold", fontSize: "1.8vw", }}>Cast Your Secure Digital Ballot</Card.Header>
                     {
-                        step === 1 ? <Privacy nextStep={(e) => nextStep(e)} /> :
-                        step === 2 ? <PersonalInfo nextStep={(e) => nextStep(e)} valueCheck={(i) => valueCheck(i) } /> :
-                        step === 3 ? <VoterCheck1 nextStep={(e) => nextStep(e)} valueCheck={(i) => valueCheck(i)} /> :
-                        step === 4 ? <VoterCheck2 nextStep={(e) => nextStep(e)} valueCheck={(i) => valueCheck(i)} /> :
-                        step === 5 ? <VoterCheck3 nextStep={(e) => nextStep(e)} valueCheck={(i) => valueCheck(i)} /> :
-                        step === 6 ? <CastVote nextStep={(e) => nextStep(e)} valueCheck={(i) => valueCheck(i)} valueCheck={(i) => valueCheck(i)} /> :
-                        step === 7 ? <ConfirmVote prevStep={(e) => prevStep(e)} nextStep={(e) => nextStep(e)} /> :
-                        step === 8 ? <FinalConfirmation  /> :
+                        step === 1 ? <Privacy aio={allInOne} /> :
+                        step === 2 ? <PersonalInfo aio={allInOne} /> :
+                        step === 3 ? <VoterCheck1 aio={allInOne} /> :
+                        step === 4 ? <VoterCheck2 aio={allInOne} /> :
+                        step === 5 ? <VoterCheck3 aio={allInOne} /> :
+                        step === 6 ? <CastVote aio={allInOne} /> :
+                        step === 7 ? <ConfirmVote aio={allInOne} /> :
+                        step === 8 ? <FinalConfirmation /> :
+                        step === 9 ? <Error /> :
                         null
                     }
                 </Card>
@@ -93,14 +85,16 @@ function Privacy(props) {
                 <li>As part of its security measures, Smart Voting captures the Internet Protocol (IP) address of computers used to access this Secure Voting Service to enable follow-up, verification, and VPN checks</li>
                 <li><strong>Please note that once you start the voting process, you cannot backtrack (unless confirming your vote). Please make sure you have a stable internet connection, are in a private area, and have about 15 minutes to complete the entire process. Please only use the navigation tools found in the form, and do not click the back button in your browser.</strong></li>
             </ul>
-            <p style={{ marginBottom: "0", fontWeight:"bold", }}>For this Form, you will need the following:</p>
+            <p style={{ marginBottom: "0", fontWeight: "bold", }}>For this Form, you will need the following:</p>
             <ul>
                 <li>Your Voter Card that you received in the mail</li>
                 <li>Your Social Insurance Card</li>
                 <li>Your Tax Return Information</li>
             </ul>
             <Container style={{ width: "25%", padding: "0", float: "left", display: "flex", justifyContent: "space-between" }}>
-                <Button onClick={(e) => { props.nextStep(e); }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
+                <Button onClick={(e) => {
+                    props.aio.nextStep(e);
+                }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                     Start
                     {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
                 </Button>
@@ -110,7 +104,8 @@ function Privacy(props) {
 }
 
 function PersonalInfo(props) {
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Novemeber", "December"];
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const provinces = ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Northwest Territories", "Nova Scotia", "Nunavut", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan", "Yukon"];
 
     return (
         <Card.Body style={{ textAlign: "left", padding: "20px", }}>
@@ -122,31 +117,37 @@ function PersonalInfo(props) {
                     <li style={{ paddingBottom: "20px" }}>
                         <strong>Are you a Canadian Citizen? </strong><span className="required">(required)</span>
                         <br />
-                        <fieldset id="citizen" style={{ float: "left", width: "15%", padding: "0", display: "flex", }}>
-                            <input type="radio" required id="citizen1" name="citizen" value="Yes" style={{ marginRight: "10px", cursor: "pointer", scale: "1.5" }} />
+                        <fieldset id="isCitizen" style={{ float: "left", width: "15%", padding: "0", display: "flex", }}>
+                            <input type="radio" required id="citizen1" name="isCitizen" value={true} style={{ marginRight: "10px", cursor: "pointer", scale: "1.5" }} />
                             <Form.Label htmlFor="citizen1" style={{ marginRight: "50px", cursor: "pointer" }}>Yes</Form.Label>
-                            <input type="radio" id="citizen2" name="citizen" value="No" style={{ marginRight: "10px", cursor: "pointer", scale: "1.5" }} />
+                            <input type="radio" id="citizen2" name="isCitizen" value={false} style={{ marginRight: "10px", cursor: "pointer", scale: "1.5" }} />
                             <Form.Label htmlFor="citizen2" style={{ cursor: "pointer" }}>No</Form.Label>
                         </fieldset>
                     </li>
                     <br />
 
                     {/*NAME*/}
+                    <Form.Group>
+                        <li><Form.Label htmlFor="firstName" style={{ fontWeight: "bold" }}>First Name: <span className="required">(required)</span></Form.Label></li>
+                        <Form.Control type="text" name="firstName" id="firstName" required />
+                    </Form.Group>
+
+                    <Form.Group>
+                        <li><Form.Label htmlFor="middleName" style={{ fontWeight: "bold" }} data-tip="Please include a middle name if you have one." className="tip-above">Middle Name: <span className="required">*</span></Form.Label></li>
+                        <Form.Control type="text" name="middleName" id="middleName" />
+                    </Form.Group>
+
+                    <Form.Group>
+                        <li><Form.Label htmlFor="lastName" style={{ fontWeight: "bold" }}>Last Name: <span className="required">(required)</span></Form.Label></li>
+                        <Form.Control type="text" name="lastName" id="lastName" required />
+                    </Form.Group>
                     <Row>
                         <Col md={6}>
-                            <Form.Group>
-                                <li><Form.Label htmlFor="firstName" style={{ fontWeight: "bold" }}>First Name: <span className="required">(required)</span></Form.Label></li>
-                                <Form.Control type="text" name="firstName" id="firstName" required />
-                            </Form.Group>
                         </Col>
                         <Col md={6}>
-                            <Form.Group>
-                                <li><Form.Label htmlFor="lastName" style={{ fontWeight: "bold" }}>Last Name: <span className="required">(required)</span></Form.Label></li>
-                                <Form.Control type="text" name="lastName" id="lastName" required />
-                            </Form.Group>
                         </Col>
                     </Row>
-                    <br/>
+                    <br />
                     {/*DATE OF BIRTH*/}
                     <li><strong>Date of Birth: </strong><span className="required">(required)</span></li>
                     <Row style={{ width: "50%" }}>
@@ -186,9 +187,9 @@ function PersonalInfo(props) {
                     </Row>
                     <br />
                     {/*GENDER*/}
-                    <li style={{ marginLeft: "20px", }}><Form.Label htmlFor="name" style={{ fontWeight: "bold" }}>Gender: <span className="required">(required)</span></Form.Label></li>
+                    <li style={{ marginLeft: "20px", }}><Form.Label style={{ fontWeight: "bold" }}>Gender: <span className="required">(required)</span></Form.Label></li>
                     <fieldset id="gender" style={{ float: "left", width: "100%", padding: "0", display: "flex", }}>
-                        <input type="radio" required id="gender1" name="gender" value="1" style={{ marginRight: "10px", cursor: "pointer", scale: "1.5" }} />
+                        <input type="radio" id="gender1" name="gender" required value="1" style={{ marginRight: "10px", cursor: "pointer", scale: "1.5" }} />
                         <Form.Label htmlFor="gender1" style={{ marginRight: "50px", cursor: "pointer" }}>Male</Form.Label>
                         <input type="radio" id="gender2" name="gender" value="2" style={{ marginRight: "10px", cursor: "pointer", scale: "1.5" }} />
                         <Form.Label htmlFor="gender2" style={{ marginRight: "50px", cursor: "pointer" }}>Female</Form.Label>
@@ -198,23 +199,45 @@ function PersonalInfo(props) {
                     <br />
                     <br />
                     {/*ADDRESS*/}
-                    <Form.Group>
-                        <li><Form.Label htmlFor="zip" style={{ fontWeight: "bold" }}>Postal Code: <span className="required">(required)</span></Form.Label></li>
-                        <Form.Control type="text" placeholder="Postal Code (A9A9A9)" maxLength="7" name="zip" id="zip" required />
-                    </Form.Group>
-                    <Row style={{ width: "70%", paddingTop: "10px", }}>
+                    <Row>
+                        <Col md={4}>
+                            <Form.Group>
+                                <li><Form.Label style={{ fontWeight: "bold" }}>Postal Code: <span className="required">(required)</span></Form.Label></li>
+                                <Form.Control type="text" placeholder="Postal Code (A9A9A9)" maxLength="7" name="postCode" id="postCode" required />
+                            </Form.Group>
+                        </Col>
+                        <Col md={4}>
+                            <Form.Group style={{ paddingRight: "10px", }}>
+                                <Form.Label style={{ fontWeight: "bold" }}>City or Town: <span className="required">(required)</span></Form.Label>
+                                <Form.Control type="text" id="city" name="city" required />
+                            </Form.Group>
+                        </Col>
+                        <Col md={4}>
+                            <Form.Group style={{ paddingRight: "10px" }}>
+                                <Form.Label style={{ fontWeight: "bold" }}>Province: <span className="required">(required)</span></Form.Label>
+                                <Form.Select defaultValue="" id="province" required>
+                                    <option value="" disabled hidden>(Please Choose One)</option>
+                                    {Array.from({ length: provinces.length }).map((_, index) => (
+                                        <option key={index} value={index + 1}>{provinces[index]}</option>
+                                    ))}
+                                </Form.Select>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    
+                    <Row style={{ paddingTop: "10px", }}>
                         <Col md={7}>
                             <li><Form.Label style={{ fontWeight: "bold" }}>Street Name: <span className="required">(required)</span></Form.Label></li>
-                            <Form.Control type="text" id="street" name="street" required />
+                            <Form.Control type="text" id="streetName" name="streetName" required />
                         </Col>
                         <Col md={3}>
                             <li><Form.Label style={{ fontWeight: "bold" }}>Street Number: <span className="required">(required)</span></Form.Label></li>
-                            <Form.Control type="number" id="streetNum" name="streetNum" required />
+                            <Form.Control type="number" id="streetNumber" name="streetNumber" required />
                         </Col>
                         <Col md={2}>
                             <Form.Group>
-                                <li><Form.Label style={{ fontWeight: "bold" }}>Unit/Suite/Apt:</Form.Label></li>
-                                <Form.Control type="text" id="usa" name="usa" />
+                                <li><Form.Label style={{ fontWeight: "bold" }} data-tip="Please include a unit number if you have one." className="tip-above">Unit/Suite/Apt: <span className="required">*</span></Form.Label></li>
+                                <Form.Control type="text" id="unitNumber" name="unitNumber" />
                             </Form.Group>
                         </Col>
                     </Row>
@@ -222,24 +245,37 @@ function PersonalInfo(props) {
                 <Container style={{ width: "25%", padding: "0", float: "left", display: "flex", justifyContent: "space-between" }}>
                     <Button onClick={(e) => {
                         let formData = Object.fromEntries(new FormData(document.forms.personalInfoForm).entries());
-                        formData.year = document.getElementById("year").value;
-                        formData.month = document.getElementById("month").value;
-                        formData.day = document.getElementById("day").value;
-                        if (props.valueCheck(formData.usa)) formData.usa = "n/a";
+
+                        //Authkey and IP
+                        formData.authKey = process.env.REACT_APP_VOTE_API_KEY;
+                        axios.get("https://geolocation-db.com/json/").then(res => {
+                            formData.remoteIp = res.data.IPv4
+                        }).catch(err => console.log(err));
+
+                        //Getting Select Menus
+                        formData.birthDate = new Date(document.getElementById("year").value, document.getElementById("month").value, document.getElementById("day").value).toISOString();
+                        formData.province = document.getElementById("province").value;
+
+                        //Extra stuff to make sure form is filled
+                        if (props.aio.valueCheck(formData.middleName)) formData.middleName = "N/A";
+                        if (props.aio.valueCheck(formData.unitNumber)) formData.unitNumber = "N/A";
+                        if (props.aio.valueCheck(document.querySelector('input[name = "isCitizen"]:checked'))) formData.isCitizen = "";
+                        if (isNaN(formData.gender)) formData.gender = "";
+
                         let pass = true;
                         Object.values(formData).forEach(val => {
-                            if (props.valueCheck(val)) pass = false;
+                            if (props.aio.valueCheck(val)) pass = false;
                         });
-                        if (pass === true) {
-                            axios.post("https://api.smartvoting.cc/v1/accounts/signin", {
-                                userId: 3,
-                                password: 'smartvoting'
-                            }).then((res) => {
-                                console.log(res);
-                            }, (err) => {
-                                console.log(err);
-                            });
-                            props.nextStep(e);
+                        if (pass) {
+                            formData.isCitizen = Boolean(formData.isCitizen);
+                            formData.gender = Number(formData.gender);
+                            formData.streetNumber = Number(formData.streetNumber);
+                            if (formData.middleName === "N/A") formData.middleName = "";
+                            if (formData.unitNumber === "N/A") formData.unitNumber = "";
+                            axios.post("https://api.smartvoting.cc/v1/Vote/Step/1", formData).then((res) => {
+                                props.aio.setJWT(res.data)
+                                props.aio.nextStep(e)
+                            }).catch((err) => {});
                         }
                     }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                         Next
@@ -268,17 +304,28 @@ function VoterCheck1(props) {
                     </Form.Group>
                     <Form.Group>
                         <li><Form.Label style={{ fontWeight: "bold" }}>Last 3 Digits of Social Insurance Number: <span className="required">(required)</span></Form.Label></li>
-                        <Form.Control type="text" name="sin" id="sin" required />
+                        <Form.Control type="text" name="sinDigits" id="sinDigits" required />
                     </Form.Group>
                 </ol>
                 <Container style={{ width: "25%", padding: "0", float: "left", display: "flex", justifyContent: "space-between" }}>
                     <Button onClick={(e) => {
                         let formData = Object.fromEntries(new FormData(document.forms.cardsForm).entries());
+                        formData.authKey = process.env.REACT_APP_VOTE_API_KEY;
+                        axios.get("https://geolocation-db.com/json/").then(res => {
+                            formData.remoteIp = res.data.IPv4
+                        }).catch(err => console.log(err));
                         let pass = true;
                         Object.values(formData).forEach(val => {
-                            if (props.valueCheck(val)) pass = false;
+                            if (props.aio.valueCheck(val)) pass = false;
                         });
-                        if (pass === true) props.nextStep(e);
+                        if (pass) {
+                            formData.cardPin = Number(formData.cardPin);
+                            formData.sinDigits = Number(formData.sinDigits);
+                            axios.post("https://api.smartvoting.cc/v1/Vote/Step/2", formData, {
+                                headers: { Authorization: `Bearer ${props.aio.jwt}` }
+                            }).then(props.aio.nextStep(e)).catch(err => { });
+                            
+                        }
                     }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                         Next
                         {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
@@ -290,33 +337,66 @@ function VoterCheck1(props) {
 }
 
 function VoterCheck2(props) {
+    const taxLines = ["10100", "12000", "12900", "14299", "15000", "23600", "24400", "26000", "31220", "58240"];
+    const indexes = [];
+    const randomLines = [];
+    function getRandomTaxLine() {
+        for (let i = 0; i < 3; i++) {
+            let randomNum = Math.floor(Math.random() * taxLines.length);
+            randomLines.push(taxLines[randomNum]);
+            indexes.push(randomNum);
+            taxLines.splice(randomNum, 1);
+        }
+    }
+
     return (
         <Card.Body style={{ textAlign: "left", padding: "20px", }}>
-            <Form id="taxForm">
+            <Form id="taxForm" onLoad={getRandomTaxLine()}>
                 <h6><strong>Step 3 of 6</strong></h6>
                 <h4 style={{ fontWeight: "bold", fontSize: "1.5vw" }}>Voter Checks Part 2</h4>
                 <ol>
                     <Form.Group>
-                        <li><Form.Label htmlFor="name" style={{ fontWeight: "bold" }}>2024 Tax Return Line 10100 Amount: <span className="required">(required)</span></Form.Label></li>
-                        <Form.Control type="text" name="10100" id="10100" required />
+                        <li><Form.Label style={{ fontWeight: "bold" }}>2024 Tax Return Line {randomLines[0]} Amount: <span className="required">(required)</span></Form.Label></li>
+                        <Form.Control type="number" name="lineOne" id="lineOne" required />
                     </Form.Group>
                     <Form.Group>
-                        <li><Form.Label htmlFor="name" style={{ fontWeight: "bold" }}>2024 Tax Return Line 12000: <span className="required">(required)</span></Form.Label></li>
-                        <Form.Control type="text" name="12000" id="12000" required />
+                        <li><Form.Label style={{ fontWeight: "bold" }}>2024 Tax Return Line {randomLines[1]} Amount: <span className="required">(required)</span></Form.Label></li>
+                        <Form.Control type="number" name="lineTwo" id="lineTwo" required />
                     </Form.Group>
                     <Form.Group>
-                        <li><Form.Label htmlFor="name" style={{ fontWeight: "bold" }}>2024 Tax Return Line 24500: <span className="required">(required)</span></Form.Label></li>
-                        <Form.Control type="text" name="24500" id="24500" required />
+                        <li><Form.Label style={{ fontWeight: "bold" }}>2024 Tax Return Line {randomLines[2]} Amount: <span className="required">(required)</span></Form.Label></li>
+                        <Form.Control type="number" name="lineThree" id="lineThree" required />
                     </Form.Group>
                 </ol>
                 <Container style={{ width: "25%", padding: "0", float: "left", display: "flex", justifyContent: "space-between" }}>
                     <Button onClick={(e) => {
-                        let formData = Object.fromEntries(new FormData(document.forms.taxForm).entries());
+                        let formData = {
+                            lineOne: {
+                                lineNumber: indexes[0],
+                                lineValue: Number(document.getElementById("lineOne").value)
+                            },
+                            lineTwo: {
+                                lineNumber: indexes[1],
+                                lineValue: Number(document.getElementById("lineTwo").value)
+                            },
+                            lineThree: {
+                                lineNumber: indexes[2],
+                                lineValue: Number(document.getElementById("lineThree").value)
+                            }
+                        }
+                        formData.authKey = process.env.REACT_APP_VOTE_API_KEY;
+                        axios.get("https://geolocation-db.com/json/").then(res => {
+                            formData.remoteIp = res.data.IPv4
+                        }).catch(err => console.log(err));
                         let pass = true;
                         Object.values(formData).forEach(val => {
-                            if (props.valueCheck(val)) pass = false;
+                            if (props.aio.valueCheck(val)) pass = false;
                         });
-                        if (pass === true) props.nextStep(e);
+                        if (pass) {
+                            axios.post("https://api.smartvoting.cc/v1/Vote/Step/3", formData, {
+                                headers: { Authorization: `Bearer ${props.aio.jwt}` }
+                            }).then(props.aio.nextStep(e)).catch(props.aio.setStep(e, 9));
+                        }
                     }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                         Next
                         {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
@@ -345,7 +425,7 @@ function VoterCheck3(props) {
                         <li><Form.Label htmlFor="name" style={{ fontWeight: "bold" }}>Authentication PIN Sent To Your Email on File: <span className="required">(required)</span></Form.Label></li>
                         <Form.Control type="text" name="emailPin" id="emailPin" required />
                     </Form.Group>
-                    <Container style={{ display: "flex", flexDirection: "row", margin: "0", padding: "0", marginTop:"10px", }}>
+                    <Container style={{ display: "flex", flexDirection: "row", margin: "0", padding: "0", marginTop: "10px", }}>
                         <HCaptcha
                             sitekey={process.env.REACT_APP_HCAPTCHA_API_KEY}
                             onLoad={onLoad}
@@ -359,10 +439,10 @@ function VoterCheck3(props) {
                         let formData = Object.fromEntries(new FormData(document.forms.emailPinForm).entries());
                         let pass = true;
                         Object.values(formData).forEach(val => {
-                            if (props.valueCheck(val)) pass = false;
+                            if (props.aio.valueCheck(val)) pass = false;
                         });
-                        if (pass === true && token !== null) props.nextStep(e);
-                        if (token === null || token === undefined || token === false) e.preventDefault();
+                        if (pass && token !== null) props.aio.nextStep(e);
+                        if (token === null || token === undefined || !token) e.preventDefault();
                     }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                         Next
                         {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
@@ -407,7 +487,7 @@ function CastVote(props) {
                 </tbody>
             </Table>
             <Container style={{ width: "25%", padding: "0", float: "left", display: "flex", justifyContent: "space-between" }}>
-                <Button onClick={(e) => { props.nextStep(e); }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
+                <Button onClick={(e) => { props.aio.nextStep(e); }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                     Next
                     {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
                 </Button>
@@ -433,7 +513,7 @@ function ConfirmVote(props) {
             <h4 style={{ fontWeight: "bold", fontSize: "1.5vw" }}>Confirm Vote</h4>
 
             <h1>You have made the following selection:</h1>
-            <h1 style={{ textTransform:"uppercase" }}>TEST{/* CANDIDATE NAME */}</h1>
+            <h1 style={{ textTransform: "uppercase" }}>TEST{/* CANDIDATE NAME */}</h1>
             <h1 style={{ textTransform: "uppercase" }}>TEST{/* CANDIDATE PARTY */}</h1>
             <h2>If you are happy with this selection, please complete the security captcha and click next</h2>
             <h2 style={{ textTransform: "uppercase" }}>Note: you will not be able to change your selection after clicking next.</h2>
@@ -451,7 +531,7 @@ function ConfirmVote(props) {
                     Previous
                 </Button>
                 <Button onClick={(e) => {
-                    if (token !== null) props.nextStep(e);
+                    if (token !== null) props.aio.nextStep(e);
                     if (token === null || token === undefined || token === false) e.preventDefault();
                 }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                     Next
@@ -471,8 +551,20 @@ function FinalConfirmation() {
             <h2>Please note that the results of the election will not be released until the last polling station closes.</h2>
             <h2>You will receive an email receipt as proof you have voted.</h2>
             <h2>Please click next to return to the home page.</h2>
-                    
-            <Button onClick={(e) => window.location.href ="/"} type="submit" className="btn btn-purple">Back to Home Page</Button>
+
+            <Button onClick={(e) => window.location.href = "/"} type="submit" className="btn btn-purple">Back to Home Page</Button>
+        </Card.Body>
+    );
+}
+
+function Error() {
+    return (
+        <Card.Body style={{ textAlign: "left", padding: "20px", }}>
+            <h4 style={{ fontWeight: "bold", fontSize: "1.5vw" }}>Error</h4>
+
+            <h2>It seems your garbage doesn't match what's in our system. Go away</h2>
+
+            <Button onClick={(e) => window.location.href = "/"} type="submit" className="btn btn-purple">Back to Home Page</Button>
         </Card.Body>
     );
 }

@@ -34,7 +34,7 @@ export default function ASCTemplate(props) {
                 </Col>
                 <Col style={{ paddingLeft: "50px", }}>
                     <h2 style={{ fontWeight: "bold" }}>{props.content.header2}</h2>
-                    <p style={{ fontSize: "1.1vw" }}>{EC.bodyText}</p>
+                    <Container style={{ fontSize: "1.1vw", textAlign: "left" }}>{props.content.text}</Container>
                 </Col>
             </Row>
         </Container>
