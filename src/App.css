@@ -19,7 +19,7 @@ body {
 }
 
 .navbar a:hover {
-    color: #FF9F1C !important;
+    color: #a173ec !important;
     transition: 0.5s;
 }
 
@@ -60,7 +60,7 @@ body {
 }
 
     .btn-purple:hover {
-        color: #FF9F1C !important;
+        color: #a173ec !important;
         background-color: #312347 !important;
         border-color: #312347 !important;
     }
@@ -72,7 +72,7 @@ body {
 }
 
     .btn-outline-purple:hover {
-        color: #FF9F1C !important;
+        color: #a173ec !important;
         background-color: #513A77 !important;
         border-color: #513A77 !important
     }
@@ -87,7 +87,7 @@ body {
     .btn-outline-purple.active,
     .btn-outline-purple.dropdown-toggle.show,
     .btn-outline-purple:active {
-        color: #FF9F1C !important;
+        color: #a173ec !important;
         background-color: #513A77 !important;
         border-color: #513A77 !important
     }
@@ -108,7 +108,7 @@ body {
 
 .footer {
     color: #000;
-    background-color: #FF9F1C;
+    background-color: #666;
     padding-top: 1em;
     padding-bottom: 1em;
     max-width: 100% !important;
@@ -117,7 +117,12 @@ body {
 }
 
 .footer a {
+    color: #fff;
     text-decoration:none;
+}
+
+.footer a:hover{
+    color: #a173ec;
 }
 
 [data-tip] {
@@ -235,7 +240,7 @@ body {
 }
 
 .sidebarHeader {
-    color: #FF9F1C;
+    color: #fff;
     top:20px;
     position:absolute;
     text-decoration: underline;
@@ -263,12 +268,12 @@ body {
     }
 
         .sidebarContentContainer a:hover {
-            color: #FF9F1C !important;
+            color: #a173ec !important;
         }
 
         .sidebarContentContainer a.active {
-            background-color: black!important;
-            border: 2px solid #FF9F1C !important;
+            background-color: #240653!important;
+            border: 2px solid #a173ec !important;
             border-radius: 15px !important;
         }
 
