@@ -1,19 +1,18 @@
+import React, { useState, useEffect } from "react";
 import { Navbar, Nav, NavDropdown, Container, } from "react-bootstrap";
 import logo1 from '../images/svLogo2.png';
 import logo2 from '../images/svLogo4.png';
 
-import React, { useState, useEffect } from "react"
-
 export default function NavbarComponent() {
-    const [navbar, setNavbar] = useState(false)
+    const [navbar, setNavbar] = useState(false);
 
     const changeBackground = () => {
-        if (window.scrollY >= 200) setNavbar(true)
-        else setNavbar(false)
+        if (window.scrollY >= 200) setNavbar(true);
+        else setNavbar(false);
     }
 
     useEffect(() => {
-        window.addEventListener("scroll", changeBackground)
+        window.addEventListener("scroll", changeBackground);
     })
 
     return (
@@ -26,8 +25,8 @@ export default function NavbarComponent() {
                 { backgroundColor: "#513A77", minWidth: "100%", }
                 }>
             <Container style={{ minWidth: "95%", }}>
-                <Navbar.Brand href="/">
-                    <img alt="Smart Voting Logo" src={navbar || window.location.pathname !== "/"  ? logo1 : logo2} width="150" height="75" className="align-top" />
+                <Navbar.Brand href="/" style={{ padding: "0", }}>
+                    <img alt="Smart Voting Logo" src={navbar || window.location.pathname !== "/" ? logo1 : logo2} width="150" height="75" className="align-top" style={{ padding: "7px 14px" }} />
                 </Navbar.Brand>
                 <Navbar.Collapse id="#">
 

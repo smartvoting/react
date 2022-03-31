@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Table } from "react-bootstrap";
 export default function Turnout() {
     return (
-        <Container style={{minWidth:"100%", fontSize: "120%",}}>
+        <Container style={{minWidth:"100%", fontSize: "1vw",}}>
             <h3 style={{ fontWeight:"bold", }}>About this table</h3>
             <p>Presenting these figures involves several challenges. The data contained in official election results since Confederation have not been reported consistently. In the case of an election by acclamation, for instance, the number of registered electors on the lists for that electoral district was included in the total number of registered electors for some elections, but not for others. In other cases, lists of electors were not prepared for some districts. In Prince Edward Island, no lists were prepared in the entire province for several elections.</p>
             <p>Moreover, a number of electoral districts were dual-member constituencies until 1966. As each elector could vote for more than one candidate, the reported number of votes cast (valid and rejected ballots) was higher than it would have been in a single-member scenario. Voter turnout figures have been corrected where appropriate: to estimate turnout in these cases, the total number of votes cast in a plural-member electoral district was divided by the number of members elected from that district (see Scarrow 1962).</p>
@@ -39,8 +39,22 @@ export default function Turnout() {
                 <li id="6">Population is based on Statistics Canada census data available to Elections Canada at the time of publishing.</li>
             </ol>
 
-            <h3 style={{ fontWeight: "bold", }}>Source</h3>
-            <p style={{ paddingLeft:"36px", textIndent:"-36px"}}>Reports of the Clerk of the Crown in Chancery (1867-1917); reports of the Chief Electoral Officer (1921-2008); Official Voting Results (2011-2019); unpublished summary data prepared by Elections Canada; R. Pomfret, The Economic Development of Canada (1987); H.A. Scarrow, Canada Votes (1962); Contact (1985).</p>
+            <h3 style={{ fontWeight: "bold", }}>Sources</h3>
+            <p>
+                Reports of the Clerk of the Crown in Chancery (1867-1917);
+                <br />
+                reports of the Chief Electoral Officer (1921-2008);
+                <br />
+                Official Voting Results (2011-2019);
+                <br />
+                unpublished summary data prepared by Elections Canada;
+                <br />
+                R. Pomfret, <em>The Economic Development of Canada</em> (1987);
+                <br />
+                H.A. Scarrow, <em>Canada Votes</em> (1962);
+                <br />
+                <em>Contact</em> (1985).
+            </p>
         </Container>
     );
 }

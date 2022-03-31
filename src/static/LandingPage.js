@@ -14,7 +14,7 @@ export default function LandingPage(props) {
             setState({ isPaneOpen: true });
         }
         let openedPage = props.lc.panelPages.indexOf(window.location.pathname);
-        if (openedPage !== -1) document.getElementById(props.lc.panelPages[props.lc.panelPages.indexOf(window.location.pathname)]).classList.add("active")
+        if (openedPage !== -1) document.getElementById(props.lc.panelPages[props.lc.panelPages.indexOf(window.location.pathname)]).classList.add("active");
     }, []);
 
     function changeUrl(e) {

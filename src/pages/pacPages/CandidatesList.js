@@ -3,10 +3,8 @@ import monkey from '../../images/underConstruction.png';
 import { Container, } from "react-bootstrap";
 export default function CandidatesList() {
     return (
-        <>
-            <Container className="errorPage">
-                <img src={monkey} style={{ width: "100%" }} alt='monkey' />
-            </Container>
-        </>
+        <Container className="errorPage">
+            <img src={monkey} style={{ width: "100%" }} alt='monkey' />
+        </Container>
     );
 }

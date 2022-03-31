@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Container, Row, Col, } from "react-bootstrap";
 import smartVotingLogo from '../images/svLogo1.png';
 import electionsCanadaLogo from '../images/ecLogo.png';
-import axios from 'axios'
+import axios from 'axios';
 
 export default function ASCTemplate(props) {
     const [SV, setSV] = useState('');
@@ -11,10 +11,10 @@ export default function ASCTemplate(props) {
     useEffect(() => {
         axios.get(props.content.link1).then(res => {
             setSV(res.data);
-        }).catch(err => console.log(err))
+        }).catch(err => console.log(err));
         axios.get(props.content.link2).then(res => {
             setEC(res.data);
-        }).catch(err => console.log(err))
+        }).catch(err => console.log(err));
     }, []);
 
     return (
@@ -30,11 +30,11 @@ export default function ASCTemplate(props) {
             <Row className="mx-auto" style={{ width: "90%", paddingBottom: "20px", }}>
                 <Col style={{ borderRight: "1px solid #d3d3d3", paddingRight: "50px", }}>
                     <h2 style={{ fontWeight: "bold" }}>{props.content.header1}</h2>
-                    <p style={{ fontSize: "125%" }}>{SV.bodyText}</p>
+                    <Container style={{ fontSize: "1.1vw", textAlign: "left" }}>{props.content.text1}</Container>
                 </Col>
                 <Col style={{ paddingLeft: "50px", }}>
                     <h2 style={{ fontWeight: "bold" }}>{props.content.header2}</h2>
-                    <p style={{ fontSize: "125%" }}>{EC.bodyText}</p>
+                    <Container style={{ fontSize: "1.1vw", textAlign: "left" }}>{props.content.text2}</Container>
                 </Col>
             </Row>
         </Container>

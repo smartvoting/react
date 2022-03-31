@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Table, Button, Modal } from "react-bootstrap";
-import axios from 'axios'
+import axios from 'axios';
 
 export default function PartyList() {
     const [parties, setParties] = useState('');
@@ -15,19 +15,19 @@ export default function PartyList() {
 
     return (
         <Container>
-            <Table striped bordered hover style={{minWidth:"100%"}}>
+            <Table striped bordered hover style={{ minWidth: "100%", fontSize: "1.3vw" }}>
                 <thead>
                     <tr className="text-center">
-                        <th style={{ fontSize: "150%" }}>Party Name</th>
-                        <th style={{ fontSize: "150%" }}>Is Registered</th>
-                        <th style={{ fontSize: "150%" }}></th>
+                        <th>Party Name</th>
+                        <th>Is Registered</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {Array.from({ length: parties.length }).map((_, index) => (
                         <tr key={index}>
-                            <td style={{ fontSize: "150%", }}>{parties[index].name}</td>
-                            <td className="text-center" style={{ fontSize: "150%" }}>{parties[index].isRegistered === false ? "Not Registered" : "Registered"}</td>
+                            <td>{parties[index].name}</td>
+                            <td className="text-center">{parties[index].isRegistered === false ? "Not Registered" : "Registered"}</td>
                             <td className="text-center">
                                 <Button id={index} variant="primary" onClick={() => {
                                     setGI(index)
@@ -51,12 +51,12 @@ export default function PartyList() {
 function PartyInfoModal(props) {
     return (
         <Modal {...props} dialogClassName="modal-90w" centered >
-            <Modal.Header style={{ fontSize: "150%", fontWeight: "bold", }} closeButton>
-                <Modal.Title style={{ fontSize: "125%", fontWeight: "bold", }}id="contained-modal-title-vcenter">
+            <Modal.Header closeButton>
+                <Modal.Title style={{ fontSize: "1.3vw", fontWeight: "bold", }} id="contained-modal-title-vcenter">
                     {props.i !== -1 ? props.p[props.i].name : null}
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body style={{ fontSize: "150%" }} className="text-justify">
+            <Modal.Body style={{ fontSize: "1.2vw" }} className="text-justify">
                 {/*<p>{props.i !== -1 ? props.p[props.i].party_name : null } </p>*/}
                 <p>I love cheese, especially manchego cheesecake. Stilton pecorino jarlsberg cheesy feet cheesy grin cheese strings cheese slices smelly cheese. Halloumi parmesan cheese triangles manchego when the cheese comes out everybody's happy caerphilly halloumi taleggio. Airedale paneer.
 
@@ -68,9 +68,6 @@ function PartyInfoModal(props) {
 
                     Fondue cauliflower cheese goat. Fromage frais bocconcini roquefort cheese strings queso cheese triangles chalk and cheese mascarpone. Swiss blue castello cheesy feet cheesecake the big cheese mozzarella everyone loves brie. St. agur blue cheese cheeseburger cheeseburger.</p>
             </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer>
         </Modal>
     );
 }

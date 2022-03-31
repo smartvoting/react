@@ -1,11 +1,11 @@
-import tempCardImg from '../../images/tempCardImg.png'
 import { Container, Card, Row, Col, Button } from "react-bootstrap";
+import tempCardImg from '../../images/tempCardImg.png';
 
 export default function SelectAccount() {
     const cardTitles = ["Political Parties", "Election Officials", "Local Ridings"];
     const cardContent = ["Accounts for political party staffers at the national, provincial, or municipal levels.",
         "Accounts for Elections Canada staff, offical election auditors, IT system administrators, etc.",
-        "Accounts for local riding candidates, campaign managers and volunteers, riding associations, etc."]
+        "Accounts for local riding candidates, campaign managers and volunteers, riding associations, etc."];
     const cardRoutes = ["#", "#", "#", "#"];
     return (
         <>
