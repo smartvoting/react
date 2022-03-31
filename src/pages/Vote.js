@@ -59,15 +59,15 @@ export default function Vote() {
                     <Card.Header className="text-center" style={{ fontWeight: "bold", fontSize: "1.8vw", }}>Cast Your Secure Digital Ballot</Card.Header>
                     {
                         step === 1 ? <Privacy aio={allInOne} /> :
-                        step === 2 ? <PersonalInfo aio={allInOne} /> :
-                        step === 3 ? <VoterCheck1 aio={allInOne} /> :
-                        step === 4 ? <VoterCheck2 aio={allInOne} /> :
-                        step === 5 ? <VoterCheck3 aio={allInOne} /> :
-                        step === 6 ? <CastVote aio={allInOne} /> :
-                        step === 7 ? <ConfirmVote aio={allInOne} /> :
-                        step === 8 ? <FinalConfirmation /> :
-                        step === 9 ? <Error /> :
-                        null
+                            step === 2 ? <PersonalInfo aio={allInOne} /> :
+                                step === 3 ? <VoterCheck1 aio={allInOne} /> :
+                                    step === 4 ? <VoterCheck2 aio={allInOne} /> :
+                                        step === 5 ? <VoterCheck3 aio={allInOne} /> :
+                                            step === 6 ? <CastVote aio={allInOne} /> :
+                                                step === 7 ? <ConfirmVote aio={allInOne} /> :
+                                                    step === 8 ? <FinalConfirmation /> :
+                                                        step === 9 ? <Error /> :
+                                                            null
                     }
                 </Card>
             </Container>
@@ -219,7 +219,7 @@ function PersonalInfo(props) {
                             </Form.Group>
                         </Col>
                     </Row>
-                    
+
                     <Row style={{ paddingTop: "10px", }}>
                         <Col md={7}>
                             <li><Form.Label style={{ fontWeight: "bold" }}>Street Name: <span className="required">(required)</span></Form.Label></li>
@@ -269,7 +269,20 @@ function PersonalInfo(props) {
                             if (formData.middleName === "N/A") formData.middleName = "";
                             if (formData.unitNumber === "N/A") formData.unitNumber = "";
                             console.log(formData);
-                            axios.post("https://api.smartvoting.cc/v1/Vote/Step/1", formData).then(res => { props.aio.setJWT(res.data) }).catch(err => { });
+
+                            const sendPostRequest = async () => {
+                                try {
+                                    const resp = await axios.post('https://api.smartvoting.cc/v1/Vote/Step/1', formData);
+                                    console.log(resp.data);
+                                } catch (err) {
+                                    // Handle Error Here
+                                    console.error(err);
+                                }
+                            };
+
+                            sendPostRequest();
+
+                            //axios.post("https://api.smartvoting.cc/v1/Vote/Step/1", formData).then(res => { props.aio.setJWT(res.data) }).catch(err => { });
                             props.aio.nextStep(e);
                         }
                     }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
