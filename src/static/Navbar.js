@@ -63,7 +63,7 @@ export default function NavbarComponent() {
                             <NavDropdown.Item href="/elections/turnout/">Voter Turnouts</NavDropdown.Item>
                         </NavDropdown>
 
-                        <Nav.Link href="/vote/" style={{ fontWeight: "600", border: "2px solid #a173ec", borderRadius: "15px", }}>Vote Now!</Nav.Link>
+                        <Nav.Link href="/vote/" style={{ fontWeight: "600", border: "2px solid orange", borderRadius: "15px", }}>Vote Now!</Nav.Link>
                     </Nav>
 
                     <Nav className="me-auto">

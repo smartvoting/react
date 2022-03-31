@@ -18,7 +18,7 @@ export default function App() {
 
     return (
         <>
-            {window.location.pathname !== "/vote/" ? <NavbarComponent /> : null}
+            {(window.location.pathname !== "/vote/" && window.location.pathname !== "/vote") ? <NavbarComponent /> : null}
 
             <BrowserRouter>
                 <Routes>
@@ -53,7 +53,7 @@ export default function App() {
                 </Routes>
             </BrowserRouter>
             
-            {window.location.pathname !== "/vote/" ? <FooterComponent /> : null}
+            {(window.location.pathname !== "/vote/" && window.location.pathname !== "/vote") ? <FooterComponent /> : null}
         </>
     );
 }

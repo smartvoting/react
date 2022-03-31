@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+﻿import React, { useState, useEffect, useRef } from "react";
 import { Container, Card, Form, Button, Row, Col, Table, } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
@@ -9,10 +9,11 @@ export default function Vote() {
     const [state, setState] = useState({
         step: 1
     });
+
     const [jwt, setJWT] = useState("")
 
     window.onbeforeunload = function () {
-        if (state.step !== 8 || state.step !== 9) return "";
+        if (state.step !== 8 && state.step !== 9) return "";
     };
 
     const step = state.step;
@@ -141,12 +142,6 @@ function PersonalInfo(props) {
                         <li><Form.Label htmlFor="lastName" style={{ fontWeight: "bold" }}>Last Name: <span className="required">(required)</span></Form.Label></li>
                         <Form.Control type="text" name="lastName" id="lastName" required />
                     </Form.Group>
-                    <Row>
-                        <Col md={6}>
-                        </Col>
-                        <Col md={6}>
-                        </Col>
-                    </Row>
                     <br />
                     {/*DATE OF BIRTH*/}
                     <li><strong>Date of Birth: </strong><span className="required">(required)</span></li>
@@ -269,13 +264,13 @@ function PersonalInfo(props) {
                         if (pass) {
                             formData.isCitizen = Boolean(formData.isCitizen);
                             formData.gender = Number(formData.gender);
+                            formData.province = Number(formData.province);
                             formData.streetNumber = Number(formData.streetNumber);
                             if (formData.middleName === "N/A") formData.middleName = "";
                             if (formData.unitNumber === "N/A") formData.unitNumber = "";
-                            axios.post("https://api.smartvoting.cc/v1/Vote/Step/1", formData).then((res) => {
-                                props.aio.setJWT(res.data)
-                                props.aio.nextStep(e)
-                            }).catch((err) => {});
+                            console.log(formData);
+                            axios.post("https://api.smartvoting.cc/v1/Vote/Step/1", formData).then(res => { props.aio.setJWT(res.data) }).catch(err => { });
+                            props.aio.nextStep(e);
                         }
                     }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                         Next
@@ -313,7 +308,7 @@ function VoterCheck1(props) {
                         formData.authKey = process.env.REACT_APP_VOTE_API_KEY;
                         axios.get("https://geolocation-db.com/json/").then(res => {
                             formData.remoteIp = res.data.IPv4
-                        }).catch(err => console.log(err));
+                        }).catch(err => { });
                         let pass = true;
                         Object.values(formData).forEach(val => {
                             if (props.aio.valueCheck(val)) pass = false;
@@ -321,10 +316,10 @@ function VoterCheck1(props) {
                         if (pass) {
                             formData.cardPin = Number(formData.cardPin);
                             formData.sinDigits = Number(formData.sinDigits);
+                            console.log(formData);
                             axios.post("https://api.smartvoting.cc/v1/Vote/Step/2", formData, {
                                 headers: { Authorization: `Bearer ${props.aio.jwt}` }
                             }).then(props.aio.nextStep(e)).catch(err => { });
-                            
                         }
                     }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                         Next
