@@ -30,11 +30,11 @@ export default function ASCTemplate(props) {
             <Row className="mx-auto" style={{ width: "90%", paddingBottom: "20px", }}>
                 <Col style={{ borderRight: "1px solid #d3d3d3", paddingRight: "50px", }}>
                     <h2 style={{ fontWeight: "bold" }}>{props.content.header1}</h2>
-                    <p style={{ fontSize: "1.1vw" }}>{SV.bodyText}</p>
+                    <Container style={{ fontSize: "1.1vw", textAlign: "left" }}>{props.content.text1}</Container>
                 </Col>
                 <Col style={{ paddingLeft: "50px", }}>
                     <h2 style={{ fontWeight: "bold" }}>{props.content.header2}</h2>
-                    <Container style={{ fontSize: "1.1vw", textAlign: "left" }}>{props.content.text}</Container>
+                    <Container style={{ fontSize: "1.1vw", textAlign: "left" }}>{props.content.text2}</Container>
                 </Col>
             </Row>
         </Container>
