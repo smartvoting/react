@@ -122,7 +122,6 @@ function PersonalInfo(props) {
 
     useEffect(() => {
         document.getElementById("personalInfoForm").addEventListener("submit", function (e) {
-            e.preventDefault();
             let formData = Object.fromEntries(new FormData(document.forms.personalInfoForm).entries());
 
             //Authkey and IP
@@ -160,6 +159,7 @@ function PersonalInfo(props) {
                     }).catch(err => { });
                 }
             }, 1000);
+            e.preventDefault();
         });
 
     });
