@@ -119,9 +119,54 @@ function PersonalInfo(props) {
 
     const [buttonState, setBS] = useState(false);
 
+
+    useEffect(() => {
+        document.getElementById("personalInfoForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            let formData = Object.fromEntries(new FormData(document.forms.personalInfoForm).entries());
+
+            //Authkey and IP
+            formData.authKey = process.env.REACT_APP_VOTE_API_KEY;
+            axios.get("https://geolocation-db.com/json/").then(res => {
+                props.aio.setIP(res.data.IPv4);
+                formData.remoteIp = res.data.IPv4
+            }).catch(err => console.log(err));
+
+            //Getting Select Menus
+            formData.birthDate = new Date(document.getElementById("year").value, document.getElementById("month").value, document.getElementById("day").value).toISOString();
+            formData.province = document.getElementById("province").value;
+
+            //Extra stuff to make sure form is filled
+            if (props.aio.valueCheck(formData.middleName)) formData.middleName = "N/A";
+            if (props.aio.valueCheck(formData.unitNumber)) formData.unitNumber = "N/A";
+            if (props.aio.valueCheck(document.querySelector('input[name = "isCitizen"]:checked'))) formData.isCitizen = "";
+            if (isNaN(formData.gender)) formData.gender = "";
+
+            let pass = true;
+            Object.values(formData).forEach(val => {
+                if (props.aio.valueCheck(val)) pass = false;
+            });
+            if (pass) setBS(true);
+            setTimeout(function () {
+                if (pass) {
+                    formData.isCitizen = Boolean(formData.isCitizen);
+                    formData.gender = Number(formData.gender);
+                    formData.province = Number(formData.province);
+                    formData.streetNumber = Number(formData.streetNumber);
+
+                    axios.post("https://api.smartvoting.cc/v1/Vote/Step/1", formData).then(res => {
+                        props.aio.setJWT(res.data)
+                        props.aio.nextStep();
+                    }).catch(err => { });
+                }
+            }, 1000);
+        });
+
+    });
+    
     return (
         <Card.Body style={{ textAlign: "left", padding: "20px", }}>
-            <Form id="personalInfoForm" onSubmit={(e) => e.preventDefault()}>
+            <Form id="personalInfoForm">
                 <h6><strong>Step 1 of 6</strong></h6>
                 <h4 style={{ fontWeight: "bold", fontSize: "1.5vw" }}>Personal Information</h4>
                 <ol>
@@ -249,45 +294,7 @@ function PersonalInfo(props) {
                     </Row>
                 </ol>
                 <Container style={{ width: "25%", padding: "0", float: "left", display: "flex", justifyContent: "space-between" }}>
-                    <Button disabled={buttonState} onClick={() => {
-                        let formData = Object.fromEntries(new FormData(document.forms.personalInfoForm).entries());
-
-                        //Authkey and IP
-                        formData.authKey = process.env.REACT_APP_VOTE_API_KEY;
-                        axios.get("https://geolocation-db.com/json/").then(res => {
-                            props.aio.setIP(res.data.IPv4);
-                            formData.remoteIp = res.data.IPv4
-                        }).catch(err => console.log(err));
-
-                        //Getting Select Menus
-                        formData.birthDate = new Date(document.getElementById("year").value, document.getElementById("month").value, document.getElementById("day").value).toISOString();
-                        formData.province = document.getElementById("province").value;
-
-                        //Extra stuff to make sure form is filled
-                        if (props.aio.valueCheck(formData.middleName)) formData.middleName = "N/A";
-                        if (props.aio.valueCheck(formData.unitNumber)) formData.unitNumber = "N/A";
-                        if (props.aio.valueCheck(document.querySelector('input[name = "isCitizen"]:checked'))) formData.isCitizen = "";
-                        if (isNaN(formData.gender)) formData.gender = "";
-
-                        let pass = true;
-                        Object.values(formData).forEach(val => {
-                            if (props.aio.valueCheck(val)) pass = false;
-                        });
-                        if (pass) setBS(true);
-                        setTimeout(function () {
-                            if (pass) {
-                                formData.isCitizen = Boolean(formData.isCitizen);
-                                formData.gender = Number(formData.gender);
-                                formData.province = Number(formData.province);
-                                formData.streetNumber = Number(formData.streetNumber);
-
-                                axios.post("https://api.smartvoting.cc/v1/Vote/Step/1", formData).then(res => {
-                                    props.aio.setJWT(res.data)
-                                    props.aio.nextStep();
-                                }).catch(err => { });
-                            }
-                        }, 1000);
-                    }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
+                    <Button disabled={buttonState} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                         {
                             buttonState ?
                             <p style={{margin:"0"}}>Loading < FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faSpinner} className="fa-spin" /></p> :
