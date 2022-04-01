@@ -485,3 +485,8 @@ body {
     margin-bottom: 0;
 }
 
+/* Vote */
+.candidateRow{
+    cursor:pointer;
+}
+
