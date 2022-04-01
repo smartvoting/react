@@ -134,7 +134,7 @@ function PersonalInfo(props) {
                 formData.remoteIp = res.data.IPv4
             }).catch(err => console.log(err));
             console.log("GOT PAST GEOLOCATION");
-            console.log(props.aio.setIP);
+            console.log(props.aio.ip);
 
             //Getting Select Menus
             formData.birthDate = new Date(document.getElementById("year").value, document.getElementById("month").value, document.getElementById("day").value).toISOString();
@@ -163,7 +163,7 @@ function PersonalInfo(props) {
                         console.log("SENDING TO SERVER");
                         props.aio.setJWT(res.data)
                         props.aio.nextStep();
-                    }).catch(err => { });
+                    }).catch(err => { console.log(err); });
                 }
             }, 1000);
         });
