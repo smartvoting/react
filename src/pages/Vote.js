@@ -122,7 +122,10 @@ function PersonalInfo(props) {
 
     useEffect(() => {
         document.getElementById("personalInfoForm").addEventListener("submit", function (e) {
+            e.preventDefault();
             let formData = Object.fromEntries(new FormData(document.forms.personalInfoForm).entries());
+            console.log("GOT PAST PREVENTDEFAULT");
+            console.log(formData);
 
             //Authkey and IP
             formData.authKey = process.env.REACT_APP_VOTE_API_KEY;
@@ -130,6 +133,8 @@ function PersonalInfo(props) {
                 props.aio.setIP(res.data.IPv4);
                 formData.remoteIp = res.data.IPv4
             }).catch(err => console.log(err));
+            console.log("GOT PAST GEOLOCATION");
+            console.log(props.aio.setIP);
 
             //Getting Select Menus
             formData.birthDate = new Date(document.getElementById("year").value, document.getElementById("month").value, document.getElementById("day").value).toISOString();
@@ -147,6 +152,7 @@ function PersonalInfo(props) {
             });
             if (pass) setBS(true);
             setTimeout(function () {
+                console.log("IN SET TIMEOUT");
                 if (pass) {
                     formData.isCitizen = Boolean(formData.isCitizen);
                     formData.gender = Number(formData.gender);
@@ -154,12 +160,12 @@ function PersonalInfo(props) {
                     formData.streetNumber = Number(formData.streetNumber);
 
                     axios.post("https://api.smartvoting.cc/v1/Vote/Step/1", formData).then(res => {
+                        console.log("SENDING TO SERVER");
                         props.aio.setJWT(res.data)
                         props.aio.nextStep();
                     }).catch(err => { });
                 }
             }, 1000);
-            e.preventDefault();
         });
 
     });
