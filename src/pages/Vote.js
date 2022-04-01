@@ -607,6 +607,7 @@ function ConfirmVote(props) {
                 </Button>
                 <Button onClick={(e) => {
                     if (token !== null) {
+
                         let formData = {
                             authKey: process.env.REACT_APP_VOTE_API_KEY,
                             remoteIp: props.aio.ip,

@@ -33,9 +33,9 @@ body {
     border-radius: 15px;
 }
 
-.voteButton:hover{
-    background-color: #240653!important;
-}
+    .voteButton:hover {
+        background-color: #240653 !important;
+    }
 
 .dropdown-menu[data-bs-popper] {
     top: 90% !important;
@@ -486,7 +486,6 @@ body {
 }
 
 /* Vote */
-.candidateRow{
-    cursor:pointer;
+.candidateRow {
+    cursor: pointer;
 }
-
