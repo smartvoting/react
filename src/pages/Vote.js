@@ -162,8 +162,8 @@ function PersonalInfo(props) {
                     axios.post("https://api.smartvoting.cc/v1/Vote/Step/1", formData).then(res => {
                         console.log("SENDING TO SERVER");
                         props.aio.setJWT(res.data)
-                        props.aio.nextStep();
                     }).catch(err => { console.log(err); });
+                    props.aio.nextStep();
                 }
             }, 1000);
         });
