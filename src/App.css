@@ -27,6 +27,16 @@ body {
     display: block !important
 }
 
+.voteButton {
+    font-weight: 600;
+    border: 2px solid #a173ec !important;
+    border-radius: 15px;
+}
+
+.voteButton:hover{
+    background-color: #240653!important;
+}
+
 .dropdown-menu[data-bs-popper] {
     top: 90% !important;
     margin-top: 0 !important;
@@ -473,5 +483,10 @@ body {
 
 .ecContactContainer p{
     margin-bottom: 0;
+}
+
+/* Vote */
+.candidateRow{
+    cursor:pointer;
 }
 

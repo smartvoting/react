@@ -32,7 +32,7 @@ function AboutSVText() {
                 </ul>
             <h2>Languages</h2>
                 <ul>
-                    <li>.Net </li>
+                    <li>.NET 6</li>
                     <li>Amazon Dynamo DB</li>
                     <li>Amazon Quantum Ledger</li>
                     <li>Amazon Web Services</li>

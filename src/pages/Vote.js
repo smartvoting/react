@@ -1,7 +1,7 @@
 ﻿import React, { useState, useEffect, useRef } from "react";
 import { Container, Card, Form, Button, Row, Col, Table, } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faChevronLeft, faChevronRight, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 import axios from 'axios'
 
@@ -10,7 +10,10 @@ export default function Vote() {
         step: 1
     });
 
-    const [jwt, setJWT] = useState("")
+    const [jwt, setJWT] = useState("");
+    const [ip, setIP] = useState("");
+    const [candidates, setCandidates] = useState({});
+    const [cv, setCV] = useState({});
 
     window.onbeforeunload = function () {
         if (state.step !== 8 && state.step !== 9) return "";
@@ -23,24 +26,33 @@ export default function Vote() {
         setJWT: function (jwt) {
             setJWT(jwt);
         },
-        prevStep: function (e) {
-            e.preventDefault();
+        ip: ip,
+        setIP: function (ip) {
+            setIP(ip);
+        },
+        candidates: candidates,
+        setCandidates: function (c) {
+            setCandidates(c);
+        },
+        cv: cv,
+        setCV: function (cv) {
+            setCV(cv);
+        },
+        prevStep: function () {
             document.getElementById("hideContainer").style.opacity = "0";
             setTimeout(() => {
                 setState({ step: state.step - 1 });
                 document.getElementById("hideContainer").style.opacity = "1";
             }, 400);
         },
-        nextStep: function (e) {
-            e.preventDefault();
+        nextStep: function () {
             document.getElementById("hideContainer").style.opacity = "0";
             setTimeout(() => {
                 setState({ step: state.step + 1 });
                 document.getElementById("hideContainer").style.opacity = "1";
             }, 400);
         },
-        setStep: function (e, newStep) {
-            e.preventDefault();
+        setStep: function (newStep) {
             document.getElementById("hideContainer").style.opacity = "0";
             setTimeout(() => {
                 setState({ step: newStep });
@@ -93,11 +105,8 @@ function Privacy(props) {
                 <li>Your Tax Return Information</li>
             </ul>
             <Container style={{ width: "25%", padding: "0", float: "left", display: "flex", justifyContent: "space-between" }}>
-                <Button onClick={(e) => {
-                    props.aio.nextStep(e);
-                }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
-                    Start
-                    {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
+                <Button onClick={() => { props.aio.nextStep(); }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
+                    Start <FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />
                 </Button>
             </Container>
         </Card.Body>
@@ -108,9 +117,11 @@ function PersonalInfo(props) {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const provinces = ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Northwest Territories", "Nova Scotia", "Nunavut", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan", "Yukon"];
 
+    const [buttonState, setBS] = useState(false);
+
     return (
         <Card.Body style={{ textAlign: "left", padding: "20px", }}>
-            <Form id="personalInfoForm">
+            <Form id="personalInfoForm" onSubmit={(e) => e.preventDefault()}>
                 <h6><strong>Step 1 of 6</strong></h6>
                 <h4 style={{ fontWeight: "bold", fontSize: "1.5vw" }}>Personal Information</h4>
                 <ol>
@@ -219,7 +230,7 @@ function PersonalInfo(props) {
                             </Form.Group>
                         </Col>
                     </Row>
-                    
+
                     <Row style={{ paddingTop: "10px", }}>
                         <Col md={7}>
                             <li><Form.Label style={{ fontWeight: "bold" }}>Street Name: <span className="required">(required)</span></Form.Label></li>
@@ -238,12 +249,13 @@ function PersonalInfo(props) {
                     </Row>
                 </ol>
                 <Container style={{ width: "25%", padding: "0", float: "left", display: "flex", justifyContent: "space-between" }}>
-                    <Button onClick={(e) => {
+                    <Button disabled={buttonState} onClick={() => {
                         let formData = Object.fromEntries(new FormData(document.forms.personalInfoForm).entries());
 
                         //Authkey and IP
                         formData.authKey = process.env.REACT_APP_VOTE_API_KEY;
                         axios.get("https://geolocation-db.com/json/").then(res => {
+                            props.aio.setIP(res.data.IPv4);
                             formData.remoteIp = res.data.IPv4
                         }).catch(err => console.log(err));
 
@@ -261,20 +273,26 @@ function PersonalInfo(props) {
                         Object.values(formData).forEach(val => {
                             if (props.aio.valueCheck(val)) pass = false;
                         });
-                        if (pass) {
-                            formData.isCitizen = Boolean(formData.isCitizen);
-                            formData.gender = Number(formData.gender);
-                            formData.province = Number(formData.province);
-                            formData.streetNumber = Number(formData.streetNumber);
-                            if (formData.middleName === "N/A") formData.middleName = "";
-                            if (formData.unitNumber === "N/A") formData.unitNumber = "";
-                            console.log(formData);
-                            axios.post("https://api.smartvoting.cc/v1/Vote/Step/1", formData).then(res => { props.aio.setJWT(res.data) }).catch(err => { });
-                            props.aio.nextStep(e);
-                        }
+                        if (pass) setBS(true);
+                        setTimeout(function () {
+                            if (pass) {
+                                formData.isCitizen = Boolean(formData.isCitizen);
+                                formData.gender = Number(formData.gender);
+                                formData.province = Number(formData.province);
+                                formData.streetNumber = Number(formData.streetNumber);
+
+                                axios.post("https://api.smartvoting.cc/v1/Vote/Step/1", formData).then(res => {
+                                    props.aio.setJWT(res.data)
+                                    props.aio.nextStep();
+                                }).catch(err => { });
+                            }
+                        }, 1000);
                     }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
-                        Next
-                        {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
+                        {
+                            buttonState ?
+                            <p style={{margin:"0"}}>Loading < FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faSpinner} className="fa-spin" /></p> :
+                            <p style={{ margin: "0" }}>Next <FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} /></p>
+                        }
                     </Button>
                 </Container>
             </Form>
@@ -283,15 +301,16 @@ function PersonalInfo(props) {
 }
 
 function VoterCheck1(props) {
+    const [buttonState, setBS] = useState(false);
     return (
         <Card.Body style={{ textAlign: "left", padding: "20px", }}>
-            <Form id="cardsForm">
+            <Form id="cardsForm" onSubmit={(e) => e.preventDefault()}>
                 <h6><strong>Step 2 of 6</strong></h6>
                 <h4 style={{ fontWeight: "bold", fontSize: "1.5vw" }}>Voter Checks Part 1</h4>
                 <ol>
                     <Form.Group>
                         <li><Form.Label style={{ fontWeight: "bold" }}>Voter Card ID Number: <span className="required">(required)</span></Form.Label></li>
-                        <Form.Control type="text" name="cardId" id="cardId" required />
+                        <Form.Control type="text" name="cardId" id="cardId" required maxLength={12} />
                     </Form.Group>
                     <Form.Group>
                         <li><Form.Label style={{ fontWeight: "bold" }}>Voter Card PIN Number: <span className="required">(required)</span></Form.Label></li>
@@ -299,31 +318,32 @@ function VoterCheck1(props) {
                     </Form.Group>
                     <Form.Group>
                         <li><Form.Label style={{ fontWeight: "bold" }}>Last 3 Digits of Social Insurance Number: <span className="required">(required)</span></Form.Label></li>
-                        <Form.Control type="text" name="sinDigits" id="sinDigits" required />
+                        <Form.Control type="text" name="sinDigits" id="sinDigits" required maxLength={3}/>
                     </Form.Group>
                 </ol>
                 <Container style={{ width: "25%", padding: "0", float: "left", display: "flex", justifyContent: "space-between" }}>
-                    <Button onClick={(e) => {
+                    <Button onClick={() => {
                         let formData = Object.fromEntries(new FormData(document.forms.cardsForm).entries());
                         formData.authKey = process.env.REACT_APP_VOTE_API_KEY;
-                        axios.get("https://geolocation-db.com/json/").then(res => {
-                            formData.remoteIp = res.data.IPv4
-                        }).catch(err => { });
+                        formData.remoteIp = props.aio.ip
                         let pass = true;
                         Object.values(formData).forEach(val => {
                             if (props.aio.valueCheck(val)) pass = false;
                         });
                         if (pass) {
+                            setBS(true);
                             formData.cardPin = Number(formData.cardPin);
                             formData.sinDigits = Number(formData.sinDigits);
-                            console.log(formData);
                             axios.post("https://api.smartvoting.cc/v1/Vote/Step/2", formData, {
                                 headers: { Authorization: `Bearer ${props.aio.jwt}` }
-                            }).then(props.aio.nextStep(e)).catch(err => { });
+                            }).then(props.aio.nextStep()).catch(err => { });
                         }
                     }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
-                        Next
-                        {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
+                        {
+                            buttonState ?
+                                <p style={{ margin: "0" }}>Loading < FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faSpinner} className="fa-spin" /></p> :
+                                <p style={{ margin: "0" }}>Next <FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} /></p>
+                        }
                     </Button>
                 </Container>
             </Form>
@@ -333,20 +353,23 @@ function VoterCheck1(props) {
 
 function VoterCheck2(props) {
     const taxLines = ["10100", "12000", "12900", "14299", "15000", "23600", "24400", "26000", "31220", "58240"];
+    const lineIndexes = ["10100", "12000", "12900", "14299", "15000", "23600", "24400", "26000", "31220", "58240"];
     const indexes = [];
     const randomLines = [];
     function getRandomTaxLine() {
         for (let i = 0; i < 3; i++) {
             let randomNum = Math.floor(Math.random() * taxLines.length);
             randomLines.push(taxLines[randomNum]);
-            indexes.push(randomNum);
+            indexes.push(lineIndexes.indexOf(taxLines[randomNum]));
             taxLines.splice(randomNum, 1);
         }
     }
+    const [buttonState, setBS] = useState(false);
+    const [isSubmitted, setSubmitted] = useState(false);
 
     return (
         <Card.Body style={{ textAlign: "left", padding: "20px", }}>
-            <Form id="taxForm" onLoad={getRandomTaxLine()}>
+            <Form id="taxForm" onLoad={!isSubmitted ? getRandomTaxLine() : null} onSubmit={(e) => { e.preventDefault(); setSubmitted(true) }}>
                 <h6><strong>Step 3 of 6</strong></h6>
                 <h4 style={{ fontWeight: "bold", fontSize: "1.5vw" }}>Voter Checks Part 2</h4>
                 <ol>
@@ -364,8 +387,10 @@ function VoterCheck2(props) {
                     </Form.Group>
                 </ol>
                 <Container style={{ width: "25%", padding: "0", float: "left", display: "flex", justifyContent: "space-between" }}>
-                    <Button onClick={(e) => {
+                    <Button onClick={() => {
                         let formData = {
+                            authKey: process.env.REACT_APP_VOTE_API_KEY,
+                            remoteIp: props.aio.ip,
                             lineOne: {
                                 lineNumber: indexes[0],
                                 lineValue: Number(document.getElementById("lineOne").value)
@@ -379,22 +404,22 @@ function VoterCheck2(props) {
                                 lineValue: Number(document.getElementById("lineThree").value)
                             }
                         }
-                        formData.authKey = process.env.REACT_APP_VOTE_API_KEY;
-                        axios.get("https://geolocation-db.com/json/").then(res => {
-                            formData.remoteIp = res.data.IPv4
-                        }).catch(err => console.log(err));
                         let pass = true;
                         Object.values(formData).forEach(val => {
                             if (props.aio.valueCheck(val)) pass = false;
                         });
                         if (pass) {
+                            setBS(true);
                             axios.post("https://api.smartvoting.cc/v1/Vote/Step/3", formData, {
                                 headers: { Authorization: `Bearer ${props.aio.jwt}` }
-                            }).then(props.aio.nextStep(e)).catch(props.aio.setStep(e, 9));
+                            }).then(res => props.aio.nextStep(), err => props.aio.setStep(9));
                         }
                     }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
-                        Next
-                        {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
+                        {
+                            buttonState ?
+                                <p style={{ margin: "0" }}>Loading < FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faSpinner} className="fa-spin" /></p> :
+                                <p style={{ margin: "0" }}>Next <FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} /></p>
+                        }
                     </Button>
                 </Container>
             </Form>
@@ -410,9 +435,11 @@ function VoterCheck3(props) {
         captchaRef.current.execute();
     };
 
+    const [buttonState, setBS] = useState(false);
+
     return (
         <Card.Body style={{ textAlign: "left", padding: "20px", }}>
-            <Form id="emailPinForm">
+            <Form id="emailPinForm" onSubmit={(e) => e.preventDefault()}>
                 <h6><strong>Step 4 of 6</strong></h6>
                 <h4 style={{ fontWeight: "bold", fontSize: "1.5vw" }}>Email Check</h4>
                 <ol>
@@ -432,15 +459,29 @@ function VoterCheck3(props) {
                 <Container style={{ width: "25%", padding: "0", float: "left", display: "flex", justifyContent: "space-between" }}>
                     <Button onClick={(e) => {
                         let formData = Object.fromEntries(new FormData(document.forms.emailPinForm).entries());
+                        formData.authKey = process.env.REACT_APP_VOTE_API_KEY;
+                        formData.remoteIp = props.aio.ip;
+                        formData.hcaptchaResponse = token;
                         let pass = true;
                         Object.values(formData).forEach(val => {
                             if (props.aio.valueCheck(val)) pass = false;
                         });
-                        if (pass && token !== null) props.aio.nextStep(e);
+                        if (pass && token !== null) {
+                            setBS(true);
+                            axios.post("https://api.smartvoting.cc/v1/Vote/Step/4", formData, {
+                                headers: { Authorization: `Bearer ${props.aio.jwt}` }
+                            }).then(res => {
+                                props.aio.setCandidates(res.data);
+                                props.aio.nextStep()
+                            }, err => props.aio.setStep(9));
+                        }
                         if (token === null || token === undefined || !token) e.preventDefault();
                     }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
-                        Next
-                        {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
+                        {
+                            buttonState ?
+                                <p style={{ margin: "0" }}>Loading < FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faSpinner} className="fa-spin" /></p> :
+                                <p style={{ margin: "0" }}>Next <FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} /></p>
+                        }
                     </Button>
                 </Container>
             </Form>
@@ -449,6 +490,9 @@ function VoterCheck3(props) {
 }
 
 function CastVote(props) {
+    const [checkedCandidate, setCC] = useState(null);
+    const [buttonState, setBS] = useState(false);
+
     return (
         <Card.Body style={{ textAlign: "left", padding: "20px", }}>
             <h6><strong>Step 5 of 6</strong></h6>
@@ -462,29 +506,66 @@ function CastVote(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* ARRAY FOR EACH CANDIDATE. */}
-                    <tr>
-                        <td>
+                    {Array.from({ length: props.aio.candidates.length }).map((_, index) => (
+                        <tr key={index} onClick={() => {
+                            let isBoxAlreadyChecked = document.getElementById(index).checked;
+                            let checkboxes = document.getElementsByClassName('candidateCheckbox');
+                            for (let i = 0; checkboxes[i]; ++i) {
+                                if (checkboxes[i].checked) {
+                                    checkboxes[i].checked = false;
+                                    setCC(null);
+                                    break;
+                                }
+                            }
+                            if (!isBoxAlreadyChecked) {
+                                document.getElementById(index).checked = !document.getElementById(index).checked;
+                                setCC(document.getElementById(index).value);
+                            }
 
-                            <Container className="provisional gc-checklist">
-                                <ul style={{ listStyleType: "none", marginTop: "20px", }}>
-                                    <li className="checkbox">
-                                        <input type="checkbox" name="results" value="1" id={0} />
-                                        <label htmlFor={0}><a></a></label>
-                                    </li>
-                                </ul>
-
-                            </Container>
-                        </td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                        }} className="candidateRow">
+                            <td>
+                                <Container className="provisional gc-checklist" style={{ display: "flex", justifyContent: "center", alignItems: "center", }}>
+                                    <ul style={{ listStyleType: "none", }}>
+                                        <li className="checkbox">
+                                            <input className="candidateCheckbox" type="checkbox" name="candidates" value={JSON.stringify(props.aio.candidates[index])} id={index} />
+                                            <label htmlFor={index}><a></a></label>
+                                        </li>
+                                    </ul>
+                                </Container>
+                            </td>
+                            <td><p>{props.aio.candidates[index].firstName + " " + props.aio.candidates[index].lastName}</p></td>
+                            <td><p>{props.aio.candidates[index].partyName}</p></td>
+                        </tr>
+                    ))}
                 </tbody>
             </Table>
             <Container style={{ width: "25%", padding: "0", float: "left", display: "flex", justifyContent: "space-between" }}>
-                <Button onClick={(e) => { props.aio.nextStep(e); }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
-                    Next
-                    {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
+                <Button onClick={() => {
+                    if (!props.aio.valueCheck(checkedCandidate)) {
+                        setBS(true);
+                        props.aio.setCV(JSON.parse(checkedCandidate));
+                        let formData = {
+                            authKey: process.env.REACT_APP_VOTE_API_KEY,
+                            remoteIp: props.aio.ip,
+                            candidateId: Number(JSON.parse(checkedCandidate).candidateId),
+                            ridingId: Number(JSON.parse(checkedCandidate).ridingId)
+                        }
+                        axios.post("https://api.smartvoting.cc/v1/Vote/Step/5", formData, {
+                            headers: { Authorization: `Bearer ${props.aio.jwt}` }
+                        }).then(res => {
+                            props.aio.setJWT(res.data)
+                            props.aio.nextStep();
+                        }, err => { });
+                    }
+                    else {
+                        alert("Please select a candidate before continuing!")
+                    }
+                }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
+                    {
+                        buttonState ?
+                            <p style={{ margin: "0" }}>Loading < FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faSpinner} className="fa-spin" /></p> :
+                            <p style={{ margin: "0" }}>Next <FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} /></p>
+                    }
                 </Button>
             </Container>
         </Card.Body>
@@ -499,19 +580,18 @@ function ConfirmVote(props) {
         captchaRef.current.execute();
     };
 
-    useEffect(() => {
-        if (token) console.log(`hCaptcha Token: ${token}`);
-    }, [token]);
+    const [buttonState, setBS] = useState(false);
+
     return (
         <Card.Body style={{ textAlign: "left", padding: "20px", }}>
             <h6><strong>Step 6 of 6</strong></h6>
             <h4 style={{ fontWeight: "bold", fontSize: "1.5vw" }}>Confirm Vote</h4>
 
             <h1>You have made the following selection:</h1>
-            <h1 style={{ textTransform: "uppercase" }}>TEST{/* CANDIDATE NAME */}</h1>
-            <h1 style={{ textTransform: "uppercase" }}>TEST{/* CANDIDATE PARTY */}</h1>
+            <h1 style={{ textTransform: "uppercase" }}>{props.aio.cv.firstName + " " + props.aio.cv.lastName}</h1>
+            <h1 style={{ textTransform: "uppercase" }}>{props.aio.cv.partyName}</h1>
             <h2>If you are happy with this selection, please complete the security captcha and click next</h2>
-            <h2 style={{ textTransform: "uppercase" }}>Note: you will not be able to change your selection after clicking next.</h2>
+            <h2 style={{ textTransform: "uppercase", fontWeight:"bold", }}>Note: you will not be able to change your selection after clicking next.</h2>
             <Container style={{ display: "flex", flexDirection: "row", margin: "0", padding: "0", marginTop: "10px", }}>
                 <HCaptcha
                     sitekey={process.env.REACT_APP_HCAPTCHA_API_KEY}
@@ -521,16 +601,33 @@ function ConfirmVote(props) {
                 />
             </Container>
             <Container style={{ width: "25%", padding: "0", float: "left", display: "flex", justifyContent: "space-between" }}>
-                <Button onClick={(e) => { props.prevStep(e); }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
+                <Button onClick={(e) => { props.aio.prevStep(e); }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                     {<FontAwesomeIcon style={{ float: "left", marginTop: "7px" }} icon={faChevronLeft} />}
                     Previous
                 </Button>
                 <Button onClick={(e) => {
-                    if (token !== null) props.aio.nextStep(e);
+                    if (token !== null) {
+                        let formData = {
+                            authKey: process.env.REACT_APP_VOTE_API_KEY,
+                            remoteIp: props.aio.ip,
+                            userConfirmation: true,
+                            hcaptchaResponse: token
+                        }
+                        setBS(true);
+                        axios.post("https://api.smartvoting.cc/v1/Vote/Step/6", formData, {
+                            headers: {
+                                'Authorization': `Bearer ${props.aio.jwt}`,
+                                'Access-Control-Allow-Origin': `*`
+                            }
+                        }).then(res => { props.aio.nextStep(); }, err => props.aio.setStep(9));
+                    }
                     if (token === null || token === undefined || token === false) e.preventDefault();
                 }} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
-                    Next
-                    {<FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} />}
+                    {
+                        buttonState ?
+                            <p style={{ margin: "0" }}>Loading < FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faSpinner} className="fa-spin" /></p> :
+                            <p style={{ margin: "0" }}>Next <FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} /></p>
+                    }
                 </Button>
             </Container>
         </Card.Body>
