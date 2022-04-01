@@ -153,11 +153,15 @@ function PersonalInfo(props) {
             if (pass) setBS(true);
             setTimeout(function () {
                 console.log("IN SET TIMEOUT");
+                console.log(formData);
+                console.log("PASSED");
                 if (pass) {
                     formData.isCitizen = Boolean(formData.isCitizen);
                     formData.gender = Number(formData.gender);
                     formData.province = Number(formData.province);
                     formData.streetNumber = Number(formData.streetNumber);
+
+                    console.log(formData);
 
                     axios.post("https://api.smartvoting.cc/v1/Vote/Step/1", formData).then(res => {
                         console.log("SENDING TO SERVER");
