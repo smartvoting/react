@@ -71,7 +71,7 @@ function Welcome(props) {
                 <hr />
                 <strong style={{ fontSize: "1.4vw", }}>PLEASE READ BEFORE CONTINUING</strong>
                 <p>Under the <a href="https://laws-lois.justice.gc.ca/eng/acts/e-2.01/" target="__blank">Canada Elections Act (S.C. 2000, c. 9)</a>, it is illegal to make false statements about voter registration.</p>
-                <p>Please be aware that this website was made for <a href={courseOutline} target="_blank">George Brown College's Winter 2022 Capstone Project</a> and is for educational purposes only. While information on ridings, locations, and history is true, all voter and candidate information is not real and has been generated using our own programs. Any similarity to actual persons, living or dead, or actual events, is purely coincidental.</p>
+                <p>Please be aware that this website was made for <a href={courseOutline} target="_blank">George Brown College's Winter 2022 Capstone Project</a> and is for educational purposes only. While information on ridings, locations, and history is true, all voter and candidate information is not real and has been generated using our own programs. Any similarity to actual persons, living or dead, is purely coincidental.</p>
                 <p>If you'd like to see if you are actually registered to vote, please <a href="https://www.elections.ca/content.aspx?section=vot&dir=reg&document=index&lang=e" target="_blank">Click Here</a> to go to Election Canada's official service.</p>
                 <br />
                 <input type="checkbox" id="tos" style={{ scale: "1.5", marginLeft: "5px", cursor: "pointer" }} required />
