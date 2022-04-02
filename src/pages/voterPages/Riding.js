@@ -1,5 +1,6 @@
 import React, { useState,  } from 'react'
 import { Container, Row, Col, Button, InputGroup, Form, FormControl, Table } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
@@ -86,8 +87,8 @@ export default function Riding() {
                 <Button variant="" className="btn-outline-purple" id="button-addon2" type="submit" style={{ width: "10%", fontSize: "1.2vw" }} onClick={() => { search() }}>
                     {
                         buttonState ?
-                            <p style={{ margin: "0" }}>Loading < FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faSpinner} className="fa-spin" /></p> :
-                            <p style={{ margin: "0" }}>Next <FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} /></p>
+                            <p>Loading < FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faSpinner} className="fa-spin" /></p> :
+                            <p>Search</p>
                     }
                 </Button>
             </InputGroup>
