@@ -489,3 +489,24 @@ body {
 .candidateRow {
     cursor: pointer;
 }
+
+/* Carousel */
+.carousel {
+    opacity: 1.0;
+    z-index: -1;
+    max-height: 100vh !important; 
+    min-width: 100% !important;
+    text-align: center;  
+    padding: 0;
+    margin: 0;
+}
+
+.carousel-item {
+    max-height: 100vh !important; 
+    min-width: 100% !important;
+}
+
+.carousel-item > img {
+    max-height: 100vh !important; 
+    min-width: 100% !important;
+}
