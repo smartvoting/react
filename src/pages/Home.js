@@ -1,9 +1,17 @@
 ﻿import React, { Component } from 'react';
 import tempCarouselImage from '../images/tempCarouselImage.png';
-import tempCardImg from '../images/tempCardImg.png'
-import { Container, Card, Row, Col, Button, InputGroup, Form } from "react-bootstrap";
+import tempCardImg from '../images/tempCardImg.png';
+import { Container, Carousel, Card, Row, Col, Button, InputGroup, Form } from "react-bootstrap";
 import { Parallax } from 'react-parallax';
 import { TwitterTimelineEmbed, } from 'react-twitter-embed';
+
+import capitolHill from '../images/main_carousel/CapitolHill.jpeg';
+import toronto from '../images/main_carousel/Toronto.jpeg';
+import montreal from '../images/main_carousel/Montreal.jpeg';
+import vancouver from '../images/main_carousel/Vancouver.jpeg';
+import edmonton from '../images/main_carousel/Edmonton.jpeg';
+import halifax from '../images/main_carousel/Halifax.jpeg';
+import calgary from '../images/main_carousel/Calgary.jpg';
 
 export default class Home extends Component  {
     componentDidMount() {
@@ -20,11 +28,11 @@ export default class Home extends Component  {
     render() {
         return (
             <>
-                <Parallax bgImage={tempCarouselImage} strength={300}>
-                    <Container style={{ minHeight: "100vh", textAlign: "center",}}>
-                        <Button variant="" className="btn-lg btn-purple" style={{ position: "absolute", top: "90%", transform: "translate(-50%,-50%)", fontSize: "2vw",}}>Cast Your Vote Now!</Button>
-                    </Container>
-                </Parallax>
+
+                <Container className="carousel">
+                    <CarouselFunction />
+                    <Button variant="" className="btn-lg btn-purple" style={{ position: "absolute", top: "90%", transform: "translate(-50%,-50%)", fontSize: "2vw", }}>Cast Your Vote Now!</Button>
+                </Container>
 
                 <Container className="justify-content-center mt-3 mb-3" style={{ minWidth:"80%"}}>
                     <Row className="g-4">
@@ -39,7 +47,7 @@ export default class Home extends Component  {
                                 <p>If you want to see Election Canada's Twitter feed, you have to turn off tracking protection (The shield icon in the url).</p>
                                 <p>Have a good day!</p>
                             </Container>
-                               
+
                             <TwitterTimelineEmbed
                                 sourceType="profile"
                                 screenName="ElectionsCan_E"
@@ -52,6 +60,34 @@ export default class Home extends Component  {
         );
     }
     
+}
+
+function CarouselFunction() {
+    const images = [capitolHill, toronto, montreal, halifax, vancouver, edmonton, calgary]
+    return (
+        <Carousel indicators={false} controls={false} prevIcon={""} nextIcon={""} fade>
+            {Array.from({ length: images.length }).map((_, index) => (
+                <Carousel.Item key={index}>
+                    <Parallax bgImage={images[index]} strength={300} style={{ minHeight: "100vh", }}></Parallax>
+                </Carousel.Item>
+            ))}
+            {/*
+             * Original Carousel incase we decide to scrap parallax
+             <Carousel fade style={{ maxHeight: "100vh" }}>
+                {Array.from({ length: images.length }).map((_, index) => (
+                    <Carousel.Item key={index}>
+                        <img
+                            className="d-block w-100"
+                            src={images[index]}
+                            alt="We'll do this later or something"
+                        />
+                    </Carousel.Item>
+                ))}
+                </Carousel>
+             */}
+        </Carousel>
+        
+    );
 }
 
 function CardsFunction() {

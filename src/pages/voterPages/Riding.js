@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { Container, Card, Carousel, Row, Col, Button, InputGroup, Form,  FormControl, Table } from "react-bootstrap";
+import React, { useState,  } from 'react'
+import { Container, Row, Col, Button, InputGroup, Form, FormControl, Table } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
@@ -29,55 +31,24 @@ export default function Riding() {
 
     function selectItem(e) {
         setSV({ value: e.target.value })
-        document.getElementById("searchbar").placeholder = e.target.value === "zip" ? "Postal Code (ex. A9A9A9, A9A A9A, a9aa9a, or a9a a9a)" : e.target.value === "district" ? "District Name (ex. St. Paul's)" : e.target.value === "candidate" ? "Candidate Name (ex. Justin Trudeau)" : e.target.value === "location" ? "Location (ex. Toronto)" : "";
+        document.getElementById("searchbar").placeholder = e.target.value === "zip" ? "Postal Code (ex. A9A9A9, A9A A9A, a9aa9a, or a9a a9a)" : e.target.value === "district" ? "District Name (ex. St. Paul's)" : e.target.value === "candidate" ? "Candidate Name (ex. Bob or Smith)" : e.target.value === "location" ? "Location (ex. Toronto)" : "";
     }
 
     function search() {
         let searchString = document.getElementById("searchbar").value;
-        if (selectValue.value === "zip") {
-            axios.get("https://api.smartvoting.cc/v1/Riding/Locate/PostCode/" + searchString).then(res => {
-                console.log(res.data)
-                if (res.data !== undefined) {
-                    setData(res.data);
-                    swapView();
-                }
-                else alert("res.data is null!");
-            }).catch(err => console.log(err))
-        } else {
-            axios.get("https://api.smartvoting.cc/v1/Riding/List").then(res => {
-                let filter;
-                if (selectValue.value === "district") filter = res.data.filter(i => i.name === searchString)[0];
-                else if (selectValue.value === "candidate") filter = res.data.filter(i => i.candidates.includes(searchString))[0];
-                else if (selectValue.value === "location") filter = res.data.filter(i => i.office.city === capitalize(searchString));
-                if (filter !== undefined) {
-                    setData(filter);
-                    swapView();
-                    return filter;
-                }
-                else alert("res.data is null!");
-            }).then(response => {
-                if (response.length > 1) {
-                    let centroidList = [];
-                    response.forEach(response2 => {
-                        axios.get("https://api.smartvoting.cc/v1/Riding/Outline/Centroid/" + response2.id).then(response3 => {
-                            console.log(response3.outline);
-                            centroidList.push(response3.outline);
-                        }).catch(err => console.log(err))
-                    });
-                }
-                else {
-                    axios.get("https://api.smartvoting.cc/v1/Riding/Outline/Centroid/" + response.id).then(response2 => {
-                        console.log(response2.centroid);
-                        setCentroid(response2.centroid);
-                    }).catch(err => console.log(err))
-                }
-            }).catch(err => console.log(err))
-        }
-        
-    }
-
-    function capitalize(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
+        let searchUrl = "";
+        if (selectValue.value === "zip") searchUrl = "https://api.smartvoting.cc/v1/Riding/Locate/PostCode/" + searchString;
+        else if (selectValue.value === "district") searchUrl = "https://api.smartvoting.cc/v1/Riding/Locate/Riding/" + searchString;
+        else if (selectValue.value === "candidate") searchUrl = "https://api.smartvoting.cc/v1/Riding/Locate/Candidate/" + searchString;
+        else searchUrl = "https://api.smartvoting.cc/v1/Riding/Locate/City/" + searchString;
+        axios.get(searchUrl).then(res => {
+            console.log(res.data)
+            if (res.data !== undefined) {
+                setData(res.data);
+                swapView();
+            }
+            else alert("res.data is null!");
+        }).catch(err => console.log(err));
     }
 
     function swapView() {
@@ -88,6 +59,8 @@ export default function Riding() {
         document.getElementById("map").style.visibility = "visible";
         document.getElementById("map").style.opacity = "1";
     }
+
+    const [buttonState, setBS] = useState(false);
 
     return (
         <Container style={{ minWidth: "100%",}}>
@@ -111,7 +84,13 @@ export default function Riding() {
                     type="text"
                     style={{ width: "65%", fontSize:"1.2vw"  }}
                 />
-                <Button variant="" className="btn-outline-purple" id="button-addon2" type="submit" style={{ width: "10%", fontSize:"1.2vw"  }} onClick={() => { search() }}>Search</Button>
+                <Button variant="" className="btn-outline-purple" id="button-addon2" type="submit" style={{ width: "10%", fontSize: "1.2vw" }} onClick={() => { search() }}>
+                    {
+                        buttonState ?
+                            <p>Loading < FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faSpinner} className="fa-spin" /></p> :
+                            <p>Search</p>
+                    }
+                </Button>
             </InputGroup>
             
             <Container id="instructions" style={{minWidth:"100%", }}>
@@ -124,15 +103,15 @@ export default function Riding() {
                         </tr>
                         <tr>
                             <th>Search by electoral district name:</th>
-                            <td>Type in your home postal code, then click the "Search" button. Postal Codes should be in the format A9AA9A or A9A A9A. Capitalization is not necessary for the search.</td>
+                            <td>Type in the name of an electoral district, then click the "Search" button. Information on your riding will appear on the left with a map on the right.</td>
                         </tr>
                         <tr>
                             <th>Search by candidate name:</th>
-                            <td>Type in your home postal code, then click the "Search" button. Postal Codes should be in the format A9AA9A or A9A A9A. Capitalization is not necessary for the search.</td>
+                            <td>Type in the first name, or last name of a candidate, then click the "Search" button. Ridings will be shown in a table format. You can select your riding for more information by clicking the item in the table. <strong>Please keep in mind that all candidates are made up, and any similarity to actual persons, living or dead, is purely coincidental.</strong></td>
                         </tr>
                         <tr>
                             <th>Search by place name (i.e. village, city):</th>
-                            <td>Type in your home postal code, then click the "Search" button. Postal Codes should be in the format A9AA9A or A9A A9A. Capitalization is not necessary for the search.</td>
+                            <td>Type in the name of a .</td>
                         </tr>
                     </tbody>
                 </Table>
