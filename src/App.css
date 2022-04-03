@@ -338,6 +338,11 @@ body {
     max-width:90% !important;
 }
 
+/* Find a Riding */
+.googleMapColumn > div:nth-child(2) {
+    height: 100%;
+}
+
 /* Checklist (And checkboxes for voting) */
 .downloadInfographic {
     margin-top: -15px;
