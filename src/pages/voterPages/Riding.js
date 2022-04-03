@@ -1,5 +1,6 @@
-import React, { useState, } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Row, Col, Button, InputGroup, Form, Table, Image } from "react-bootstrap";
+import { useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
@@ -7,12 +8,14 @@ import { GoogleMap, LoadScript, Marker, Polygon } from '@react-google-maps/api';
 import defaultAvatar from '../../images/defaultAvatar.png';
 
 export default function Riding() {
+    const location = useLocation();
+    const navigate = useNavigate();
     const [selectValue, setSV] = useState('');
     const [searchbarValue, setSB] = useState('');
     const [searchData, setData] = useState('');
     const [centre, setCentre] = useState({ lat: 45.4236, lng: -75.7009 });
-    const [markers, setMarkers] = useState([{ lat: 45.4236, lng: -75.7009 }])
-    const [shape, setShape] = useState([ { lat: 0, lng: 0 } ]);
+    const [markers, setMarkers] = useState([{ lat: 45.4236, lng: -75.7009 }]);
+    const [shape, setShape] = useState([{ lat: 0, lng: 0 }]);
 
     function selectItem(e) {
         setSV({ value: e.target.value })
@@ -24,10 +27,16 @@ export default function Riding() {
     }
 
     function search() {
+        if (location.state !== null && location.state !== undefined) {
+            document.getElementById("rsDropdown").selectedIndex = 1;
+            setSV({ value: "zip" });
+            document.getElementById("searchbar").value = location.state.zip;
+        }
+
         let searchString = document.getElementById("searchbar").value;
         setSB(searchString);
         let searchUrl = "";
-        if (selectValue.value === "zip") searchUrl = "https://api.smartvoting.cc/v1/Riding/Locate/PostCode/" + searchString;
+        if (selectValue.value === "zip" || (location.state !== null && location.state !== undefined)) searchUrl = "https://api.smartvoting.cc/v1/Riding/Locate/PostCode/" + searchString;
         else if (selectValue.value === "district") searchUrl = "https://api.smartvoting.cc/v1/Riding/Locate/Riding/" + searchString;
         else if (selectValue.value === "candidate") searchUrl = "https://api.smartvoting.cc/v1/Riding/Locate/Candidate/" + capitalize(searchString);
         else searchUrl = "https://api.smartvoting.cc/v1/Riding/Locate/City/" + searchString;
@@ -35,18 +44,22 @@ export default function Riding() {
             if (res.data !== undefined) {
                 setData(res.data);
                 getLocationData(res.data);
-                swapView();
-                setBS(false);
             }
-        }).catch(err => { });
+        }).catch(err => {
+            setData({});
+            getLocationData({});
+        });
+        swapView();
+        setBS(false);
+        setTimeout(navigate('/voter/riding/', {}), 1000);
     }
 
     function getLocationData(data) {
         let markersArray = [];
         if (data.length === undefined) {
             axios.get("https://api.smartvoting.cc/v1/Riding/Outline/Centroid/" + data.id).then(res => {
-                setMarkers([{ lat: res.data.centroid.latitude, lng: res.data.centroid.longitude }]);
-                setCentre({ lat: res.data.centroid.latitude, lng: res.data.centroid.longitude });
+                setMarkers([{ lat: res.data[0].centroid.latitude, lng: res.data[0].centroid.longitude }]);
+                setCentre({ lat: res.data[0].centroid.latitude, lng: res.data[0].centroid.longitude });
             }).catch(err => { });
             axios.get("https://api.smartvoting.cc/v1/Riding/Outline/Shape/" + data.id).then(res => {
                 let shapeArray = [];
@@ -55,11 +68,11 @@ export default function Riding() {
             }).catch(err => { });
         }
         else {
-            data.forEach(riding => {
-                axios.get("https://api.smartvoting.cc/v1/Riding/Outline/Centroid/" + riding.id).then(res => {
-                    markersArray.push({ lat: res.data.centroid.latitude, lng: res.data.centroid.longitude });
+            for (let i = 0; i < data.length; i++) {
+                axios.get("https://api.smartvoting.cc/v1/Riding/Outline/Centroid/" + data[i].id).then(res => {
+                    markersArray.push({ lat: res.data[0].centroid.latitude, lng: res.data[0].centroid.longitude });
                 }).catch(err => { });
-            })
+            }
             setTimeout(function () {
                 setMarkers(markersArray);
                 setCentreVari(markersArray);
@@ -114,8 +127,13 @@ export default function Riding() {
         zIndex: 1
     }
 
+    useEffect(() => {
+        if (location.state !== null && location.state !== undefined) search();
+    }, []);
+
+
     return (
-        <Container style={{ minWidth: "100%", minHeight:"100%", height:"100%", }}>
+        <Container style={{ minWidth: "100%", minHeight: "100%", height: "100%", }} >
             <InputGroup className="mb-3">
                 <Form.Select defaultValue="" id="rsDropdown" style={{ width: "25%", fontSize:"1.2vw" }} onChange={(e) => {selectItem(e)}} required>
                     <option value="" disabled hidden>Search By:</option>
@@ -128,12 +146,10 @@ export default function Riding() {
                     id="searchbar"
                     disabled={selectValue === ""}
                     placeholder="Please select a value from the dropdown menu"
-                    required
-                    data-val-regex={selectValue.value === "zip" ? "Please enter a valid Postal Code (A9A 9A9)." : ""}
-                    pattern={selectValue.value === "zip" ? "^(\d{5}-\d{4}|\d{5}|\d{9})$|^([a-zA-Z]\d[a-zA-Z]( )?\d[a-zA-Z]\d)$" : "^[abceghjklmnprstvxyABCEGHJKLMNPRSTVXY]{1}\d{1}[a-zA-Z]{1} *\d{1}[a-zA-Z]{1}\d{1}\s*$"}
                     data-val-required={selectValue.value === "zip" ? "Please enter a postal code to continue." : "A keyword is required to continue."}
                     maxLength={selectValue.value === "zip" ? "7" : "999"}
                     type="text"
+                    required
                     style={{ width: "65%", fontSize:"1.2vw"  }}
                 />
                 <Button disabled={buttonState} variant="" className="btn-outline-purple" id="button-addon2" type="submit" style={{ width: "10%", fontSize: "1.2vw" }} onClick={() => { setBS(true); search(); }}>
@@ -230,13 +246,13 @@ export default function Riding() {
                                 </Container> :
                                     <Container style={{ border: "2px solid black", minWidth: "100%", backgroundColor: "#f2f2f2", padding: "20px", fontSize: "1vw", height: "100%", }}>
                                         <h1 style={{ fontWeight:"bold", }}>Error:</h1>
-                                        <h2>Looks like there are no {selectValue.value === "zip" ? "postal codes" : selectValue.value === "district" ? "districts" : selectValue.value === "candidate" ? "candidates" : "places"} that match the search term: "{searchbarValue}"</h2>
+                                        <h2>Looks like there are no {selectValue.value === "zip" ? "postal codes" : selectValue.value === "district" ? "districts" : selectValue.value === "candidate" ? "candidates" :  "places"} that match the search term: "{searchbarValue}"</h2>
                                     </Container>
                         }
                     </Col>
                     <Col md={5} className="googleMapColumn" style={{ maxHeight: "100%", }}>
                         <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} >
-                            <GoogleMap zoom={12} center={centre} >
+                            <GoogleMap zoom={selectValue.value === "location" ? 10 : selectValue.value === "candidate" ? 3 : 12} center={centre} >
                                 <Polygon paths={shape} options={options} />
                                 {Array.from({ length: markers.length }).map((_, index) => (
                                     <Marker key={index} position={markers[index]} />

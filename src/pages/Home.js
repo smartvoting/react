@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import { useNavigate } from 'react-router-dom';
 import tempCarouselImage from '../images/tempCarouselImage.png';
 import tempCardImg from '../images/tempCardImg.png';
 import { Container, Carousel, Card, Row, Col, Button, InputGroup, Form } from "react-bootstrap";
@@ -131,6 +132,10 @@ function CardsFunction() {
 }
 
 function VoterInfoService() {
+    const navigate = useNavigate();
+    function findRiding() {
+        navigate('/voter/riding/', { state: { zip: document.getElementById("zip").value }});
+    }
     return (
         <Card className="text-center" style={{ backgroundColor: "#FDFD96"}}>
             <Card.Header style={{ fontWeight: "bold", fontSize: "1.6vw" }}>Voter Information Service</Card.Header>
@@ -140,15 +145,20 @@ function VoterInfoService() {
                         <Card.Text style={{ fontSize: "1.2vw" }}>Find your electoral district</Card.Text>
                         <InputGroup className="mb-3">
                             <Form.Control
-                                placeholder="Postal Code"
-                                maxLength= "7"
+                                id="zip"
+                                maxLength="7"
+                                required
+                                placeholder="Postal Code (ex. A9A9A9)"
+                                data-val-required="Please enter a postal code to continue."
+                                type="text"
+                                required
                                 style={{ backgroundColor: "inherit", fontSize: "1.2vw", border:"1px solid #513A77" }}
                             />
-                            <Button variant="" className="btn-outline-purple">Search</Button>
+                            <Button variant="" className="btn-outline-purple" onClick={() => { findRiding() }}>Search</Button>
                         </InputGroup>
                     </Col>
                     <Col style={{ paddingLeft: "50px", }}>
-                        <Button variant="" className="btn-lg btn-purple" onClick={() => { }}>Check to see if you are registered to vote</Button>
+                        <Button variant="" className="btn-lg btn-purple" href="/voter/registration/">Check to see if you are registered to vote</Button>
                     </Col>
                 </Row>
             </Card.Body>

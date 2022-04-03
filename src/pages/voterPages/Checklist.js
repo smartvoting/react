@@ -24,7 +24,7 @@ export default function CheckList() {
         <Container style={{ minWidth: "100%", }}>
             <Container style={{ width: "100%", }}>
                 <Container className="downloadInfographic">
-                    <p>Download infographic in <a target="_blank" href="https://www.elections.ca/vot/vop/checklist-aide-memoire_e.pdf">PDF</a> | <a target="_blank" href="https://www.elections.ca/vot/vop/checklist-aide-memoire_e.jpg">JPG</a></p>
+                    <p>Download infographic in <a target="_blank" rel="noreferrer" href="https://www.elections.ca/vot/vop/checklist-aide-memoire_e.pdf">PDF</a> | <a target="_blank" rel="noreferrer" href="https://www.elections.ca/vot/vop/checklist-aide-memoire_e.jpg">JPG</a></p>
                 </Container>
             </Container>
             <br />

@@ -12,7 +12,6 @@ export default function Registration() {
         step: 1
     });
     const [currentUser, setCU] = useState(null);
-    const [searchString, setSS] = useState(null);
     const [pass, setPass] = useState(false);
     const [reason, setReason] = useState("");
 
@@ -20,10 +19,6 @@ export default function Registration() {
         currentUser: currentUser,
         setCU: function (cu) {
             setCU(cu);
-        },
-        searchString: searchString,
-        setSS: function (ss) {
-            setSS(ss);
         },
         pass: pass,
         setPass: function (pass) {
@@ -48,11 +43,11 @@ export default function Registration() {
     };
 
     const step = state.step;
-        
+
     switch (step) {
-        case 1: return (<Welcome aio={allInOne}/>);
+        case 1: return (<Welcome aio={allInOne} />);
         case 2: return (<Privacy aio={allInOne} />)
-        case 3: return (<Eligibility aio={allInOne}/>)
+        case 3: return (<Eligibility aio={allInOne} />)
         case 4: return (<PersonalInfo aio={allInOne} />)
         case 5: return (<Review aio={allInOne} />)
         case 6: return (<Results aio={allInOne} />)
@@ -78,8 +73,8 @@ function Welcome(props) {
                 <hr />
                 <strong style={{ fontSize: "1.4vw", }}>PLEASE READ BEFORE CONTINUING</strong>
                 <p>Under the <a href="https://laws-lois.justice.gc.ca/eng/acts/e-2.01/" target="__blank">Canada Elections Act (S.C. 2000, c. 9)</a>, it is illegal to make false statements about voter registration.</p>
-                <p>Please be aware that this website was made for <a href={courseOutline} target="_blank">George Brown College's Winter 2022 Capstone Project</a> and is for educational purposes only. While information on ridings, locations, and history is true, all voter and candidate information is not real and has been generated using our own programs. Any similarity to actual persons, living or dead, is purely coincidental.</p>
-                <p>If you'd like to see if you are actually registered to vote, please <a href="https://www.elections.ca/content.aspx?section=vot&dir=reg&document=index&lang=e" target="_blank">Click Here</a> to go to Election Canada's official service.</p>
+                <p>Please be aware that this website was made for <a href={courseOutline} target="_blank" rel="noreferrer">George Brown College's Winter 2022 Capstone Project</a> and is for educational purposes only. While information on ridings, locations, and history is true, all voter and candidate information is not real and has been generated using our own programs. Any similarity to actual persons, living or dead, is purely coincidental.</p>
+                <p>If you'd like to see if you are actually registered to vote, please <a href="https://www.elections.ca/content.aspx?section=vot&dir=reg&document=index&lang=e" target="_blank" rel="noreferrer">Click Here</a> to go to Election Canada's official service.</p>
                 <br />
                 <input type="checkbox" id="tos" style={{ scale: "1.5", marginLeft: "5px", cursor: "pointer" }} required />
                 <Form.Label htmlFor="tos" style={{ fontWeight: "bold", marginLeft: "10px", cursor: "pointer" }}> I have read the above statement and am aware that this service does not show that I will be registered to vote.</Form.Label>
@@ -238,12 +233,11 @@ function PersonalInfo(props) {
                 setTimeout(function () {
                     if (pass) {
                         formData.isCitizen = true
+                        if (formData.middleName === "N/A") formData.middleName = "";
+                        if (formData.unitNumber === "N/A") formData.unitNumber = "";
                         formData.gender = Number(formData.gender);
                         formData.province = Number(formData.province);
                         formData.streetNumber = Number(formData.streetNumber);
-                        let searchString = "Search?FirstName=" + formData.firstName + (formData.middleName !== "N/A" ? "&MiddleName=" + formData.middleName : "") + "&LastName=" + formData.lastName + "&StreetName=" + formData.streetName + "&City=" + formData.city + "&PostCode=" + formData.postCode;
-                        searchString = searchString.replace(/ /g, "%20");
-                        props.aio.setSS(searchString);
                         props.aio.setCU(formData);
                         props.aio.nextStep();
                     }
@@ -317,7 +311,7 @@ function PersonalInfo(props) {
                     </Row>
                     <strong>Gender: </strong><span className="required">(required)</span>
                     <br />
-                    <fieldset id="gender" style={{ float: "left", marginLeft:"10px", width: "100%", padding: "0", display: "flex", }}>
+                    <fieldset id="gender" style={{ float: "left", marginLeft: "10px", width: "100%", padding: "0", display: "flex", }}>
                         <input type="radio" id="gender1" name="gender" required value="1" style={{ marginRight: "10px", cursor: "pointer", scale: "1.5" }} />
                         <Form.Label htmlFor="gender1" style={{ marginRight: "50px", cursor: "pointer" }}>Male</Form.Label>
                         <input type="radio" id="gender2" name="gender" value="2" style={{ marginRight: "10px", cursor: "pointer", scale: "1.5" }} />
@@ -331,7 +325,15 @@ function PersonalInfo(props) {
                         <Col md={4}>
                             <Form.Group>
                                 <Form.Label style={{ fontWeight: "bold" }}>Postal Code: <span className="required">(required)</span></Form.Label>
-                                <Form.Control type="text" placeholder="Postal Code (A9A9A9)" maxLength="7" name="postCode" id="postCode" required />
+                                <Form.Control
+                                    pattern="^({5}-{4}|{5}|{9})$|^([a-zA-Z][a-zA-Z]( )?[a-zA-Z])$"
+                                    data-val-required="Please enter a postal code to continue."
+                                    type="text"
+                                    placeholder="Postal Code (ex. A9A9A9)"
+                                    maxLength="7"
+                                    name="postCode"
+                                    id="postCode"
+                                    required />
                             </Form.Group>
                         </Col>
                         <Col md={4}>
@@ -368,7 +370,7 @@ function PersonalInfo(props) {
                             </Form.Group>
                         </Col>
                     </Row>
-                    <br/>
+                    <br />
                 </Container>
                 <br />
                 <Container style={{ width: "25%", padding: "0", float: "left", display: "flex", justifyContent: "space-between" }}>
@@ -379,8 +381,8 @@ function PersonalInfo(props) {
                     <Button disabled={buttonState} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                         {
                             buttonState ?
-                            <p style={{ margin: "0" }}>Loading < FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faSpinner} className="fa-spin" /></p> :
-                            <p style={{ margin: "0" }}>Next <FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} /></p>
+                                <p style={{ margin: "0" }}>Loading < FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faSpinner} className="fa-spin" /></p> :
+                                <p style={{ margin: "0" }}>Next <FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} /></p>
                         }
                     </Button>
                 </Container>
@@ -405,9 +407,8 @@ function Review(props) {
                 e.preventDefault();
                 if (props.aio.currentUser !== null && token !== null) {
                     setBS(true)
-                    console.log(props.aio.searchString);
-                    axios.post("https://api.smartvoting.cc/v1/Voters/", props.aio.searchString).then(res => {
-                        console.log(res);
+                    console.log(props.aio.currentUser);
+                    axios.post("https://api.smartvoting.cc/v1/Voters/Check", props.aio.currentUser).then(res => {
                         props.aio.setPass(true);
                         props.aio.nextStep();
                     }).catch(err => {
@@ -416,7 +417,7 @@ function Review(props) {
                         props.aio.setStep(6);
                     });
                 }
-                
+
             }}>
                 <h6><strong>Step 3 of 4</strong></h6>
                 <h2 style={{ fontWeight: "bold", }}>Review Information</h2>
@@ -446,8 +447,8 @@ function Review(props) {
                     <Button disabled={buttonState} type="submit" className="btn btn-purple" style={{ minWidth: "47.5%" }}>
                         {
                             buttonState ?
-                            <p style={{ margin: "0" }}>Loading < FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faSpinner} className="fa-spin" /></p> :
-                            <p style={{ margin: "0" }}>Submit <FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} /></p>
+                                <p style={{ margin: "0" }}>Loading < FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faSpinner} className="fa-spin" /></p> :
+                                <p style={{ margin: "0" }}>Submit <FontAwesomeIcon style={{ float: "right", marginTop: "7px" }} icon={faChevronRight} /></p>
                         }
                     </Button>
                 </Container>
@@ -464,17 +465,17 @@ function Results(props) {
                 <h2 style={{ fontWeight: "bold", }}>Results</h2>
                 <hr />
                 <Container style={{ border: "2px solid black", minWidth: "100%", backgroundColor: "#f2f2f2", padding: "20px", }}>
-                    {props.aio.pass === true ? 
-                        <><h3 style={{ fontWeight:"bold"}}>You are registered to vote at the address you provided.</h3>
-                        <p>You should receive a voter information card in the mail which can be used to vote online, or in person.</p></>
+                    {props.aio.pass === true ?
+                        <><h3 style={{ fontWeight: "bold" }}>You are registered to vote at the address you provided.</h3>
+                            <p>You should receive a voter information card in the mail which can be used to vote online, or in person.</p></>
                         :
                         <><h3 style={{ fontWeight: "bold" }}>You are not eligible to vote in a federal election based on the information you provided.</h3>
                             <p style={{ margin: "0", }} dangerouslySetInnerHTML={{ __html: props.aio.reason }}></p></>
                     }
                 </Container>
-                <br/>
+                <br />
                 <h4 style={{ fontWeight: "bold", }}>Protect your Privacy</h4>
-                <p style={{ margin:"0", }}>Do not save filled forms on shared computers at the end of your session</p>
+                <p style={{ margin: "0", }}>Do not save filled forms on shared computers at the end of your session</p>
                 <ol>
                     <li>Delete any outstanding print jobs,</li>
                     <li>Clear the web browser cache (see FAQs at the top of this page) and</li>

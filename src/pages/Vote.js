@@ -248,7 +248,14 @@ function PersonalInfo(props) {
                         <Col md={4}>
                             <Form.Group>
                                 <li><Form.Label style={{ fontWeight: "bold" }}>Postal Code: <span className="required">(required)</span></Form.Label></li>
-                                <Form.Control type="text" placeholder="Postal Code (A9A9A9)" maxLength="7" name="postCode" id="postCode" required />
+                                <Form.Control
+                                    type="text"
+                                    data-val-required="Please enter a postal code to continue."
+                                    placeholder="Postal Code (ex. A9A9A9)"
+                                    maxLength="7"
+                                    name="postCode"
+                                    id="postCode"
+                                    required />
                             </Form.Group>
                         </Col>
                         <Col md={4}>
