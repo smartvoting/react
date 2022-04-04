@@ -54,9 +54,7 @@ export default function LandingPage(props) {
                         if (activeElement !== null) activeElement.classList.remove("active");
                     }}
                 >
-                    <Container style={{minWidth:"100%",}}>
-                        {props.lc.panelComponents[props.lc.panelPages.indexOf(window.location.pathname)]}
-                    </Container>
+                    {props.lc.panelComponents[props.lc.panelPages.indexOf(window.location.pathname)]}
                 </SlidingPane>
             </Container>
 

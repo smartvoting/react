@@ -184,6 +184,21 @@ body {
 
 
 /* Home Page */
+.carousel {
+    opacity: 1.0;
+    z-index: -1;
+    max-height: 100vh !important;
+    min-width: 100% !important;
+    text-align: center;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.react-parallax-bgimage {
+    height: auto !important;
+    width: auto !important;
+}
+
 .twitterBackground {
     background-color: #89CFF0;
     width: 100%;
@@ -196,7 +211,7 @@ body {
     border-radius: 5px;
     text-align: center;
     font-size: 1.6vw;
-    flex-direction:column;
+    flex-direction: column;
 }
 
 /* Error Page */
@@ -208,7 +223,6 @@ body {
 }
 
 /*Landing Pages*/
-
 .landingContainer {
     display: flex;
     height: calc(100vh - 150px) !important;
@@ -322,6 +336,11 @@ body {
 /* Party List*/
 .modal-dialog{
     max-width:90% !important;
+}
+
+/* Find a Riding */
+.googleMapColumn > div:nth-child(2) {
+    height: 100%;
 }
 
 /* Checklist (And checkboxes for voting) */
@@ -488,25 +507,4 @@ body {
 /* Vote */
 .candidateRow {
     cursor: pointer;
-}
-
-/* Carousel */
-.carousel {
-    opacity: 1.0;
-    z-index: -1;
-    max-height: 100vh !important; 
-    min-width: 100% !important;
-    text-align: center;  
-    padding: 0;
-    margin: 0;
-}
-
-.carousel-item {
-    max-height: 100vh !important; 
-    min-width: 100% !important;
-}
-
-.carousel-item > img {
-    max-height: 100vh !important; 
-    min-width: 100% !important;
 }

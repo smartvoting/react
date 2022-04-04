@@ -46,7 +46,7 @@ export default function Contact() {
                             <p>1-613-993-2975</p>
                             <hr />
                             <h4 style={{ fontWeight: "bold", fontSize: "1.4vw", }}>Email</h4>
-                            <Button variant="" target="_blank" href="https://csep-pesc.elections.ca/en-CA/intake/" className="btn-lg btn-purple">Click Here To Contact Elections Canada</Button>
+                            <Button variant="" target="_blank" rel="noreferrer" href="https://csep-pesc.elections.ca/en-CA/intake/" className="btn-lg btn-purple">Click Here To Contact Elections Canada</Button>
                             <hr />
                             <h4 style={{ fontWeight: "bold", fontSize: "1.4vw", }}>Fax</h4>
                             <strong>Local:</strong>

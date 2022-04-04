@@ -1,6 +1,6 @@
-﻿import React, { useState, useEffect, useRef } from "react";
+﻿import React, { useState, useRef } from "react";
 import { Container, Card, Form, Button, Row, Col, Table, } from "react-bootstrap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 import axios from 'axios'
@@ -157,7 +157,7 @@ function PersonalInfo(props) {
                         axios.post("https://api.smartvoting.cc/v1/Vote/Step/1", formData).then(res => {
                             props.aio.setJWT(res.data)
                             props.aio.nextStep();
-                        }).catch(err => { });
+                        }).catch(err => { if (err.response.status === 401) props.aio.setStep(9); });
                     }
                 }, 1000);
             }}>
@@ -248,7 +248,14 @@ function PersonalInfo(props) {
                         <Col md={4}>
                             <Form.Group>
                                 <li><Form.Label style={{ fontWeight: "bold" }}>Postal Code: <span className="required">(required)</span></Form.Label></li>
-                                <Form.Control type="text" placeholder="Postal Code (A9A9A9)" maxLength="7" name="postCode" id="postCode" required />
+                                <Form.Control
+                                    type="text"
+                                    data-val-required="Please enter a postal code to continue."
+                                    placeholder="Postal Code (ex. A9A9A9)"
+                                    maxLength="7"
+                                    name="postCode"
+                                    id="postCode"
+                                    required />
                             </Form.Group>
                         </Col>
                         <Col md={4}>

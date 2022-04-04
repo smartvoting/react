@@ -1,11 +1,18 @@
 ﻿import React, { Component } from 'react';
+import { useNavigate } from 'react-router-dom';
 import tempCarouselImage from '../images/tempCarouselImage.png';
 import tempCardImg from '../images/tempCardImg.png';
-import { Container, Card, Row, Col, Button, InputGroup, Form } from "react-bootstrap";
+import { Container, Carousel, Card, Row, Col, Button, InputGroup, Form } from "react-bootstrap";
 import { Parallax } from 'react-parallax';
 import { TwitterTimelineEmbed, } from 'react-twitter-embed';
-import  MainCarousel   from '../components/MainCarousel';
-import { Autocomplete } from '@react-google-maps/api';
+
+import capitolHill from '../images/main_carousel/CapitolHill.jpeg';
+import toronto from '../images/main_carousel/Toronto.jpeg';
+import montreal from '../images/main_carousel/Montreal.jpeg';
+import vancouver from '../images/main_carousel/Vancouver.jpeg';
+import edmonton from '../images/main_carousel/Edmonton.jpeg';
+import halifax from '../images/main_carousel/Halifax.jpeg';
+import calgary from '../images/main_carousel/Calgary.jpg';
 
 export default class Home extends Component  {
     componentDidMount() {
@@ -22,10 +29,11 @@ export default class Home extends Component  {
     render() {
         return (
             <>
-                    <Container className="carousel">
-                        <Button variant="" className="btn-lg btn-purple" style={{ position: "absolute", top: "90%", transform: "translate(-50%,-50%)", fontSize: "2vw",}}>Cast Your Vote Now!</Button>
-                        <MainCarousel />
-                    </Container>
+
+                <Container className="carousel">
+                    <CarouselFunction />
+                    <Button variant="" className="btn-lg btn-purple" style={{ position: "absolute", top: "90%", transform: "translate(-50%,-50%)", fontSize: "2vw", }}>Cast Your Vote Now!</Button>
+                </Container>
 
                 <Container className="justify-content-center mt-3 mb-3" style={{ minWidth:"80%"}}>
                     <Row className="g-4">
@@ -53,6 +61,34 @@ export default class Home extends Component  {
         );
     }
     
+}
+
+function CarouselFunction() {
+    const images = [capitolHill, toronto, montreal, halifax, vancouver, edmonton, calgary]
+    return (
+        <Carousel indicators={false} controls={false} prevIcon={""} nextIcon={""} fade>
+            {Array.from({ length: images.length }).map((_, index) => (
+                <Carousel.Item key={index}>
+                    <Parallax bgImage={images[index]} strength={300} style={{ minHeight: "100vh", }}></Parallax>
+                </Carousel.Item>
+            ))}
+            {/*
+             * Original Carousel incase we decide to scrap parallax
+             <Carousel fade style={{ maxHeight: "100vh" }}>
+                {Array.from({ length: images.length }).map((_, index) => (
+                    <Carousel.Item key={index}>
+                        <img
+                            className="d-block w-100"
+                            src={images[index]}
+                            alt="We'll do this later or something"
+                        />
+                    </Carousel.Item>
+                ))}
+                </Carousel>
+             */}
+        </Carousel>
+        
+    );
 }
 
 function CardsFunction() {
@@ -96,6 +132,10 @@ function CardsFunction() {
 }
 
 function VoterInfoService() {
+    const navigate = useNavigate();
+    function findRiding() {
+        navigate('/voter/riding/', { state: { zip: document.getElementById("zip").value }});
+    }
     return (
         <Card className="text-center" style={{ backgroundColor: "#FDFD96"}}>
             <Card.Header style={{ fontWeight: "bold", fontSize: "1.6vw" }}>Voter Information Service</Card.Header>
@@ -105,15 +145,20 @@ function VoterInfoService() {
                         <Card.Text style={{ fontSize: "1.2vw" }}>Find your electoral district</Card.Text>
                         <InputGroup className="mb-3">
                             <Form.Control
-                                placeholder="Postal Code"
-                                maxLength= "7"
+                                id="zip"
+                                maxLength="7"
+                                required
+                                placeholder="Postal Code (ex. A9A9A9)"
+                                data-val-required="Please enter a postal code to continue."
+                                type="text"
+                                required
                                 style={{ backgroundColor: "inherit", fontSize: "1.2vw", border:"1px solid #513A77" }}
                             />
-                            <Button variant="" className="btn-outline-purple">Search</Button>
+                            <Button variant="" className="btn-outline-purple" onClick={() => { findRiding() }}>Search</Button>
                         </InputGroup>
                     </Col>
                     <Col style={{ paddingLeft: "50px", }}>
-                        <Button variant="" className="btn-lg btn-purple" onClick={() => { }}>Check to see if you are registered to vote</Button>
+                        <Button variant="" className="btn-lg btn-purple" href="/voter/registration/">Check to see if you are registered to vote</Button>
                     </Col>
                 </Row>
             </Card.Body>
