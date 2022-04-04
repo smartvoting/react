@@ -9,7 +9,7 @@ export default function FooterComponent() {
                     <Col>
                         <a
                             href={courseOutline}
-                            target="_blank"
+                            target="_blank" rel="noreferrer"
                             data-tip="For educational purposes only"
                             className="tip-above">
                             &copy;{new Date().getFullYear()} Smart Voting LLC
@@ -23,7 +23,7 @@ export default function FooterComponent() {
                         </Row>
                     </Col>
                     <Col style={{ textAlign: "right", }}>
-                        <a target="_blank" href="https://github.com/smartvoting">GitHub</a>
+                        <a target="_blank" rel="noreferrer" href="https://github.com/smartvoting">GitHub</a>
                     </Col>
                 </Row>
             </Container>

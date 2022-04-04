@@ -49,8 +49,6 @@ export default function NavbarComponent() {
                             menuVariant="dark" >
                             <NavDropdown.Item href="/pac/list/">Parties List</NavDropdown.Item>
                             <NavDropdown.Item href="/pac/donations/">Contribution Limits</NavDropdown.Item>
-                            <NavDropdown.Item href="/pac/listc/">List of All Candidates</NavDropdown.Item>
-                            <NavDropdown.Item href="/pac/listpc/">Candidates By Party</NavDropdown.Item>
                             <NavDropdown.Item href="/pac/find/">Find Candidates</NavDropdown.Item>
                         </NavDropdown>
 
@@ -65,11 +63,6 @@ export default function NavbarComponent() {
 
                         <Nav.Link href="/vote/" className="voteButton">Vote Now!</Nav.Link>
                     </Nav>
-
-                    <Nav className="me-auto">
-                        <Nav.Link href="/login/">Login</Nav.Link>
-                    </Nav>
-
                 </Navbar.Collapse>
             </Container>
         </Navbar>

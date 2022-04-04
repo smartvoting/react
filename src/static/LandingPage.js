@@ -4,7 +4,6 @@ import "react-sliding-pane/dist/react-sliding-pane.css";
 import { Nav, Container, } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import tempCarouselImage from '../images/tempCarouselImage.png';
 
 export default function LandingPage(props) {
     const [state, setState] = useState({  isPaneOpen: false });
@@ -38,7 +37,12 @@ export default function LandingPage(props) {
 
             <Container className="landingContainer">
                 <Container className="landingContent">
-                    <img style={{width:"100%", height:"100%"}} src={tempCarouselImage }/>
+                    <img style={{ width: "100%", height: "100%" }} src={props.lc.backgroundImage} alt="Landing page background" />
+                    <Container style={{ display: "flex", flexDirection:"column", justifyContent: "center", alignItems: "center", position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", background: "rgba(0,0,0, 0.5)", color: "white", width: "100%",  }}>
+                        <p style={{ fontSize: "4vw", fontWeight:"bold", }}>{props.lc.header}</p>
+                        <br />
+                        <p style={{ fontSize: "2vw", }}>Please select an menu option from the left side of the screen.</p>
+                    </Container>
                 </Container>
                 <SlidingPane
                     closeIcon={<FontAwesomeIcon icon={faTimes} className="fa-2x" />}
@@ -54,9 +58,7 @@ export default function LandingPage(props) {
                         if (activeElement !== null) activeElement.classList.remove("active");
                     }}
                 >
-                    <Container style={{minWidth:"100%",}}>
-                        {props.lc.panelComponents[props.lc.panelPages.indexOf(window.location.pathname)]}
-                    </Container>
+                    <>{props.lc.panelComponents[props.lc.panelPages.indexOf(window.location.pathname)]}</>
                 </SlidingPane>
             </Container>
 

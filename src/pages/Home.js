@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
-import tempCarouselImage from '../images/tempCarouselImage.png';
-import tempCardImg from '../images/tempCardImg.png';
+import { useNavigate } from 'react-router-dom';
+//import tempCarouselImage from '../images/tempCarouselImage.png';
+//import tempCardImg from '../images/tempCardImg.png';
 import { Container, Carousel, Card, Row, Col, Button, InputGroup, Form } from "react-bootstrap";
 import { Parallax } from 'react-parallax';
 import { TwitterTimelineEmbed, } from 'react-twitter-embed';
@@ -31,7 +32,9 @@ export default class Home extends Component  {
 
                 <Container className="carousel">
                     <CarouselFunction />
-                    <Button variant="" className="btn-lg btn-purple" style={{ position: "absolute", top: "90%", transform: "translate(-50%,-50%)", fontSize: "2vw", }}>Cast Your Vote Now!</Button>
+                    <Container style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", background: "rgba(0,0,0, 0.5)", color: "white", width: "100%", }}>
+                        <p style={{ fontSize: "4vw", fontWeight: "bold", }}>Welcome to Smart Voting</p>
+                    </Container>
                 </Container>
 
                 <Container className="justify-content-center mt-3 mb-3" style={{ minWidth:"80%"}}>
@@ -131,6 +134,10 @@ function CardsFunction() {
 }
 
 function VoterInfoService() {
+    const navigate = useNavigate();
+    function findRiding() {
+        navigate('/voter/riding/', { state: { zip: document.getElementById("zip").value }});
+    }
     return (
         <Card className="text-center" style={{ backgroundColor: "#FDFD96"}}>
             <Card.Header style={{ fontWeight: "bold", fontSize: "1.6vw" }}>Voter Information Service</Card.Header>
@@ -140,15 +147,19 @@ function VoterInfoService() {
                         <Card.Text style={{ fontSize: "1.2vw" }}>Find your electoral district</Card.Text>
                         <InputGroup className="mb-3">
                             <Form.Control
-                                placeholder="Postal Code"
-                                maxLength= "7"
+                                id="zip"
+                                maxLength="7"
+                                placeholder="Postal Code (ex. A9A9A9)"
+                                data-val-required="Please enter a postal code to continue."
+                                type="text"
+                                required
                                 style={{ backgroundColor: "inherit", fontSize: "1.2vw", border:"1px solid #513A77" }}
                             />
-                            <Button variant="" className="btn-outline-purple">Search</Button>
+                            <Button variant="" className="btn-outline-purple" onClick={() => { findRiding() }}>Search</Button>
                         </InputGroup>
                     </Col>
                     <Col style={{ paddingLeft: "50px", }}>
-                        <Button variant="" className="btn-lg btn-purple" onClick={() => { }}>Check to see if you are registered to vote</Button>
+                        <Button variant="" className="btn-lg btn-purple" href="/voter/registration/">Check to see if you are registered to vote</Button>
                     </Col>
                 </Row>
             </Card.Body>

@@ -24,7 +24,7 @@ export default function CheckList() {
         <Container style={{ minWidth: "100%", }}>
             <Container style={{ width: "100%", }}>
                 <Container className="downloadInfographic">
-                    <p>Download infographic in <a target="_blank" href="https://www.elections.ca/vot/vop/checklist-aide-memoire_e.pdf">PDF</a> | <a target="_blank" href="https://www.elections.ca/vot/vop/checklist-aide-memoire_e.jpg">JPG</a></p>
+                    <p>Download infographic in <a target="_blank" rel="noreferrer" href="https://www.elections.ca/vot/vop/checklist-aide-memoire_e.pdf">PDF</a> | <a target="_blank" rel="noreferrer" href="https://www.elections.ca/vot/vop/checklist-aide-memoire_e.jpg">JPG</a></p>
                 </Container>
             </Container>
             <br />
@@ -38,7 +38,7 @@ export default function CheckList() {
             </Container>
             <br />
             <hr />
-            <img style={{ width: "20%", display: "flex", margin: "auto", }} src={img10} />
+            <img style={{ width: "20%", display: "flex", margin: "auto", }} src={img10} alt="checkListImage" />
             <br />
             <Row style={{ flexDirection: "row" }}>
                 <Col sm={8} style={{ fontSize: "175%" }}>
@@ -64,7 +64,7 @@ function ChecklistItem(index, text) {
 
     return (
         <Row key={index} style={index % 2 !== 1 ? { backgroundColor: "#3333", alignItems: "center", padding: "10px 0 10px 0" } : { alignItems: "center", padding: "10px 0 10px 0" }}>
-            <Col sm={4}><img style={{ width: "100%", }} src={index >= 3 ? images[index + 4] : images[index]} /></Col>
+            <Col sm={4}><img style={{ width: "100%", }} src={index >= 3 ? images[index + 4] : images[index]} alt="checkListImage" /></Col>
             <Col sm={8} style={{ display: "flex" }}>
                 <Container className="provisional gc-checklist">
                     <ul style={{ listStyleType: "none", marginTop: "20px", }}>
@@ -90,7 +90,7 @@ function ChecklistItem(index, text) {
 function CreateCardGroupItem(index, img, text) {
     return (
         <Card key={index}>
-            <Card.Img variant="top" src={img} />
+            <Card.Img variant="top" src={img} alt="cardGroupItemImage" />
             <Card.Body>
                 <Card.Text className="text-center" style={{ fontSize: "125%" }} dangerouslySetInnerHTML={{ __html: text }}></Card.Text>
             </Card.Body>

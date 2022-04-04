@@ -7,10 +7,10 @@ export default function About() {
         <Container className="ascContainer">
             <Row className="mx-auto" style={{ width: "90%", paddingTop: "20px", }}>
                 <Col style={{ display: "flex", justifyContent: "center", borderRight: "1px solid #d3d3d3", paddingRight: "50px", }}>
-                    <img src={smartVotingLogo} style={{ width: "57%", paddingBottom: "20px", }} />
+                    <img src={smartVotingLogo} style={{ width: "57%", paddingBottom: "20px", }} alt="smart voting logo" />
                 </Col>
                 <Col style={{ display: "flex", justifyContent: "center", paddingLeft: "50px", }}>
-                    <img src={electionsCanadaLogo} style={{ width: "100%", paddingBottom: "20px", }} />
+                    <img src={electionsCanadaLogo} style={{ width: "100%", paddingBottom: "20px", }} alt="elections canada logo" />
                 </Col>
             </Row>
             <Row className="mx-auto" style={{ width: "90%", paddingBottom: "20px", }}>

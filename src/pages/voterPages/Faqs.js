@@ -20,7 +20,7 @@ export default function Faqs() {
                         <br />
                         <h5 style={{fontWeight:"bold"}}>Vote at your advance poll</h5>
                         <p>Advance polls are held on the 10th, 9th, 8th and 7th days before election day.</p>
-                        <p>The date, hours and address of your advance poll will be available online, on your voter information card or by calling <a target="_blank" href="https://www.elections.ca/content.aspx?section=cont&dir=add&document=index&lang=e">Elections Canada.</a></p>
+                        <p>The date, hours and address of your advance poll will be available online, on your voter information card or by calling <a target="_blank" rel="noreferrer" href="https://www.elections.ca/content.aspx?section=cont&dir=add&document=index&lang=e">Elections Canada.</a></p>
                         <p>To vote at your advance poll:</p>
                         <ul>
                             <li>You must be registered to vote;</li>
@@ -163,7 +163,7 @@ export default function Faqs() {
                             <li style={{fontWeight:"bold"}}>You can vote at advance polls</li>
                             <p>They are held on the 10th, 9th, 8th and 7th day before election day.</p>
                             <li style={{ fontWeight: "bold" }}>You can vote by special ballot</li>
-                            <p>If your residence is in Canada, you can apply to vote by special ballot after the election has been called. You can <a target="_blank" href="https://www.elections.ca/content.aspx?section=vot&dir=reg/svr&document=index&lang=e">apply online</a>, by calling 1-800-463-6868 or at any Elections Canada office.</p>
+                            <p>If your residence is in Canada, you can apply to vote by special ballot after the election has been called. You can <a target="_blank" rel="noreferrer" href="https://www.elections.ca/content.aspx?section=vot&dir=reg/svr&document=index&lang=e">apply online</a>, by calling 1-800-463-6868 or at any Elections Canada office.</p>
                             <ol type="a">
                                 <li style={{ fontWeight: "bold" }}>Vote by special ballot from within your riding</li>
                                 <p>With this option, you can vote:</p>
@@ -189,7 +189,7 @@ export default function Faqs() {
                                 <p>Your completed ballot must be received at Elections Canada in Ottawa before 6:00 p.m. (Eastern Time) on election day. </p>
                                 <p><strong>By law, we cannot accept late application forms or count late ballots.</strong></p>
                                 <p>Once you have registered to vote by special ballot, you cannot vote another way.</p>
-                                <a target="_blank" href="https://www.elections.ca/content.aspx?section=vot&dir=bkg&document=ec90540&lang=e#a3">Learn more about voting by special ballot (voting by mail).</a>
+                                <a target="_blank" rel="noreferrer" href="https://www.elections.ca/content.aspx?section=vot&dir=bkg&document=ec90540&lang=e#a3">Learn more about voting by special ballot (voting by mail).</a>
                             </ol>
                         </ol>
 
@@ -202,7 +202,7 @@ export default function Faqs() {
                     <Accordion.Header>I'm homeless. How do I vote?</Accordion.Header>
                     <Accordion.Body>
                         <p>Eligible electors who are homeless or have no fixed address are welcome to register and vote.</p>
-                        <p>Everyone who votes must prove their identity and address. <a target="_blank" href="https://www.elections.ca/content.aspx?section=vot&dir=ids&document=index&lang=e">This page lists all the types of proof of identity and address accepted at the polls.</a></p>
+                        <p>Everyone who votes must prove their identity and address. <a target="_blank" rel="noreferrer" href="https://www.elections.ca/content.aspx?section=vot&dir=ids&document=index&lang=e">This page lists all the types of proof of identity and address accepted at the polls.</a></p>
                         <p>Here are some of the ways you can prove your identity and address at the polls:</p>
                         <ul>
                             <li>To prove your identity (name), you can show a piece of ID with your name on it, like a fishing license, library card, social insurance card (SIN card), birth certificate or Veterans Affairs Canada Health Identification Card.</li>
@@ -210,7 +210,7 @@ export default function Faqs() {
                             <li>You can still vote if you declare your identity and address in writing and have someone who knows you and who is assigned to your polling station vouch for you.</li>
                             <li>The voucher must be able to prove their identity and address. A person can vouch for only one person (except in long-term care institutions). </li>
                         </ul>
-                        <p>For more information, please <a target="_blank" href="https://www.elections.ca/content.aspx?section=cont&dir=add&document=index&lang=e">contact Elections Canada.</a></p>
+                        <p>For more information, please <a target="_blank" rel="noreferrer" href="https://www.elections.ca/content.aspx?section=cont&dir=add&document=index&lang=e">contact Elections Canada.</a></p>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
@@ -221,7 +221,7 @@ export default function Faqs() {
                     <Accordion.Body>
                         <p>Electors who live in hospitals and facilities that provide long-term care may have the extra option of voting at a mobile polling station in their residence.</p>
                         <p>Elections Canada offers mobile polling stations in some residences and hospital wards. If required, we transport the ballot box from room to room to facilitate voting.</p>
-                        <p>Everyone who votes must prove their identity and address. Learn more about <a target="_blank" href="https://www.elections.ca/content.aspx?section=vot&dir=ids&document=index&lang=e">all the kinds of proof of address and identity accepted at mobile polls.</a></p>
+                        <p>Everyone who votes must prove their identity and address. Learn more about <a target="_blank" rel="noreferrer" href="https://www.elections.ca/content.aspx?section=vot&dir=ids&document=index&lang=e">all the kinds of proof of address and identity accepted at mobile polls.</a></p>
                         <p>Here are some ways to prove your identity and address:</p>
                         <ul>
                             <li>To prove your identity (name), you can show a piece of ID with your name on it, like a health card, social insurance card (SIN card), birth certificate, Veterans Affairs Canada Health Identification Card, or hospital bracelet.
@@ -232,7 +232,7 @@ export default function Faqs() {
                             <li>To prove your address, one option is to show an "Attestation of Residence." This is an official letter from a long-term care facility that says this person lives there. You can request this letter from the facility administrator.</li>
                             <li>You can still vote if you declare your identity and address in writing and have someone who knows you vouch for you. The voucher must be able to prove their identity and address. The voucher may be an employee of the institution where you live. The employee may vouch for more than one elector and must reside in the same electoral district or adjacent electoral district as the person being vouched for. </li>
                         </ul>
-                        <p>For more information, please <a target="_blank" href="https://www.elections.ca/content.aspx?section=cont&dir=add&document=index&lang=e">contact Elections Canada.</a></p>
+                        <p>For more information, please <a target="_blank" rel="noreferrer" href="https://www.elections.ca/content.aspx?section=cont&dir=add&document=index&lang=e">contact Elections Canada.</a></p>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
@@ -243,7 +243,7 @@ export default function Faqs() {
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Am I allowed time off work to vote?</Accordion.Header>
                     <Accordion.Body>
-                        <p><a target="_blank" href="https://laws-lois.justice.gc.ca/eng/acts/E-2.01/page-16.html?txthl=pencil#s-121">By law</a>, electors must have three consecutive hours to cast their vote on election day. If your hours of work do not allow for three consecutive hours to vote, your employer must give you time off.</p>
+                        <p><a target="_blank" rel="noreferrer" href="https://laws-lois.justice.gc.ca/eng/acts/E-2.01/page-16.html?txthl=pencil#s-121">By law</a>, electors must have three consecutive hours to cast their vote on election day. If your hours of work do not allow for three consecutive hours to vote, your employer must give you time off.</p>
                         <p>For example, if you live in a riding where voting hours are 9:30 a.m. to 9:30 p.m. and you usually work from 11:00 a.m. to 7:00 p.m., your hours of work will not allow three consecutive hours for voting. To give you three consecutive hours to vote, your employer could allow you to arrive late (at 12:30 p.m.), let you leave early (at 6:30 p.m.), or give you three hours off at some point during the work day.</p>
                         <p>Your employer has the right to decide when the time off will be given.</p>
                         <p>This rule may not apply if you work in the transportation industry.</p>
@@ -303,7 +303,7 @@ export default function Faqs() {
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>What pieces of ID can I use to vote?</Accordion.Header>
                     <Accordion.Body>
-                        <p>To vote, you must show a proof of identity and address. <a target="_blank" href="https://www.elections.ca/content.aspx?section=vot&dir=ids&document=index&lang=e">Your options are listed here.</a></p>
+                        <p>To vote, you must show a proof of identity and address. <a target="_blank" rel="noreferrer" href="https://www.elections.ca/content.aspx?section=vot&dir=ids&document=index&lang=e">Your options are listed here.</a></p>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
@@ -329,7 +329,7 @@ export default function Faqs() {
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>My income tax form asked if I want to share some of my information with Elections Canada, and I answered "no." Do I still have the right to vote?</Accordion.Header>
                     <Accordion.Body>
-                        <p>Yes. If you are eligible to vote, you may vote. Saying "no" to this question on your income tax form does not remove your name from the <a target="_blank" href="https://www.elections.ca/content.aspx?section=vot&dir=reg/des&document=index&lang=e">National Register of Electors</a> if it was already listed there.</p>
+                        <p>Yes. If you are eligible to vote, you may vote. Saying "no" to this question on your income tax form does not remove your name from the <a target="_blank" rel="noreferrer" href="https://www.elections.ca/content.aspx?section=vot&dir=reg/des&document=index&lang=e">National Register of Electors</a> if it was already listed there.</p>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
@@ -340,7 +340,7 @@ export default function Faqs() {
                     <Accordion.Body>
                         <p>Yes.</p>
                         <p>As long as you're a Canadian citizen and will be at least 18 years old on election day, you can vote in your correctional institution or federal penitentiary. Once an election is called, a staff member in each institution is appointed as a liaison officer and helps prisoners register and vote. The liaison officer can answer your questions about voting and help you register.</p>
-                        <p>Learn more about <a target="_blank" href="https://www.elections.ca/content.aspx?section=vot&dir=bkg&document=ec90545&lang=e">voting by incarcerated electors (voting in prisons).</a></p>
+                        <p>Learn more about <a target="_blank" rel="noreferrer" href="https://www.elections.ca/content.aspx?section=vot&dir=bkg&document=ec90545&lang=e">voting by incarcerated electors (voting in prisons).</a></p>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
@@ -351,7 +351,7 @@ export default function Faqs() {
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Can I vote wearing a face covering?</Accordion.Header>
                     <Accordion.Body>
-                        <p>An elector may vote with their face covered by establishing proof of their identity and residence under any of the <a target="_blank" href="https://www.elections.ca/content.aspx?section=vot&dir=ids&document=index&lang=e">three options listed on this page.</a> An elector is not required to remove their face covering when establishing proof of their identity and residence.</p>
+                        <p>An elector may vote with their face covered by establishing proof of their identity and residence under any of the <a target="_blank" rel="noreferrer" href="https://www.elections.ca/content.aspx?section=vot&dir=ids&document=index&lang=e">three options listed on this page.</a> An elector is not required to remove their face covering when establishing proof of their identity and residence.</p>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
@@ -362,7 +362,7 @@ export default function Faqs() {
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Why should I vote?</Accordion.Header>
                     <Accordion.Body>
-                        <p>Your vote is the way you choose someone to represent you in Canada's Parliament. By expressing your choice, you are exercising a democratic right that is key to the democratic process of government that generations of Canadians have fought to build. For more information, see <a target="_blank" href="https://www.elections.ca/content.aspx?section=res&dir=his&document=index&lang=e"> A History of the Vote in Canada.</a></p>
+                        <p>Your vote is the way you choose someone to represent you in Canada's Parliament. By expressing your choice, you are exercising a democratic right that is key to the democratic process of government that generations of Canadians have fought to build. For more information, see <a target="_blank" rel="noreferrer" href="https://www.elections.ca/content.aspx?section=res&dir=his&document=index&lang=e"> A History of the Vote in Canada.</a></p>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
@@ -374,8 +374,8 @@ export default function Faqs() {
                     <Accordion.Header>I am a member of the Canadian Armed Forces. How do I vote?</Accordion.Header>
                     <Accordion.Body>
                         <p>If you are an elector and member of the Canadian Armed Forces, you may vote using any of the methods available to all other Canadian electors.</p>
-                        <p>You may vote at the assigned civilian polling station associated with your place of residence, either on an advance polling day or election day.Your voter information card tells you where and when to vote. You will need to <a target="_blank" href="https://www.elections.ca/content.aspx?section=vot&dir=ids&document=index&lang=e">show proof of identity and address.</a></p>
-                            <p>You may also vote <a target="_blank" href="https://www.elections.ca/content.aspx?section=vot&dir=bkg&document=ec90540&lang=e">by special ballot</a> at a military polling station set up at a Canadian Armed Forces base or unit.</p>
+                        <p>You may vote at the assigned civilian polling station associated with your place of residence, either on an advance polling day or election day.Your voter information card tells you where and when to vote. You will need to <a target="_blank" rel="noreferrer" href="https://www.elections.ca/content.aspx?section=vot&dir=ids&document=index&lang=e">show proof of identity and address.</a></p>
+                            <p>You may also vote <a target="_blank" rel="noreferrer" href="https://www.elections.ca/content.aspx?section=vot&dir=bkg&document=ec90540&lang=e">by special ballot</a> at a military polling station set up at a Canadian Armed Forces base or unit.</p>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
@@ -394,7 +394,7 @@ export default function Faqs() {
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>I am a member of the Canadian Armed Forces. Does my address for voting purposes change whenever I am posted or deployed?</Accordion.Header>
                     <Accordion.Body>
-                        <p>According to the Canada Elections Act, Canadian Armed Forces electors may register and update their information using any of the methods available to all other Canadian electors. Your address for voting purposes will be the address you consider your place of residence. Remember, when you vote at your assigned civilian polling station (either on an advance polling day or election day) or using the special ballot process outside a military polling station, you will need to <a target="_blank" href="https://www.elections.ca/content.aspx?section=vot&dir=ids&document=index&lang=e">show proof of identity and address.</a></p>
+                        <p>According to the Canada Elections Act, Canadian Armed Forces electors may register and update their information using any of the methods available to all other Canadian electors. Your address for voting purposes will be the address you consider your place of residence. Remember, when you vote at your assigned civilian polling station (either on an advance polling day or election day) or using the special ballot process outside a military polling station, you will need to <a target="_blank" rel="noreferrer" href="https://www.elections.ca/content.aspx?section=vot&dir=ids&document=index&lang=e">show proof of identity and address.</a></p>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
