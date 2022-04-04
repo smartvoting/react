@@ -669,10 +669,22 @@ function FinalConfirmation() {
 function Error() {
     return (
         <Card.Body style={{ textAlign: "left", padding: "20px", }}>
-            <h4 style={{ fontWeight: "bold", fontSize: "1.5vw" }}>Error</h4>
+            <h2 style={{ fontWeight: "bold", }}>An Error Occurred</h2>
 
-            <h2>It seems your garbage doesn't match what's in our system. Go away</h2>
-
+            <h2>You are unable to vote for one of the following reasons:</h2>
+            <ul>
+                <li>You are not registered in our database to vote.</li>
+                <li>You have entered in some of your information incorrectly.</li>
+                <li>You have already voted.</li>
+                <li>You are using a VPN.</li>
+            </ul>
+            <p style={{ fontSize: "1.1vw" }}>
+                Due to security, we do not disclose specific reasons.
+                <br />
+                Please make sure all information you input is correct.
+                <br />
+                If problems persist, please contact your riding administrator.
+            </p>
             <Button onClick={(e) => window.location.href = "/"} type="submit" className="btn btn-purple">Back to Home Page</Button>
         </Card.Body>
     );

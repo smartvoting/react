@@ -8,12 +8,12 @@ export default function Contact() {
             <Row>
                 <Col md={6} style={{ display: "flex", borderRight: "1px solid #d3d3d3", paddingRight: "50px", }}>
                     <Card style={{ width: "100%", borderRadius: "15px", alignItems: "center", padding: "5px", marginBottom: "10px" }}>
-                        <img src={smartVotingLogo} style={{ width: "60%", }} />
+                        <img src={smartVotingLogo} style={{ width: "60%", }} alt="Smart Voting logo"/>
                     </Card>
                 </Col>
                 <Col md={6} style={{ display:"flex", paddingLeft: "50px", }}>
                     <Card style={{ width: "100%", borderRadius: "15px", alignItems: "center", padding: "5px", marginBottom: "10px" }}>
-                        <img src={electionsCanadaLogo} style={{ width: "94%", paddingBottom: "20px", }} />
+                        <img src={electionsCanadaLogo} style={{ width: "94%", paddingBottom: "20px", }} alt="Elections Canada logo"/>
                     </Card>
                 </Col>
             </Row>

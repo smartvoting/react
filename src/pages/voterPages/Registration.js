@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Container, Form, Button, Accordion, Row, Col } from "react-bootstrap";
 import courseOutline from '../../files/courseOutline.pdf';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

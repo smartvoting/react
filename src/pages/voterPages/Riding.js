@@ -11,6 +11,7 @@ export default function Riding() {
     const location = useLocation();
     const navigate = useNavigate();
     const [selectValue, setSV] = useState('');
+    const [osv, setOSV] = useState('');
     const [searchbarValue, setSB] = useState('');
     const [searchData, setData] = useState('');
     const [centre, setCentre] = useState({ lat: 45.4236, lng: -75.7009 });
@@ -38,17 +39,25 @@ export default function Riding() {
         let searchUrl = "";
         if (selectValue.value === "zip" || (location.state !== null && location.state !== undefined)) searchUrl = "https://api.smartvoting.cc/v1/Riding/Locate/PostCode/" + searchString;
         else if (selectValue.value === "district") searchUrl = "https://api.smartvoting.cc/v1/Riding/Locate/Riding/" + searchString;
-        else if (selectValue.value === "candidate") searchUrl = "https://api.smartvoting.cc/v1/Riding/Locate/Candidate/" + capitalize(searchString);
         else searchUrl = "https://api.smartvoting.cc/v1/Riding/Locate/City/" + searchString;
-        axios.get(searchUrl).then(res => {
-            if (res.data !== undefined) {
-                setData(res.data);
-                getLocationData(res.data);
-            }
-        }).catch(err => {
-            setData({});
-            getLocationData({});
-        });
+        if (selectValue.value === "candidate") {
+            setOSV("candidate");
+            axios.post("https://api.smartvoting.cc/v1/Candidates/Search?Name=" + capitalize(searchString) + "&RidingID=0").then(res => {
+                if (res.data !== undefined) {
+                    setData(res.data);
+                    getLocationData(res.data);
+                }
+            }).catch(err => { });
+        }
+        else {
+            setOSV("");
+            axios.get(searchUrl).then(res => {
+                if (res.data !== undefined) {
+                    setData(res.data);
+                    getLocationData(res.data);
+                }
+            }).catch(err => { setData({}); getLocationData({}); });
+        }
         swapView();
         setBS(false);
         setTimeout(navigate('/voter/riding/', {}), 1000);
@@ -69,7 +78,9 @@ export default function Riding() {
         }
         else {
             for (let i = 0; i < data.length; i++) {
-                axios.get("https://api.smartvoting.cc/v1/Riding/Outline/Centroid/" + data[i].id).then(res => {
+                console.log(data[i]);
+                console.log((selectValue.value === "candidate") ? data[i].ridingId : data[i].id);
+                axios.get("https://api.smartvoting.cc/v1/Riding/Outline/Centroid/" + (selectValue.value === "candidate") ? data[i].ridingId : data[i].id ).then(res => {
                     markersArray.push({ lat: res.data[0].centroid.latitude, lng: res.data[0].centroid.longitude });
                 }).catch(err => { });
             }
@@ -192,8 +203,8 @@ export default function Riding() {
                                     <thead>
                                         <tr style={{ display: "flex", width: "100%" }} className="text-center">
                                             <th style={{ display:"flex", width:"100%", }}>Electoral District</th>
-                                            {selectValue.value === "candidate" ?
-                                                <th style={{ display: "flex", width: "60%", textAlign:"center", }}>Possible Candidate</th> :
+                                            {osv === "candidate" ?
+                                                <th style={{ display: "flex", width: "60%", textAlign:"center", }}>Candidate</th> :
                                                 <th style={{ display: "flex", width: "60%", textAlign: "center", }}>Province</th>
                                             }
                                         </tr>
@@ -201,9 +212,13 @@ export default function Riding() {
                                     <tbody>
                                         {Array.from({ length: searchData.length }).map((_, index) => (
                                             <tr key={index} className="candidateRow" onClick={() => { rowClick(searchData[index].name); }} style={{ display: "flex", width: "100%" }}>
-                                                <td style={{ display: "flex", width: "100%", }}>{searchData[index].name}</td>
-                                                {selectValue.value === "candidate" ?
-                                                    <td style={{ display: "flex", width: "60%", }}>{searchData[index].office.province}</td> :
+                                                {osv === "candidate" ?
+                                                    <td style={{ display: "flex", width: "100%", }}>{searchData[index].ridingName}</td> :
+                                                    <td style={{ display: "flex", width: "100%", }}>{searchData[index].name}</td>
+                                                }
+                                                
+                                                {osv === "candidate" ?
+                                                    <td style={{ display: "flex", width: "60%", }}>{searchData[index].firstName} {searchData[index].lastName}</td> :
                                                     <td style={{ display: "flex", width: "60%", }}>{searchData[index].office.province}</td>
                                                 }
                                             </tr>
@@ -211,7 +226,7 @@ export default function Riding() {
                                     </tbody>
                                 </Table> :
                             (searchData !== null && searchData !== undefined && searchData.office !== null && searchData.office !== undefined) ?
-                                <Container style={{ border: "2px solid black", minWidth: "100%", backgroundColor: "#f2f2f2", padding: "20px", fontSize:"1vw", height:"100%", }}>
+                                <Container style={{ border: "2px solid black", minWidth: "100%", backgroundColor: "#f2f2f2", padding: "20px", fontSize:"1vw", height:"100%", overflow:"auto", }}>
                                     <h4 style={{ fontWeight: "bold", }}>Information on your electoral district:</h4>
                                     <p>
                                         <strong>District Name: </strong>{searchData.name}
@@ -234,10 +249,10 @@ export default function Riding() {
                                             (searchData.candidates !== null && searchData.candidates !== undefined && searchData.candidates.length > 0) ?
                                                 <Row style={{ width: "100%" }}>
                                                     {Array.from({ length: searchData.candidates.length }).map((_, index) => (
-                                                        <Col md={2} key={index}>
+                                                        <Col md={3} key={index}>
                                                             <Image src={defaultAvatar} roundedCircle style={{ width: "100%" }} />
                                                             <Container className="text-center" style={{ fontSize: "1vw", }}>
-                                                                <p style={{ fontWeight: "bold", }}>{searchData.candidates[index].firstName} {searchData.candidates[index].lastName}</p>
+                                                                <p style={{ fontWeight: "bold", }}>{searchData.candidates[index].firstName.charAt(0)}. {searchData.candidates[index].lastName}</p>
                                                             </Container>
                                                         </Col>
                                                     ))}

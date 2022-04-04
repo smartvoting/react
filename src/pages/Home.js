@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { useNavigate } from 'react-router-dom';
-import tempCarouselImage from '../images/tempCarouselImage.png';
-import tempCardImg from '../images/tempCardImg.png';
+//import tempCarouselImage from '../images/tempCarouselImage.png';
+//import tempCardImg from '../images/tempCardImg.png';
 import { Container, Carousel, Card, Row, Col, Button, InputGroup, Form } from "react-bootstrap";
 import { Parallax } from 'react-parallax';
 import { TwitterTimelineEmbed, } from 'react-twitter-embed';
@@ -147,7 +147,6 @@ function VoterInfoService() {
                             <Form.Control
                                 id="zip"
                                 maxLength="7"
-                                required
                                 placeholder="Postal Code (ex. A9A9A9)"
                                 data-val-required="Please enter a postal code to continue."
                                 type="text"
