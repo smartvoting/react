@@ -11,65 +11,6 @@ import calgary from '../images/main_carousel/Calgary.jpg';
 export default function MainCarousel() {
     const images = [capitolHill, toronto, montreal, halifax, vancouver, edmonton, calgary]
     return (
-        // <Carousel fade interval={2000} style={{  minWidth: "100%", maxHeight: "(calc(100% - 100px))" }}>
-        //     <Carousel.Item >
-        //         <img
-        //         className="d-block"
-        //         src={capitolHill}
-        //         style={{  minWidth: "100%" }}
-        //         alt="First slide"
-        //         />
-        //     </Carousel.Item>
-        //     <Carousel.Item>
-        //         <img
-        //         className="d-block"
-        //         src={toronto}
-        //         style={{  minWidth: "100%" }}
-        //         alt="Second slide"
-        //         />
-        //     </Carousel.Item>
-        //     <Carousel.Item>
-        //         <img
-        //         className="d-block"
-        //         src={montreal}
-        //         style={{  minWidth: "100%" }}
-        //         alt="Third slide"
-        //         />
-        //     </Carousel.Item>
-        //     <Carousel.Item>
-        //         <img
-        //         className="d-block"
-        //         src={halifax}
-        //         style={{  minWidth: "100%" }}
-        //         alt="Third slide"
-        //         />
-        //     </Carousel.Item>
-        //     <Carousel.Item>
-        //         <img
-        //         className="d-block"
-        //         src={vancouver}
-        //         style={{  minWidth: "100%" }}
-        //         alt="Third slide"
-        //         />
-        //     </Carousel.Item>
-        //     <Carousel.Item>
-        //         <img
-        //         className="d-block"
-        //         src={edmonton}
-        //         style={{  minWidth: "100%" }}
-        //         alt="Third slide"
-        //         />
-        //     </Carousel.Item>
-        //     <Carousel.Item>
-        //         <img
-        //         className="d-block"
-        //         src={calgary}
-        //         style={{  minWidth: "100%" }}
-        //         alt="Third slide"
-        //         />
-        //     </Carousel.Item>
-        // </Carousel>
-
             <Carousel fade style={{ maxHeight: "100vh" }}>
                 {Array.from({ length: images.length }).map((_, index) => (
                     <Carousel.Item key={index}>
