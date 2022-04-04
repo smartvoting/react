@@ -78,9 +78,10 @@ export default function Riding() {
         }
         else {
             for (let i = 0; i < data.length; i++) {
-                console.log(data[i]);
-                console.log((selectValue.value === "candidate") ? data[i].ridingId : data[i].id);
-                axios.get("https://api.smartvoting.cc/v1/Riding/Outline/Centroid/" + (selectValue.value === "candidate") ? data[i].ridingId : data[i].id ).then(res => {
+                let searchString = "";
+                if (selectValue.value === "candidate") searchString = "https://api.smartvoting.cc/v1/Riding/Outline/Centroid/" + data[i].ridingId;
+                else searchString = "https://api.smartvoting.cc/v1/Riding/Outline/Centroid/" + data[i].id;
+                axios.get(searchString).then(res => {
                     markersArray.push({ lat: res.data[0].centroid.latitude, lng: res.data[0].centroid.longitude });
                 }).catch(err => { });
             }
@@ -211,7 +212,7 @@ export default function Riding() {
                                     </thead>
                                     <tbody>
                                         {Array.from({ length: searchData.length }).map((_, index) => (
-                                            <tr key={index} className="candidateRow" onClick={() => { rowClick(searchData[index].name); }} style={{ display: "flex", width: "100%" }}>
+                                            <tr key={index} className="candidateRow" onClick={() => { osv === "candidate" ? rowClick(searchData[index].ridingName) : rowClick(searchData[index].name) }} style={{ display: "flex", width: "100%" }}>
                                                 {osv === "candidate" ?
                                                     <td style={{ display: "flex", width: "100%", }}>{searchData[index].ridingName}</td> :
                                                     <td style={{ display: "flex", width: "100%", }}>{searchData[index].name}</td>

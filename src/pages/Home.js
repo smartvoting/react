@@ -32,7 +32,9 @@ export default class Home extends Component  {
 
                 <Container className="carousel">
                     <CarouselFunction />
-                    <Button variant="" className="btn-lg btn-purple" style={{ position: "absolute", top: "90%", transform: "translate(-50%,-50%)", fontSize: "2vw", }}>Cast Your Vote Now!</Button>
+                    <Container style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", background: "rgba(0,0,0, 0.5)", color: "white", width: "100%", }}>
+                        <p style={{ fontSize: "4vw", fontWeight: "bold", }}>Welcome to Smart Voting</p>
+                    </Container>
                 </Container>
 
                 <Container className="justify-content-center mt-3 mb-3" style={{ minWidth:"80%"}}>
