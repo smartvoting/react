@@ -73,9 +73,11 @@ function PartyInfoModal(props) {
             </Modal.Header>
             <Modal.Body style={{ fontSize: "1.2vw" }} className="text-justify">
                 {Array.from({ length: topics.length }).map((_, index) => (
-                    <><h2 key={index} style={{ fontWeight: "bold", }}>{topics[index]}</h2>
-                    <p>Our database does not have any knowledge of the parties opinion on this topic.</p></>
-                 ))};
+                    <Container key={index} style={{ minWidth:"95%",}}>
+                        <h2 key={index} style={{ fontWeight: "bold", }}>{topics[index]}</h2>
+                        <p>Our database does not have any knowledge of the parties opinion on this topic.</p>
+                    </Container>
+                 ))}
             </Modal.Body>
         </Modal>
     );

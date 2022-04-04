@@ -220,7 +220,7 @@ export default function Riding() {
                                                 
                                                 {osv === "candidate" ?
                                                     <td style={{ display: "flex", width: "60%", }}>{searchData[index].firstName} {searchData[index].lastName}</td> :
-                                                    <td style={{ display: "flex", width: "60%", }}>{searchData[index].office.province}</td>
+                                                    searchData[index].office !== undefined ? <td style={{ display: "flex", width: "60%", }}>{searchData[index].office.province}</td> : null
                                                 }
                                             </tr>
                                         ))}

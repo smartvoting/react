@@ -7,10 +7,13 @@ export default function Turnout() {
 
     useEffect(() => {
         axios.get("https://api.smartvoting.cc/v1/History/Turnout?ElectionID=44").then(res => {
-            console.log(res.data);
             setVT(res.data);
         }).catch(err => { });
     }, []);
+
+    function calculateTurnout(a,b,c) {
+        return (((a + b) / c) * 100).toFixed(2);
+    }
 
     return (
         <Container style={{minWidth:"100%", fontSize: "1vw",}}>
@@ -25,19 +28,19 @@ export default function Turnout() {
                 <thead>
                     <tr className="text-center">
                         <th>Riding ID</th>
-                        <th>Number of Electors on lists</th>
+                        <th>Number of Electors on Lists</th>
                         <th>Total ballots cast</th>
                         <th>Voter turnout (%)</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {vt.length > 0 ? 
+                    {vt.length > 0 ?
                         Array.from({ length: vt.length }).map((_, index) => (
-                            <tr>
-                                <td>{vt[index].ridingId}</td>
-                                <td>{vt[index].eligibleVoters}</td>
-                                <td>{vt[index].validVotes}</td>
-                                <td>{ ((vt[index].validVotes + vt[index].invalidVotes / vt[index].eligibleVoters) * 100) }</td>
+                            <tr key={index} style={{ fontSize:"1.2vw"}}>
+                                <td className="text-center">{vt[index].ridingId}</td>
+                                <td className="text-center">{vt[index].eligibleVoters}</td>
+                                <td className="text-center">{vt[index].validVotes}</td>
+                                <td className="text-center">{calculateTurnout(vt[index].validVotes, vt[index].invalidVotes, vt[index].eligibleVoters) }</td>
                             </tr>
                         )) : null
                     }
